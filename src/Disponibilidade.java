@@ -10,7 +10,7 @@ public class Disponibilidade {
 	public void setData(Date data) {
 		this.data = data;
 	}
-	public boolean isOcupacao() {
+	public boolean getOcupacao() {
 		return ocupacao;
 	}
 	public void setOcupacao(boolean ocupacao) {

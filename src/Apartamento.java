@@ -1,4 +1,9 @@
+import java.util.Scanner;
+
 public class Apartamento extends Imovel{
+	
+	static Apartamento[] catalogoApartamentos = new Apartamento[100];
+	
 	private boolean temElevador;
 	private boolean temSacada;
 	private boolean temGaragem;
@@ -29,7 +34,49 @@ public class Apartamento extends Imovel{
 		this.temCondominio = temCondominio;
 	}
 
-	
-	
-	
+	static void cadastrar(Apartamento ap) {
+		int posicao = encontraPrimeiroNulo();
+		
+		catalogoApartamentos[posicao] = ap;
+	}
+	static void listar() {
+		int identificador = 0;
+		for(int i = 0;i<100;i++) {
+			if(catalogoApartamentos[i] != null) {
+				identificador++;
+				System.out.println(identificador + "\t" + catalogoApartamentos[i].getTitulo());
+			}
+		}
+	}
+	static void deletar() {
+		Scanner ler = new Scanner(System.in);
+		
+		Apartamento.listar();
+		System.out.println("Digite o código do item que deseja excluir");
+		int escolha = ler.nextInt();
+		catalogoApartamentos[retornaPosicaoReal(escolha)] = null;
+		
+		
+	}
+	public static int encontraPrimeiroNulo() {
+		for(int posi = 0; posi< 100; posi++) {
+			if(catalogoApartamentos[posi] == null) {
+				return posi;
+			}
+		}
+		System.out.println("Catálogo cheio ! !");
+		return 0;
+	}
+	public static int retornaPosicaoReal(int posicaoLista) {
+		int identificador = 0;
+		for(int i = 0;i < 100; i++) {
+			if(catalogoApartamentos[i] != null) {
+				identificador++;
+			}
+			if(identificador == posicaoLista) {
+				return i;
+			}
+		}
+		return 0;
+	}
 } 

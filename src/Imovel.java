@@ -1,3 +1,8 @@
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;  
 
 public abstract class Imovel {
 	
@@ -5,7 +10,7 @@ public abstract class Imovel {
 	private String titulo; 
 	private Endereco endereco; 
 	private double valor; 
-	private Disponibilidade disponibilidade; 
+	private Disponibilidade disponibilidade[]; 
 	private double nota; 
 	private Descricao descricao;
 	
@@ -34,11 +39,12 @@ public abstract class Imovel {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
-	public Disponibilidade getDisponibilidade() {
-		return disponibilidade;
+	
+	public Disponibilidade getDisponibilidade(int posi) {
+		return disponibilidade[posi];
 	}
-	public void setDisponibilidade(Disponibilidade disponibilidade) {
-		this.disponibilidade = disponibilidade;
+	public void setDisponibilidade(int posi, Disponibilidade disponibilidade) {
+		this.disponibilidade[posi] = disponibilidade;
 	}
 	public double getNota() {
 		return nota;
@@ -52,6 +58,38 @@ public abstract class Imovel {
 	public void setDescricao(Descricao descricao) {
 		this.descricao = descricao;
 	} 
-
 	
+	public void geraDisponibilidade() {
+		this.disponibilidade = new Disponibilidade[365];
+		for(int i = 0; i<365; i++) {
+			this.disponibilidade[i] = new Disponibilidade();
+		}
+		Calendar cal = (Calendar) Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		String data_inicial_str = "01/01/2022";
+		Date data_inicial = null;
+		
+		try {
+			data_inicial = sdf.parse(data_inicial_str);
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+		cal.setTime(data_inicial);
+		
+		for(int i = 0; i<365;i++) {
+			this.disponibilidade[i].setData(cal.getTime());
+			this.disponibilidade[i].setOcupacao(false);
+			cal.add(Calendar.DATE, 1);
+		}
+	}
+	public void mostraDisponibilidade() {
+		String dateToStr;
+		
+		System.out.println("Data\t\tOcupação");
+		for(int i = 0;i<365;i++) {
+			dateToStr = DateFormat.getDateInstance(DateFormat.SHORT).format(this.disponibilidade[i].getData());
+			System.out.println(dateToStr + "\t" + this.disponibilidade[i].getOcupacao());
+		}
+	}
 }
