@@ -4,7 +4,6 @@ public class Reserva {
 	private Pessoa pessoa;
 	private Periodo periodo;
 	
-	public static Reserva[] catalogoReservas = new Reserva[300];
 	
 	public int getId_reserva() {
 		return id_reserva;
@@ -30,5 +29,7 @@ public class Reserva {
 	public void setPeriodo(Periodo periodo) {
 		this.periodo = periodo;
 	}
-
+	
+	
+	
 }

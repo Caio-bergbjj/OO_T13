@@ -34,48 +34,37 @@ public class Apartamento extends Imovel{
 	}
 
 	static void cadastrar(Apartamento ap) {
-		int posicao = encontraPrimeiroNulo();
+		int posicao = Dados.encontraPrimeiroNulo(Dados.getCatalogoApartamentos());
 		
-		Dados.catalogoApartamentos[posicao] = ap;
+		Dados.setCatalogoApartamentos(ap, posicao);
 	}
 	static void listar() {
 		int identificador = 0;
-		for(int i = 0;i<100;i++) {
-			if(Dados.catalogoApartamentos[i] != null) {
-				identificador++;
-				System.out.println(identificador + "\t" + Dados.catalogoApartamentos[i].getTitulo());
+		if(Dados.isVazia(Dados.getCatalogoApartamentos())) {
+			System.out.println("Não há apartamentos cadastradas no sistema");
+		}else {		
+			for(int i = 0;i<100;i++) {
+				if(Dados.getCatalogoApartamentos()[i] != null) {
+					identificador++;
+					System.out.println(identificador + "\t" + Dados.getCatalogoApartamentos()[i].getTitulo());
+				}
 			}
 		}
+		
 	}
 	static void deletar() {
 		Scanner ler = new Scanner(System.in);
 		
-		Apartamento.listar();
-		System.out.println("Digite o código do item que deseja excluir");
-		int escolha = ler.nextInt();
-		Dados.catalogoApartamentos[retornaPosicaoReal(escolha)] = null;
+		if(Dados.isVazia(Dados.getCatalogoApartamentos())) {
+			System.out.println("Não há apartamentos cadastrados no sistema");
+		}else {
+			Apartamento.listar();
+			System.out.println("Digite o código do item que deseja excluir");
+			int escolha = ler.nextInt();
+			Dados.setCatalogoApartamentos(null, Dados.retornaPosicaoReal(escolha, Dados.getCatalogoApartamentos()));		
+		}
 		
 		
-	}
-	public static int encontraPrimeiroNulo() {
-		for(int posi = 0; posi< 100; posi++) {
-			if(Dados.catalogoApartamentos[posi] == null) {
-				return posi;
-			}
-		}
-		System.out.println("Catálogo cheio ! !");
-		return 0;
-	}
-	public static int retornaPosicaoReal(int posicaoLista) {
-		int identificador = 0;
-		for(int i = 0;i < 100; i++) {
-			if(Dados.catalogoApartamentos[i] != null) {
-				identificador++;
-			}
-			if(identificador == posicaoLista) {
-				return i;
-			}
-		}
-		return 0;
+		
 	}
 } 
