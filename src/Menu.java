@@ -72,14 +72,14 @@ public class Menu {
 				System.out.println("Selecione a Casa:");
 				Casa.listar();
 				escolha = ler.nextInt();
-				Casa.catalogoCasas[Casa.retornaPosicaoReal(escolha)].mostraDisponibilidade();
+				Dados.catalogoCasas[Casa.retornaPosicaoReal(escolha)].mostraDisponibilidade();
 			}
 			break;
 			case 2: {
 				System.out.println("Selecione o apartamento:");
 				Apartamento.listar();
 				escolha = ler.nextInt();
-				Apartamento.catalogoApartamentos[Apartamento.retornaPosicaoReal(escolha)].mostraDisponibilidade();
+				Dados.catalogoApartamentos[Apartamento.retornaPosicaoReal(escolha)].mostraDisponibilidade();
 			}
 			break;
 			}

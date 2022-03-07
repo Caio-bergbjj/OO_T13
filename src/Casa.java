@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class Casa extends Imovel{
 	
-	static Casa[] catalogoCasas = new Casa[100];
 	
 	private String categoria;
 	private boolean temPiscina;
@@ -30,14 +29,14 @@ public class Casa extends Imovel{
 	static void cadastrar(Casa c) {
 		int posicao = encontraPrimeiroNulo();
 		
-		catalogoCasas[posicao] = c;
+		Dados.catalogoCasas[posicao] = c;
 	}
 	static void listar() {
 		int identificador = 0;
 		for(int i = 0;i<100;i++) {
-			if(catalogoCasas[i] != null) {
+			if(Dados.catalogoCasas[i] != null) {
 				identificador++;
-				System.out.println(identificador + "\t" + catalogoCasas[i].getTitulo());
+				System.out.println(identificador + "\t" + Dados.catalogoCasas[i].getTitulo());
 			}
 		}
 	}
@@ -47,13 +46,13 @@ public class Casa extends Imovel{
 		Casa.listar();
 		System.out.println("Digite o código do item que deseja excluir");
 		int escolha = ler.nextInt();
-		catalogoCasas[retornaPosicaoReal(escolha)] = null;
+		Dados.catalogoCasas[retornaPosicaoReal(escolha)] = null;
 		
 		
 	}
 	public static int encontraPrimeiroNulo() {
 		for(int posi = 0; posi< 100; posi++) {
-			if(catalogoCasas[posi] == null) {
+			if(Dados.catalogoCasas[posi] == null) {
 				return posi;
 			}
 		}
@@ -63,7 +62,7 @@ public class Casa extends Imovel{
 	public static int retornaPosicaoReal(int posicaoLista) {
 		int identificador = 0;
 		for(int i = 0;i < 100; i++) {
-			if(catalogoCasas[i] != null) {
+			if(Dados.catalogoCasas[i] != null) {
 				identificador++;
 			}
 			if(identificador == posicaoLista) {

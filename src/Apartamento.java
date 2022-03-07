@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class Apartamento extends Imovel{
 	
-	static Apartamento[] catalogoApartamentos = new Apartamento[100];
 	
 	private boolean temElevador;
 	private boolean temSacada;
@@ -37,14 +36,14 @@ public class Apartamento extends Imovel{
 	static void cadastrar(Apartamento ap) {
 		int posicao = encontraPrimeiroNulo();
 		
-		catalogoApartamentos[posicao] = ap;
+		Dados.catalogoApartamentos[posicao] = ap;
 	}
 	static void listar() {
 		int identificador = 0;
 		for(int i = 0;i<100;i++) {
-			if(catalogoApartamentos[i] != null) {
+			if(Dados.catalogoApartamentos[i] != null) {
 				identificador++;
-				System.out.println(identificador + "\t" + catalogoApartamentos[i].getTitulo());
+				System.out.println(identificador + "\t" + Dados.catalogoApartamentos[i].getTitulo());
 			}
 		}
 	}
@@ -54,13 +53,13 @@ public class Apartamento extends Imovel{
 		Apartamento.listar();
 		System.out.println("Digite o código do item que deseja excluir");
 		int escolha = ler.nextInt();
-		catalogoApartamentos[retornaPosicaoReal(escolha)] = null;
+		Dados.catalogoApartamentos[retornaPosicaoReal(escolha)] = null;
 		
 		
 	}
 	public static int encontraPrimeiroNulo() {
 		for(int posi = 0; posi< 100; posi++) {
-			if(catalogoApartamentos[posi] == null) {
+			if(Dados.catalogoApartamentos[posi] == null) {
 				return posi;
 			}
 		}
@@ -70,7 +69,7 @@ public class Apartamento extends Imovel{
 	public static int retornaPosicaoReal(int posicaoLista) {
 		int identificador = 0;
 		for(int i = 0;i < 100; i++) {
-			if(catalogoApartamentos[i] != null) {
+			if(Dados.catalogoApartamentos[i] != null) {
 				identificador++;
 			}
 			if(identificador == posicaoLista) {
