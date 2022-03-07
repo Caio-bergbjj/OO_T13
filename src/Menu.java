@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-
 public class Menu {
 	
 	static int escolha = 0;
@@ -15,6 +14,7 @@ public class Menu {
 		while(escolha != 5) {
 			System.out.println("Escolha a opção:");
 			System.out.println("1. Gerenciar Imóveis");
+			System.out.println("2. Verificar Disponibilidade");
 			System.out.println("5. Sair");
 			
 			escolha = ler.nextInt();
@@ -22,6 +22,7 @@ public class Menu {
 			switch (escolha) {
 			case 1: menuGerenciarImoveis();
 			break;
+			case 2: menuDisponibilidade();
 			default:
 			break;
 			}
@@ -52,6 +53,34 @@ public class Menu {
 			case 5: Apartamento.deletar();
 			break;
 			default:
+			break;
+			}
+		}
+		
+	}
+	public static void menuDisponibilidade() {
+		escolha = 0;
+		while(escolha != 3) {
+			System.out.println("Gostaria de verificar a disponibilidade de qual tipo de imóvel?");
+			System.out.println("1. Casas");
+			System.out.println("2. Apartamentos");
+			System.out.println("3. Voltar");
+			escolha = ler.nextInt();
+			
+			switch (escolha) {
+			case 1: {
+				System.out.println("Selecione a Casa:");
+				Casa.listar();
+				escolha = ler.nextInt();
+				Casa.catalogoCasas[Casa.retornaPosicaoReal(escolha)].mostraDisponibilidade();
+			}
+			break;
+			case 2: {
+				System.out.println("Selecione o apartamento:");
+				Apartamento.listar();
+				escolha = ler.nextInt();
+				Apartamento.catalogoApartamentos[Apartamento.retornaPosicaoReal(escolha)].mostraDisponibilidade();
+			}
 			break;
 			}
 		}

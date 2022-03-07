@@ -85,11 +85,16 @@ public abstract class Imovel {
 	}
 	public void mostraDisponibilidade() {
 		String dateToStr;
-		
+		String ocupacao;
 		System.out.println("Data\t\tOcupação");
 		for(int i = 0;i<365;i++) {
 			dateToStr = DateFormat.getDateInstance(DateFormat.SHORT).format(this.disponibilidade[i].getData());
-			System.out.println(dateToStr + "\t" + this.disponibilidade[i].getOcupacao());
+			if(this.disponibilidade[i].getOcupacao()) {
+				ocupacao = "Ocupado";
+			}else {
+				ocupacao = "Livre";
+			}
+			System.out.println(dateToStr + "\t" + ocupacao);
 		}
 	}
 }
