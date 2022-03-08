@@ -7,9 +7,7 @@ import controle.DadosPessoa;
 import controle.DadosReserva;
 import modelo.Apartamento;
 import modelo.Casa;
-import modelo.Periodo;
 import modelo.Pessoa;
-import modelo.Reserva;
 
 public class Menu {
 	
@@ -24,12 +22,11 @@ public class Menu {
 	}
 	
 	public static void menuPrincipal() {
-		
 		DadosCasa dadosCasa = new DadosCasa();
 		DadosApartamento dadosApartamento = new DadosApartamento();
 		DadosPessoa dadosPessoa = new DadosPessoa();
 		DadosReserva dadosReserva = new DadosReserva();
-		
+		cadastroInicial(dadosCasa,dadosPessoa,dadosApartamento);
 		
 		while(escolha != 5) {
 			System.out.println("\nEscolha a opção:");
@@ -154,7 +151,6 @@ public class Menu {
 	public static void reservar(DadosCasa dadosCasa,DadosPessoa dadosPessoa,DadosReserva dadosReserva) {
 		
 		int op;
-		String inicio, fim;
 		
 		System.out.println("\nEscolha uma das pessoas listadas: ");
 		dadosPessoa.listar();
@@ -166,18 +162,13 @@ public class Menu {
 		dadosCasa.listar();
 		
 		op = ler.nextInt();
-	
+		Casa c = dadosCasa.get(op-1);
 		System.out.println("\nDisponibilidade:\n ");
-		dadosCasa.get(op-1).mostraDisponibilidade();
+		c.mostraDisponibilidade();
 		
-		System.out.println("\nEscolha uma data dentre as disponiveis:\n Inicio: (dd/MM/yyyy) ");
-		inicio = ler.nextLine();
-		System.out.println("\nFim: (dd/MM/yyyy) ");
-		fim = ler.nextLine();
+		dadosReserva.addRserva(c, p);
 		
-		Periodo periodo = new Periodo(inicio,fim);
-		
-		Reserva reserva = new Reserva(dadosCasa.get(op-1),p,periodo);
+		System.out.println(dadosReserva.get(0).getPeriodo());
 		
 	}
 	
@@ -206,8 +197,8 @@ public class Menu {
 		
 	}
 	
-	public static void cadastroInicial() {
-		// TODO Cadastrar 5 casas, 5 apartamentos e 5 pessoas aleatórias
+	public static void cadastroInicial(DadosCasa dadosCasa, DadosPessoa dadosPessoa, DadosApartamento dadosApartamento ) {
+		
 	}
 	
 	
