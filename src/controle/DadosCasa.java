@@ -2,8 +2,6 @@ package controle;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import modelo.Apartamento;
 import modelo.Casa;
 import modelo.Descricao;
 
@@ -25,7 +23,7 @@ public class DadosCasa {
 	public void addCasa() {
 		
 		int qtdQuartos, qtdCamas, qtdBanheiros, qtdAndar, qtdHospedes;
-		String nome;
+		String nome,op;
 		Double valor;
 		
 		System.out.println("\nInforme o nome do imóvel:");
@@ -50,6 +48,20 @@ public class DadosCasa {
 		imovel.setId(listaCasa.size()+1);
 		listaCasa.add(imovel);
 		
+		System.out.println("\nA casa tem piscina: (Y/N ) ");
+		op = ler.next().toUpperCase();
+		switch(op.charAt(0)) {
+		case 'Y' -> imovel.setTemPiscina(true);
+		case 'N' -> imovel.setTemPiscina(false);
+		}
+		
+		System.out.println("\nA casa tem Wifi: (Y/N ) ");
+		op = ler.next().toUpperCase();
+		switch(op.charAt(0)) {
+		case 'Y' -> imovel.setTemWifi(true);
+		case 'N' -> imovel.setTemWifi(false);
+		}
+		
 	}
 	
 	public void deletar() {
@@ -67,7 +79,7 @@ public class DadosCasa {
 		
 	}
 	
-	public Object get(int index) {
+	public Casa get(int index) {
 		
 		return listaCasa.get(index);
 	}

@@ -20,8 +20,6 @@ public class DadosApartamento {
 		}
 	}
 	
-	
-	
 	public void addAp() {
 		
 		int qtdQuartos, qtdCamas, qtdBanheiros, qtdAndar, qtdHospedes;
@@ -58,21 +56,21 @@ public class DadosApartamento {
 		case 'N' -> imovel.setTemElevador(false);
 		}
 		
-		System.out.println("\nO local do apartamento possui sacada: (Y/N ) ");
+		System.out.println("\nO apartamento possui sacada: (Y/N ) ");
 		op = ler.next().toUpperCase();
 		switch(op.charAt(0)) {
 		case 'Y' -> imovel.setTemElevador(true);
 		case 'N' -> imovel.setTemElevador(false);
 		}
 		
-		System.out.println("\nO local do apartamento possui garagem: (Y/N ) ");
+		System.out.println("\nO apartamento possui garagem: (Y/N ) ");
 		op = ler.next().toUpperCase();
 		switch(op.charAt(0)) {
 		case 'Y' -> imovel.setTemElevador(true);
 		case 'N' -> imovel.setTemElevador(false);
 		}
 		
-		System.out.println("\nO local do apartamento fica em um condomínio: (Y/N ) ");
+		System.out.println("\nO apartamento fica em um condomínio: (Y/N ) ");
 		op = ler.next().toUpperCase();
 		switch(op.charAt(0)) {
 		case 'Y' -> imovel.setTemElevador(true);
@@ -80,7 +78,6 @@ public class DadosApartamento {
 		}
 	}
 	
-
 	public void deletar() {
 		
 		int oldId;
@@ -96,7 +93,7 @@ public class DadosApartamento {
 		
 	}
 	
-	public Object get(int index) {
+	public Apartamento get(int index) {
 		
 		return listaApartamento.get(index);
 	}

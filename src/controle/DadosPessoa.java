@@ -2,8 +2,8 @@ package controle;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import modelo.Pessoa;
+import modelo.Telefone;
 
 public class DadosPessoa {
 	
@@ -22,17 +22,29 @@ public class DadosPessoa {
 	
 	public void addPessoa() {
 		
+		String nome,email,cpf;
+		short ddd;
+		int numero;
+		
 		System.out.println("\nInsira o nome do usuário:");
 		ler.next();
-		String nome = ler.nextLine();
+		nome = ler.nextLine();
 		
 		System.out.println("\nInsira o cpf do usuário (Use pontos e hífen)");
-		String cpf = ler.nextLine();
+		cpf = ler.nextLine();
 		
 		System.out.println("\nInsira o email do usuário");
-		String email = ler.nextLine();
+		email = ler.nextLine();
 		
-		Pessoa p = new Pessoa(nome, cpf, email);
+		System.out.println("\nInsira o DDD do telefone: ");
+		ddd = ler.nextShort();
+		
+		System.out.println("\nInsira o telefone do usuario (sem o DDD)");
+		numero = ler.nextInt();
+		
+		Telefone telefone = new Telefone(ddd,numero);
+		
+		Pessoa p = new Pessoa(nome, cpf, telefone, email);
 		
 		listaPessoa.add(p);
 	
@@ -54,7 +66,7 @@ public class DadosPessoa {
 		
 	}
 	
-	public Object get(int index) {
+	public Pessoa get(int index) {
 		return listaPessoa.get(index);
 		
 	}

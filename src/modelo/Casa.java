@@ -2,14 +2,14 @@ package modelo;
 
 public class Casa extends Imovel{
 	
+	private String categoria;
+	private boolean temPiscina;
+	private boolean temWifi;
 	
 	public Casa(String titulo, double valor, Descricao descricao) {
 		super(titulo, valor, descricao);
 		
 	}
-	private String categoria;
-	private boolean temPiscina;
-	private boolean temWifi;
 	
 	public String getCategoria() {
 		return categoria;

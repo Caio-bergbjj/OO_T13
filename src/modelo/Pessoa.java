@@ -61,18 +61,16 @@ public class Pessoa {
 	public Pessoa(String nome, String cpf, String email){
 		this.nome = nome;
 		this.cpf = cpf;
-		this.email = email;
-////		this.endereco = endereco;
-////		this.telefone = telefone;
+	//  this.email = email;
+////	this.endereco = endereco;
 	}
 	
-	public Pessoa(String nome, String cpf, Telefone telefone){
+	public Pessoa(String nome, String cpf, Telefone telefone, String email){
 		this.nome = nome;
 		this.cpf = cpf;
 //		this.email = email;
-////		this.endereco = endereco;
-
-		this.telefone = telefone;
+////	this.endereco = endereco;
+//		this.telefone = telefone;
 	}
 	
 
