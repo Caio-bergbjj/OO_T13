@@ -1,17 +1,17 @@
 package view;
-import java.util.Date;
-import java.util.Scanner;
 
+import java.util.Scanner;
 import controle.DadosApartamento;
 import controle.DadosCasa;
 import controle.DadosPessoa;
+import controle.DadosReserva;
 import modelo.Apartamento;
 import modelo.Casa;
 import modelo.Periodo;
 import modelo.Pessoa;
 import modelo.Reserva;
 
-public class Teste {
+public class Menu {
 	
 	static int escolha = 0;
 	static Scanner ler = new Scanner(System.in);
@@ -28,6 +28,7 @@ public class Teste {
 		DadosCasa dadosCasa = new DadosCasa();
 		DadosApartamento dadosApartamento = new DadosApartamento();
 		DadosPessoa dadosPessoa = new DadosPessoa();
+		DadosReserva dadosReserva = new DadosReserva();
 		
 		
 		while(escolha != 5) {
@@ -40,7 +41,7 @@ public class Teste {
 			escolha = ler.nextInt();
 			
 			switch (escolha) {
-			case 1 -> menuGerenciarImoveis(dadosCasa,dadosApartamento,dadosPessoa);
+			case 1 -> menuGerenciarImoveis(dadosCasa,dadosApartamento,dadosPessoa,dadosReserva);
 			case 2 -> menuDisponibilidade(dadosCasa,dadosApartamento);
 			case 3 -> menuUsuarios(dadosPessoa);
 			case 5 -> System.out.println("\nObrigado por usar o sitema. Fechando...");
@@ -50,7 +51,7 @@ public class Teste {
 	}
 	
 
-	public static void menuGerenciarImoveis(DadosCasa dadosCasa, DadosApartamento dadosApartamento, DadosPessoa dadosPessoa) {
+	public static void menuGerenciarImoveis(DadosCasa dadosCasa, DadosApartamento dadosApartamento, DadosPessoa dadosPessoa,DadosReserva dadosReserva) {
 		escolha = 0;
 		while(escolha != 6) {
 			System.out.println("\nEscolha a opcao:");
@@ -65,7 +66,7 @@ public class Teste {
 			switch(escolha) {
 			case 1 -> dadosCasa.addCasa();
 			case 2 -> dadosApartamento.addAp();
-			case 3 -> listarImoveis(dadosCasa, dadosApartamento,dadosPessoa);
+			case 3 -> listarImoveis(dadosCasa, dadosApartamento,dadosPessoa,dadosReserva);
 			case 4 -> dadosCasa.deletar();
 			case 5 -> dadosApartamento.deletar();
 			case 6 -> {}
@@ -121,7 +122,7 @@ public class Teste {
 			}
 		}
 	}
-	public static void listarImoveis(DadosCasa dadosCasa, DadosApartamento dadosApartamento,DadosPessoa dadosPessoa) {
+	public static void listarImoveis(DadosCasa dadosCasa, DadosApartamento dadosApartamento,DadosPessoa dadosPessoa,DadosReserva dadosReserva) {
 		
 		String op;
 		
@@ -133,22 +134,24 @@ public class Teste {
 		System.out.println("\n\nDeseja reservar algun dos imoveis listados? (Y/N)");
 		op = ler.next().toUpperCase();
 		switch(op.charAt(0)) {
-		case 'Y' -> {}
-		case 'N' -> menuGerenciarImoveis(dadosCasa,dadosApartamento,dadosPessoa);
-		default -> menuGerenciarImoveis(dadosCasa, dadosApartamento,dadosPessoa);
+		case 'Y':{
+			System.out.println("\nEscolha o tipo de imovel que será reservado: \n 1 - Casa\n 2 - Apartamento");
+			op = ler.next().toUpperCase();
+			switch(op.charAt(0)) {
+			case '1' -> reservar(dadosCasa,dadosPessoa,dadosReserva);
+			case '2' -> reservar(dadosApartamento,dadosPessoa,dadosReserva);
+			default -> {}
+			}
+		}break;
+		case 'N': {}break;
+		default: break;
 		}
 		
-		System.out.println("\nEscolha o tipo de imovel que será reservado: \n 1 - Casa\n 2 - Apartamento");
-		op = ler.next().toUpperCase();
-		switch(op.charAt(0)) {
-		case '1' -> reservar(dadosCasa,dadosPessoa);
-		case '2' -> reservar(dadosApartamento,dadosPessoa);
-		default -> menuGerenciarImoveis(dadosCasa, dadosApartamento,dadosPessoa);
-		}
+		
 	}
 		
 
-	public static void reservar(DadosCasa dadosCasa,DadosPessoa dadosPessoa) {
+	public static void reservar(DadosCasa dadosCasa,DadosPessoa dadosPessoa,DadosReserva dadosReserva) {
 		
 		int op;
 		String inicio, fim;
@@ -178,9 +181,9 @@ public class Teste {
 		
 	}
 	
-	public static void reservar(DadosApartamento dadosApartamento,DadosPessoa dadosPessoa) {
+	public static void reservar(DadosApartamento dadosApartamento,DadosPessoa dadosPessoa,DadosReserva dadosReserva) {
 		int op;
-		String inicio, fim;
+		
 		
 		System.out.println("\nEscolha uma das pessoas listadas: ");
 		dadosPessoa.listar();
@@ -192,20 +195,14 @@ public class Teste {
 		dadosApartamento.listar();
 		
 		op = ler.nextInt();
+		Apartamento ap = dadosApartamento.get(op-1);
 	
 		System.out.println("\nDisponibilidade:\n ");
-		dadosApartamento.get(op-1).mostraDisponibilidade();
+		ap.mostraDisponibilidade();
 		
-		System.out.println("\nEscolha uma data dentre as disponiveis:\n Inicio: (dd/MM/yyyy) ");
-		inicio = ler.nextLine();
-		System.out.println("\nFim: (dd/MM/yyyy) ");
-		fim = ler.nextLine();
+		dadosReserva.addRserva(ap, p);
 		
-		Periodo periodo = new Periodo(inicio,fim);
-		
-		Reserva reserva = new Reserva(dadosApartamento.get(op-1),p,periodo);
-		
-		System.out.println(reserva.getPeriodo());
+		System.out.println(dadosReserva.get(0).getPeriodo());
 		
 	}
 	

@@ -27,7 +27,6 @@ public class DadosPessoa {
 		int numero;
 		
 		System.out.println("\nInsira o nome do usuário:");
-		ler.next();
 		nome = ler.nextLine();
 		
 		System.out.println("\nInsira o cpf do usuário (Use pontos e hífen)");
@@ -46,7 +45,9 @@ public class DadosPessoa {
 		
 		Pessoa p = new Pessoa(nome, cpf, telefone, email);
 		
+		
 		listaPessoa.add(p);
+		p.setId_pessoa(listaPessoa.size());
 	
 	}
 	

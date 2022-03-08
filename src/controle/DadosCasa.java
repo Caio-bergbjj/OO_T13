@@ -27,7 +27,6 @@ public class DadosCasa {
 		Double valor;
 		
 		System.out.println("\nInforme o nome do imóvel:");
-		ler.next();
 		nome = ler.nextLine();
 		System.out.println("\nQuantos quartos tem: ");	
 		qtdQuartos = ler.nextInt();
@@ -45,8 +44,8 @@ public class DadosCasa {
 		Descricao desc  = new Descricao(qtdQuartos, qtdCamas, qtdBanheiros, qtdAndar, qtdHospedes);
 		Casa imovel = new Casa(nome, valor, desc);
 		
-		imovel.setId(listaCasa.size()+1);
 		listaCasa.add(imovel);
+		imovel.setId(listaCasa.size());
 		
 		System.out.println("\nA casa tem piscina: (Y/N ) ");
 		op = ler.next().toUpperCase();

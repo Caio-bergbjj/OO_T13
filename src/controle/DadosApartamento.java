@@ -28,7 +28,6 @@ public class DadosApartamento {
 		String op;
 		
 		System.out.println("\nInforme o nome do imóvel:");
-		ler.next();
 		nome = ler.nextLine();
 		System.out.println("\nQuantos quartos tem: ");	
 		qtdQuartos = ler.nextInt();
@@ -46,8 +45,8 @@ public class DadosApartamento {
 		Descricao desc  = new Descricao(qtdQuartos, qtdCamas, qtdBanheiros, qtdAndar, qtdHospedes);
 		Apartamento imovel = new Apartamento(nome, valor, desc);
 		
-		imovel.setId(listaApartamento.size()+1);
 		listaApartamento.add(imovel);
+		imovel.setId(listaApartamento.size());
 		
 		System.out.println("\nO local do apartamento possui elevador: (Y/N ) ");
 		op = ler.next().toUpperCase();
