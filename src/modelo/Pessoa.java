@@ -1,4 +1,7 @@
+package modelo;
 import java.util.Scanner;
+
+import controle.Dados;
 
 public class Pessoa {
 	private int id_pessoa;

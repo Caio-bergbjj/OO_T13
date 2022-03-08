@@ -1,4 +1,10 @@
+package view;
 import java.util.Scanner;
+
+import controle.Dados;
+import modelo.Apartamento;
+import modelo.Casa;
+import modelo.Pessoa;
 
 public class Menu {
 	
@@ -52,9 +58,9 @@ public class Menu {
 			break;
 			case 3: listarImoveis();
 			break;
-			case 4: Casa.deletar();
+			case 4: //Casa.deletar();
 			break;
-			case 5: Apartamento.deletar();
+			case 5: //Apartamento.deletar();
 			break;
 			default:
 			break;

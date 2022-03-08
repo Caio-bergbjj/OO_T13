@@ -1,3 +1,10 @@
+package controle;
+import modelo.Apartamento;
+import modelo.Casa;
+import modelo.Imovel;
+import modelo.Pessoa;
+import modelo.Reserva;
+
 public class Dados {
 	private static Casa[] catalogoCasas = new Casa[100];
 	private static Apartamento[] catalogoApartamentos = new Apartamento[100];

@@ -1,4 +1,7 @@
+package modelo;
 import java.util.Scanner;
+
+import controle.Dados;
 
 public class Casa extends Imovel{
 	
@@ -27,12 +30,13 @@ public class Casa extends Imovel{
 		this.temWifi = temWifi;
 	}
 	
-	static void cadastrar(Casa c) {
+	public static void cadastrar(Casa c) {
 		int posicao = Dados.encontraPrimeiroNulo(Dados.getCatalogoCasas());
 		
 		Dados.setCatalogoCasas(c, posicao);
 	}
-	static void listar() {
+	
+	public static void listar() {
 		int identificador = 0;
 		if(Dados.isVazia(Dados.getCatalogoCasas())) {
 			System.out.println("Não há casas cadastradas no sistema");
@@ -46,7 +50,8 @@ public class Casa extends Imovel{
 		}
 		
 	}
-	static void deletar() {
+	
+	public static void deletar() {
 		Scanner ler = new Scanner(System.in);
 		if(Dados.isVazia(Dados.getCatalogoCasas())) {
 			System.out.println("Não há casas cadastradas no sistema");

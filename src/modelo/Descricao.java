@@ -1,3 +1,4 @@
+package modelo;
 public class Descricao {
 	private int qtdQuartos;
 	private int qtdCamas;

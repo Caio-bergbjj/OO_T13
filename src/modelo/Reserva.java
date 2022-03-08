@@ -1,3 +1,4 @@
+package modelo;
 public class Reserva {
 	private int id_reserva;
 	private Imovel imovel;

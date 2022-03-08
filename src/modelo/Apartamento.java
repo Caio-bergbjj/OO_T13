@@ -1,4 +1,7 @@
+package modelo;
 import java.util.Scanner;
+
+import controle.Dados;
 
 public class Apartamento extends Imovel{
 	
@@ -33,12 +36,12 @@ public class Apartamento extends Imovel{
 		this.temCondominio = temCondominio;
 	}
 
-	static void cadastrar(Apartamento ap) {
+	public static void cadastrar(Apartamento ap) {
 		int posicao = Dados.encontraPrimeiroNulo(Dados.getCatalogoApartamentos());
 		
 		Dados.setCatalogoApartamentos(ap, posicao);
 	}
-	static void listar() {
+	public static void listar() {
 		int identificador = 0;
 		if(Dados.isVazia(Dados.getCatalogoApartamentos())) {
 			System.out.println("Não há apartamentos cadastradas no sistema");
@@ -52,7 +55,7 @@ public class Apartamento extends Imovel{
 		}
 		
 	}
-	static void deletar() {
+	public static void deletar() {
 		Scanner ler = new Scanner(System.in);
 		
 		if(Dados.isVazia(Dados.getCatalogoApartamentos())) {
