@@ -6,6 +6,18 @@ public class Descricao {
 	private int qtdAndar;
 	private int qtdHospedes;
 	
+	
+	
+	public Descricao(int qtdQuartos, int qtdCamas, int qtdBanheiros, int qtdAndar, int qtdHospedes) {
+		
+		this.qtdQuartos = qtdQuartos;
+		this.qtdCamas = qtdCamas;
+		this.qtdBanheiros = qtdBanheiros;
+		this.qtdAndar = qtdAndar;
+		this.qtdHospedes = qtdHospedes;
+		
+	}
+	
 	public int getQtdQuartos() {
 		return qtdQuartos;
 	}

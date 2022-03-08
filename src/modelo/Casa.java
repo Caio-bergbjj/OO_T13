@@ -1,11 +1,12 @@
 package modelo;
-import java.util.Scanner;
-
-import controle.Dados;
 
 public class Casa extends Imovel{
 	
 	
+	public Casa(String titulo, double valor, Descricao descricao) {
+		super(titulo, valor, descricao);
+		
+	}
 	private String categoria;
 	private boolean temPiscina;
 	private boolean temWifi;
@@ -30,40 +31,5 @@ public class Casa extends Imovel{
 		this.temWifi = temWifi;
 	}
 	
-	public static void cadastrar(Casa c) {
-		int posicao = Dados.encontraPrimeiroNulo(Dados.getCatalogoCasas());
-		
-		Dados.setCatalogoCasas(c, posicao);
-	}
-	
-	public static void listar() {
-		int identificador = 0;
-		if(Dados.isVazia(Dados.getCatalogoCasas())) {
-			System.out.println("Não há casas cadastradas no sistema");
-		}else {		
-			for(int i = 0;i<100;i++) {
-				if(Dados.getCatalogoCasas()[i] != null) {
-					identificador++;
-					System.out.println(identificador + "\t" + Dados.getCatalogoCasas()[i].getTitulo());
-				}
-			}
-		}
-		
-	}
-	
-	public static void deletar() {
-		Scanner ler = new Scanner(System.in);
-		if(Dados.isVazia(Dados.getCatalogoCasas())) {
-			System.out.println("Não há casas cadastradas no sistema");
-		}else {
-			Casa.listar();
-			System.out.println("Digite o código do item que deseja excluir");
-			int escolha = ler.nextInt();
-			Dados.setCatalogoCasas(null, Dados.retornaPosicaoReal(escolha, Dados.getCatalogoCasas()));		
-		}
-		
-		
-		
-	}
 
 }

@@ -15,6 +15,13 @@ public abstract class Imovel {
 	private double nota; 
 	private Descricao descricao;
 	
+	public Imovel(String titulo, double valor, Descricao descricao) {
+		this.titulo = titulo;
+		this.valor = valor;
+		this.descricao = descricao;
+		this.geraDisponibilidade();
+	}
+	
 	
 	public int getId() {
 		return id;
@@ -84,6 +91,7 @@ public abstract class Imovel {
 			cal.add(Calendar.DATE, 1);
 		}
 	}
+	
 	public void mostraDisponibilidade() {
 		String dateToStr;
 		String ocupacao;

@@ -1,7 +1,4 @@
 package modelo;
-import java.util.Scanner;
-
-import controle.Dados;
 
 public class Pessoa {
 	private int id_pessoa;
@@ -64,46 +61,20 @@ public class Pessoa {
 	public Pessoa(String nome, String cpf, String email){
 		this.nome = nome;
 		this.cpf = cpf;
-//		this.email = email;
+		this.email = email;
 ////		this.endereco = endereco;
 ////		this.telefone = telefone;
 	}
 	
-	public static void cadastrar(Pessoa p) {
-		int posicao = Dados.encontraPrimeiroNulo(Dados.getCatalogoPessoas());
-		
-		Dados.setCatalogoPessoas(p, posicao);
+	public Pessoa(String nome, String cpf, Telefone telefone){
+		this.nome = nome;
+		this.cpf = cpf;
+//		this.email = email;
+////		this.endereco = endereco;
+
+		this.telefone = telefone;
 	}
 	
-	public static void listar() {
-		if(Dados.isVazia(Dados.getCatalogoPessoas())) {
-			System.out.println("Não há pessoas cadastradas no Sistema");
-		}else {	
-			System.out.println("\n==== Usuários ====\n");
-			int identificador = 0;
-			for(int i = 0;i<100;i++) {
-				if(Dados.getCatalogoPessoas()[i] != null) {
-					identificador++;
-					System.out.println(identificador + "\t" + Dados.getCatalogoPessoas()[i].getNome());
-				}
-			}
-			
-		}
-	}
-	
-	public static void deletar() {
-		Scanner ler = new Scanner(System.in);
-		
-		if(Dados.isVazia(Dados.getCatalogoPessoas())) {
-			System.out.println("Não há pessoas cadastradas no sistema");
-		}else {
-			
-			Pessoa.listar();
-			System.out.println("Digite o código do item que deseja excluir");
-			int escolha = ler.nextInt();
-			Dados.setCatalogoPessoas(null, Dados.retornaPosicaoReal(escolha, Dados.getCatalogoPessoas()));
-		}
-		
-	}
+
 	
 }

@@ -1,5 +1,6 @@
 package modelo;
 public class Reserva {
+	
 	private int id_reserva;
 	private Imovel imovel;
 	private Pessoa pessoa;
@@ -30,6 +31,7 @@ public class Reserva {
 	public void setPeriodo(Periodo periodo) {
 		this.periodo = periodo;
 	}
+	
 	
 	
 	
