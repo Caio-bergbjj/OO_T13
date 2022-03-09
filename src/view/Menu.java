@@ -7,7 +7,9 @@ import controle.DadosPessoa;
 import controle.DadosReserva;
 import modelo.Apartamento;
 import modelo.Casa;
+import modelo.Descricao;
 import modelo.Pessoa;
+import modelo.Telefone;
 
 public class Menu {
 	
@@ -198,7 +200,19 @@ public class Menu {
 	}
 	
 	public static void cadastroInicial(DadosCasa dadosCasa, DadosPessoa dadosPessoa, DadosApartamento dadosApartamento ) {
-		
+		for(int i = 0; i <=10; i++) {
+			
+			Telefone telefone  = new Telefone((short) (61+i),998413564+(i*3));
+			Pessoa p = new Pessoa("Pessoa " + i, telefone);
+			Descricao desc = new Descricao(i+1, i+1,i,(i>5)? i:i-2, i+2);
+			Apartamento ap = new Apartamento("Apartamento " + i, 100050*2, desc);
+			Casa casa = new Casa("Apartamento " + i, 103450*2, desc);
+			
+			dadosCasa.addCasa(casa);
+			dadosApartamento.addAp(ap);
+			dadosPessoa.addPessoa(p);
+			
+		}
 	}
 	
 	

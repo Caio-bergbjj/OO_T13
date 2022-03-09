@@ -51,6 +51,11 @@ public class DadosPessoa {
 	
 	}
 	
+	public void addPessoa(Pessoa pessoa) {
+		listaPessoa.add(pessoa);
+		pessoa.setId_pessoa(listaPessoa.size());
+	}
+	
 	public void deletar() {
 		
 		int oldId;

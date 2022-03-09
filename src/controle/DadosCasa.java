@@ -63,6 +63,11 @@ public class DadosCasa {
 		
 	}
 	
+	public void addCasa(Casa casa) {
+		listaCasa.add(casa);
+		casa.setId(listaCasa.size());
+	}
+	
 	public void deletar() {
 		
 		int oldId;

@@ -77,6 +77,11 @@ public class DadosApartamento {
 		}
 	}
 	
+	public void addAp(Apartamento apartamento) {
+		listaApartamento.add(apartamento);
+		apartamento.setId(listaApartamento.size());
+	}
+	
 	public void deletar() {
 		
 		int oldId;
