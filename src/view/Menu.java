@@ -63,8 +63,8 @@ public class Menu {
 			escolha = ler.nextInt();
 			
 			switch(escolha) {
-			case 1 -> dadosCasa.addCasa();
-			case 2 -> dadosApartamento.addAp();
+			case 1 -> dadosCasa.addDados(1);
+			case 2 -> dadosApartamento.addDados(0);
 			case 3 -> listarImoveis(dadosCasa, dadosApartamento,dadosPessoa,dadosReserva);
 			case 4 -> dadosCasa.deletar();
 			case 5 -> dadosApartamento.deletar();
@@ -113,7 +113,7 @@ public class Menu {
 			escolha = ler.nextInt();
 			
 			switch(escolha) {
-			case 1 -> dadosPessoa.addPessoa();
+			case 1 -> dadosPessoa.addDados(0);
 			case 2 -> dadosPessoa.deletar();
 			case 3 -> dadosPessoa.listar();
 			case 4 -> {}
@@ -164,7 +164,7 @@ public class Menu {
 		dadosCasa.listar();
 		
 		op = ler.nextInt();
-		Casa c = dadosCasa.get(op-1);
+		Casa c = (Casa) dadosCasa.get(op-1);
 		System.out.println("\nDisponibilidade:\n ");
 		c.mostraDisponibilidade();
 		
@@ -188,7 +188,7 @@ public class Menu {
 		dadosApartamento.listar();
 		
 		op = ler.nextInt();
-		Apartamento ap = dadosApartamento.get(op-1);
+		Apartamento ap = (Apartamento) dadosApartamento.get(op-1);
 	
 		System.out.println("\nDisponibilidade:\n ");
 		ap.mostraDisponibilidade();
@@ -208,9 +208,9 @@ public class Menu {
 			Apartamento ap = new Apartamento("Apartamento " + i, 100050*2, desc);
 			Casa casa = new Casa("Casa " + i, 103450*2, desc);
 			
-			dadosCasa.addCasa(casa);
-			dadosApartamento.addAp(ap);
-			dadosPessoa.addPessoa(p);
+			dadosCasa.addDados(casa);
+			dadosApartamento.addDados(ap);
+			dadosPessoa.addDados(p);
 			
 		}
 	}
