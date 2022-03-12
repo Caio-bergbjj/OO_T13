@@ -168,7 +168,7 @@ public class Menu {
 		System.out.println("\nDisponibilidade:\n ");
 		c.mostraDisponibilidade();
 		
-		dadosReserva.addRserva(c, p);
+		dadosReserva.addDados(c, p);
 		
 		System.out.println(dadosReserva.get(0).getPeriodo());
 		
@@ -193,7 +193,7 @@ public class Menu {
 		System.out.println("\nDisponibilidade:\n ");
 		ap.mostraDisponibilidade();
 		
-		dadosReserva.addRserva(ap, p);
+		dadosReserva.addDados(ap, p);
 		
 		System.out.println(dadosReserva.get(0).getPeriodo());
 		

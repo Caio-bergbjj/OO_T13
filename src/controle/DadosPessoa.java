@@ -8,6 +8,8 @@ import modelo.Telefone;
 public class DadosPessoa implements Dados {
 	
 	static Scanner ler = new Scanner(System.in);
+	
+	//Array List do tipo pessoa
 	private ArrayList<Pessoa> listaPessoa = new ArrayList<Pessoa>();
 	
 	
@@ -29,6 +31,7 @@ public class DadosPessoa implements Dados {
 		short ddd;
 		int numero;
 		
+		//Pegando os dados das pessoas
 		System.out.println("\nInsira o nome do usuário:");
 		nome = ler.nextLine();
 		
@@ -44,18 +47,21 @@ public class DadosPessoa implements Dados {
 		System.out.println("\nInsira o telefone do usuario (sem o DDD)");
 		numero = ler.nextInt();
 		
+		//Criando o objeto telefone para a pessoas que sera cadastrada
 		Telefone telefone = new Telefone(ddd,numero);
-		
+
+		//Criando o objeto pessoa
 		Pessoa p = new Pessoa(nome, cpf, telefone, email);
 		
 		
-		listaPessoa.add(p);
-		p.setId_pessoa(listaPessoa.size());
+		listaPessoa.add(p); // adicionando o imovel no array list
+		p.setId_pessoa(listaPessoa.size()); // colocando o Id como a posição + 1 no array list 
 	
 	}
 	
 	@Override
 	public void addDados(Object pessoa) {
+		//Cadastrando as pessoas que serao pre cadastrados 
 		listaPessoa.add((Pessoa) pessoa);
 		((Pessoa) pessoa).setId_pessoa(listaPessoa.size());
 	}
@@ -64,12 +70,13 @@ public class DadosPessoa implements Dados {
 	public void deletar() {
 		
 		int oldId;
-		this.listar();
+		this.listar(); // Printa a lista de imoveis para escolher o que deseja excluir;
 		
 		System.out.println("Digite o código do item que deseja excluir");
 		int escolha = ler.nextInt();
-		listaPessoa.remove(escolha-1);
+		listaPessoa.remove(escolha-1); // Posicao no array (Id da pessoa - 1)
 		for(Pessoa pessoa : listaPessoa) {
+			// Alterando os ID's das pessoas que estao depois da pessoa deletado para posicao manter a lógica 
 			if( (oldId = pessoa.getId_pessoa()) > escolha ) {
 				pessoa.setId_pessoa(oldId-1);;
 			}
@@ -79,6 +86,7 @@ public class DadosPessoa implements Dados {
 	
 	@Override
 	public Pessoa get(int index) {
+		//Pegando a pessoa da posicao requerida
 		return listaPessoa.get(index);
 		
 	}
