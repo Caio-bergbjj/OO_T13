@@ -40,11 +40,21 @@ public class Menu {
 			escolha = ler.nextInt();
 			
 			switch (escolha) {
-			case 1 -> menuGerenciarImoveis(dadosCasa,dadosApartamento,dadosPessoa,dadosReserva);
-			case 2 -> menuDisponibilidade(dadosCasa,dadosApartamento);
-			case 3 -> menuUsuarios(dadosPessoa);
-			case 5 -> System.out.println("\nObrigado por usar o sitema. Fechando...");
-			default -> System.out.println("Opção Inválida!");
+			case 1:
+				menuGerenciarImoveis(dadosCasa,dadosApartamento,dadosPessoa,dadosReserva);
+				break;
+			case 2:
+				menuDisponibilidade(dadosCasa,dadosApartamento);
+				break;
+			case 3:
+				menuUsuarios(dadosPessoa);
+				break;
+			case 5:
+				System.out.println("\nObrigado por usar o sitema. Fechando...");
+				break;
+			default:
+				System.out.println("Opção Inválida!");
+				break;
 			}
 		}
 	}
@@ -63,13 +73,26 @@ public class Menu {
 			escolha = ler.nextInt();
 			
 			switch(escolha) {
-			case 1 -> dadosCasa.addDados(1);
-			case 2 -> dadosApartamento.addDados(0);
-			case 3 -> listarImoveis(dadosCasa, dadosApartamento,dadosPessoa,dadosReserva);
-			case 4 -> dadosCasa.deletar();
-			case 5 -> dadosApartamento.deletar();
-			case 6 -> {}
-			default -> System.out.println("\nOpção Inválida!\n");
+			case 1:
+				dadosCasa.addDados(1);
+				break;
+			case 2:
+				dadosApartamento.addDados(0);
+				break;
+			case 3:
+				listarImoveis(dadosCasa, dadosApartamento,dadosPessoa,dadosReserva);
+				break;
+			case 4:
+				dadosCasa.deletar();
+				break;
+			case 5:
+				dadosApartamento.deletar();
+				break;
+			case 6 :
+				break;
+			default:
+				System.out.println("\nOpção Inválida!\n");
+				break;
 			
 			}
 		}
@@ -85,20 +108,23 @@ public class Menu {
 			escolha = ler.nextInt();
 			
 			switch (escolha) {
-			case 1: {
+			case 1: 
 				System.out.println("Selecione a Casa:");
 				dadosCasa.listar();
 				escolha = ler.nextInt();
 				((Casa) dadosCasa.get(escolha-1)).mostraDisponibilidade();
-			}
-			break;
-			case 2: {
+				break;
+			case 2: 
 				System.out.println("Selecione o apartamento:");
 				dadosApartamento.listar();
 				escolha = ler.nextInt();
 				((Apartamento) dadosApartamento.get(escolha-1)).mostraDisponibilidade();
-			}
-			break;
+				break;
+			case 3:
+				break;
+			default:
+				System.out.println("\nOpção Inválida!\n");
+				break;	
 			}
 		}
 	}
@@ -113,11 +139,19 @@ public class Menu {
 			escolha = ler.nextInt();
 			
 			switch(escolha) {
-			case 1 -> dadosPessoa.addDados(0);
-			case 2 -> dadosPessoa.deletar();
-			case 3 -> dadosPessoa.listar();
-			case 4 -> {}
-			default -> System.out.println("\nOpção Inválida!\n");
+			case 1:
+				dadosPessoa.addDados(0);
+				break;
+			case 2:
+				dadosPessoa.deletar();
+				break;
+			case 3:
+				dadosPessoa.listar();
+			case 4:
+				break;
+			default:
+				System.out.println("\nOpção Inválida!\n");
+				break;	
 			}
 		}
 	}
@@ -133,20 +167,26 @@ public class Menu {
 		System.out.println("\n\nDeseja reservar algun dos imoveis listados? (Y/N)");
 		op = ler.next().toUpperCase();
 		switch(op.charAt(0)) {
-		case 'Y':{
-			System.out.println("\nEscolha o tipo de imovel que será reservado: \n 1 - Casa\n 2 - Apartamento");
-			op = ler.next().toUpperCase();
-			switch(op.charAt(0)) {
-			case '1' -> reservar(dadosCasa,dadosPessoa,dadosReserva);
-			case '2' -> reservar(dadosApartamento,dadosPessoa,dadosReserva);
-			default -> {}
+		case 'Y':
+			while(!op.contains("1") && !op.contains("2")) {
+				System.out.println("\nEscolha o tipo de imovel que será reservado: \n 1 - Casa\n 2 - Apartamento");
+				op = ler.next();
+				switch(op.charAt(0)) {
+				case '1':
+					reservar(dadosCasa,dadosPessoa,dadosReserva);
+					break;
+				case '2':
+					reservar(dadosApartamento,dadosPessoa,dadosReserva);
+					break;
+				default:
+					System.out.println("\nOpção Inválida!\n");
+					break;
+				}
 			}
-		}break;
-		case 'N': {}break;
-		default: break;
+			break;
+		default: 
+			break;
 		}
-		
-		
 	}
 		
 
