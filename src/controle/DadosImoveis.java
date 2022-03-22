@@ -8,7 +8,7 @@ import modelo.Apartamento;
 import modelo.Casa;
 
 //Classe de Dados para imoveis
-public abstract class DadosImoveis implements Dados {
+public abstract class DadosImoveis{
 	
 	
 	static Scanner ler = new Scanner(System.in);
@@ -16,7 +16,7 @@ public abstract class DadosImoveis implements Dados {
 	//Criando um array list, do tipo imovel, para salvar os dados dos imoveis
 	protected ArrayList<Imovel> listaImovel = new ArrayList<Imovel>();
 	
-	@Override
+	
 	public void listar() {
 		//Verficando se existe imoveis cadastrados
 		if(listaImovel.isEmpty()){
@@ -29,7 +29,7 @@ public abstract class DadosImoveis implements Dados {
 		}
 	}
 	
-	@Override
+	
 	public void addDados(int i) {
 		
 		int qtdQuartos, qtdCamas, qtdBanheiros, qtdAndar, qtdHospedes;
@@ -62,7 +62,6 @@ public abstract class DadosImoveis implements Dados {
 		imovel.setId(listaImovel.size()); // colocando o Id como a posição + 1 no array list  
 	}
 	
-	@Override
 	public void deletar() {
 		
 		int oldId;
@@ -79,14 +78,12 @@ public abstract class DadosImoveis implements Dados {
 		
 	}
 	
-	@Override
 	public void addDados(Object imovel) {
 		//Cadastrando os imoveis que serao pre cadastrados 
 		listaImovel.add((Imovel) imovel);
 		((Imovel) imovel).setId(listaImovel.size());
 	}
 	
-	@Override
 	public Imovel get(int index) {
 		
 		//Pegando o imovel na posicao requerida

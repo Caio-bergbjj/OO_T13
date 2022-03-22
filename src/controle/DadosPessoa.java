@@ -5,7 +5,7 @@ import java.util.Scanner;
 import modelo.Pessoa;
 import modelo.Telefone;
 
-public class DadosPessoa implements Dados {
+public class DadosPessoa{
 	
 	static Scanner ler = new Scanner(System.in);
 	
@@ -13,7 +13,6 @@ public class DadosPessoa implements Dados {
 	private ArrayList<Pessoa> listaPessoa = new ArrayList<Pessoa>();
 	
 	
-	@Override
 	public void listar() {
 		if(listaPessoa.isEmpty()){
 			System.out.println("\nNão há usuários cadastrados no sistema");
@@ -24,7 +23,6 @@ public class DadosPessoa implements Dados {
 		}
 	}
 	
-	@Override
 	public void addDados(int i) {
 		
 		String nome,email,cpf;
@@ -59,14 +57,12 @@ public class DadosPessoa implements Dados {
 	
 	}
 	
-	@Override
 	public void addDados(Object pessoa) {
 		//Cadastrando as pessoas que serao pre cadastrados 
 		listaPessoa.add((Pessoa) pessoa);
 		((Pessoa) pessoa).setId_pessoa(listaPessoa.size());
 	}
 	
-	@Override
 	public void deletar() {
 		
 		int oldId;
@@ -84,7 +80,6 @@ public class DadosPessoa implements Dados {
 		
 	}
 	
-	@Override
 	public Pessoa get(int index) {
 		//Pegando a pessoa da posicao requerida
 		return listaPessoa.get(index);

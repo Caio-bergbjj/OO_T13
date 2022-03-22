@@ -8,7 +8,7 @@ import modelo.Periodo;
 import modelo.Pessoa;
 import modelo.Reserva;
 
-public class DadosReserva implements Dados{
+public class DadosReserva{
 	
 	static Scanner ler = new Scanner(System.in);
 	private ArrayList<Reserva> listaReserva = new ArrayList<Reserva>();
@@ -56,20 +56,6 @@ public class DadosReserva implements Dados{
 		
 		//Pegando a reserva na posicao requerida
 		return listaReserva.get(index);
-	}
-
-	@Override
-	public void addDados(int i) { 
-		//Sem implementacao para a classe; Obrigatoria devido a implementacao
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addDados(Object objeto) { 
-		//Sem implementacao para a classe; Obrigatoria devido a implementacao
-		// TODO Auto-generated method stub
-		
 	}
 	
 }
