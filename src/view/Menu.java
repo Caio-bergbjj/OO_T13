@@ -3,11 +3,13 @@ package view;
 import java.util.Scanner;
 import controle.DadosApartamento;
 import controle.DadosCasa;
+import controle.DadosImoveis;
 import controle.DadosPessoa;
 import controle.DadosReserva;
 import modelo.Apartamento;
 import modelo.Casa;
 import modelo.Descricao;
+import modelo.Periodo;
 import modelo.Pessoa;
 import modelo.Telefone;
 
@@ -29,7 +31,8 @@ public class Menu {
 		DadosPessoa dadosPessoa = new DadosPessoa();
 		DadosReserva dadosReserva = new DadosReserva();
 		cadastroInicial(dadosCasa,dadosPessoa,dadosApartamento);
-		
+		Periodo p = new Periodo("01/02/2022", "06/02/2022");
+		dadosCasa.preencheDisponibilidade(dadosCasa.get(0), p);
 		while(escolha != 5) {
 			System.out.println("\nEscolha a opção:");
 			System.out.println("1. Gerenciar Imóveis");

@@ -1,9 +1,12 @@
 package controle;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 import modelo.Descricao;
+import modelo.Disponibilidade;
 import modelo.Imovel;
+import modelo.Periodo;
 import modelo.Apartamento;
 import modelo.Casa;
 
@@ -88,6 +91,19 @@ public abstract class DadosImoveis{
 		
 		//Pegando o imovel na posicao requerida
 		return listaImovel.get(index);
+	}
+	
+	public void preencheDisponibilidade(Imovel imovel, Periodo periodo) {
+		Disponibilidade dispo;
+		for(int i = 0; i<365;i++) {
+			dispo = imovel.getDisponibilidade(i);
+			Date data_inicial = periodo.getData_inicial();
+			Date data_final = periodo.getData_final();
+			
+			if((dispo.getData().after(data_inicial) || dispo.getData().equals(data_inicial)) && (dispo.getData().before(data_final) || dispo.getData().equals(data_final))) {
+				dispo.setOcupacao(true);
+			}
+		}
 	}
 	
 }
