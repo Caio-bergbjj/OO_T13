@@ -1,5 +1,6 @@
 package controle;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -55,14 +56,14 @@ public abstract class DadosImoveis{
 		System.out.println("\nInforme o valor do imóvel:");
 		valor = ler.nextDouble();
 		
-		//Criando o objeto de descrição do imovel e o objeto imovel
+		//Criando o objeto de descricao do imovel e o objeto imovel
 		Descricao desc  = new Descricao(qtdQuartos, qtdCamas, qtdBanheiros, qtdAndar, qtdHospedes);
 		
 		// Cria o imovel do tipo requrido; Casa para i = 1 , Apartamento para i != 1;  
 		Imovel imovel = ( i == 1) ? (new Casa(nome, valor, desc)):(new Apartamento(nome, valor, desc));
 		
 		listaImovel.add(imovel); // adicionando o imovel no array list
-		imovel.setId(listaImovel.size()); // colocando o Id como a posição + 1 no array list  
+		imovel.setId(listaImovel.size()); // colocando o Id como a posicao + 1 no array list  
 	}
 	
 	public void deletar() {
@@ -73,7 +74,7 @@ public abstract class DadosImoveis{
 		int escolha = ler.nextInt();
 		listaImovel.remove(escolha-1); // Posicao no array (Id do imovel - 1)
 		for(Imovel casa : listaImovel) {
-			// Alterando os ID's dos imoveis que estao depois do imovel deletado para posicao manter a lógica  
+			// Alterando os ID's dos imoveis que estao depois do imovel deletado para posicao manter a logica  
 			if( (oldId = casa.getId()) > escolha ) {
 				casa.setId(oldId-1);
 			}
@@ -81,10 +82,10 @@ public abstract class DadosImoveis{
 		
 	}
 	
-	public void addDados(Object imovel) {
+	public void addDados(Imovel imovel) {
 		//Cadastrando os imoveis que serao pre cadastrados 
-		listaImovel.add((Imovel) imovel);
-		((Imovel) imovel).setId(listaImovel.size());
+		listaImovel.add(imovel);
+		imovel.setId(listaImovel.size());
 	}
 	
 	public Imovel get(int index) {
@@ -93,6 +94,7 @@ public abstract class DadosImoveis{
 		return listaImovel.get(index);
 	}
 	
+
 	public void preencheDisponibilidade(Imovel imovel, Periodo periodo) {
 		Disponibilidade dispo;
 		for(int i = 0; i<365;i++) {
@@ -100,9 +102,26 @@ public abstract class DadosImoveis{
 			Date data_inicial = periodo.getData_inicial();
 			Date data_final = periodo.getData_final();
 			
-			if((dispo.getData().after(data_inicial) || dispo.getData().equals(data_inicial)) && (dispo.getData().before(data_final) || dispo.getData().equals(data_final))) {
+			if((dispo.getData().after(data_inicial) || dispo.getData().equals(data_inicial)) 
+					&& (dispo.getData().before(data_final) || dispo.getData().equals(data_final))) {
 				dispo.setOcupacao(true);
 			}
+		}
+	}
+
+	public void mostraDisponibilidade(int index) {
+		String dateToStr;
+		String ocupacao;
+		System.out.println("Data\t\tOcupação");
+		for(int i = 0;i<365;i++) {
+			dateToStr = DateFormat.getDateInstance(DateFormat.SHORT).format(listaImovel.get(index).getDisponibilidade(i).getData());
+			if(listaImovel.get(index).getDisponibilidade(i).getOcupacao()) {
+				ocupacao = "Ocupado";
+			}else {
+				ocupacao = "Livre";
+			}
+			System.out.println(dateToStr + "\t" + ocupacao);
+
 		}
 	}
 	

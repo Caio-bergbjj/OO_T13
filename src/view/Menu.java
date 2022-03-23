@@ -3,7 +3,6 @@ package view;
 import java.util.Scanner;
 import controle.DadosApartamento;
 import controle.DadosCasa;
-import controle.DadosImoveis;
 import controle.DadosPessoa;
 import controle.DadosReserva;
 import modelo.Apartamento;
@@ -115,13 +114,13 @@ public class Menu {
 				System.out.println("Selecione a Casa:");
 				dadosCasa.listar();
 				escolha = ler.nextInt();
-				((Casa) dadosCasa.get(escolha-1)).mostraDisponibilidade();
+				dadosCasa.mostraDisponibilidade(escolha-1);
 				break;
 			case 2: 
 				System.out.println("Selecione o apartamento:");
 				dadosApartamento.listar();
 				escolha = ler.nextInt();
-				((Apartamento) dadosApartamento.get(escolha-1)).mostraDisponibilidade();
+				dadosApartamento.mostraDisponibilidade(escolha-1);
 				break;
 			case 3:
 				break;
@@ -209,7 +208,7 @@ public class Menu {
 		op = ler.nextInt();
 		Casa c = (Casa) dadosCasa.get(op-1);
 		System.out.println("\nDisponibilidade:\n ");
-		c.mostraDisponibilidade();
+		dadosCasa.mostraDisponibilidade(op-1);
 		
 		dadosReserva.addDados(c, p);
 		
@@ -234,7 +233,7 @@ public class Menu {
 		Apartamento ap = (Apartamento) dadosApartamento.get(op-1);
 	
 		System.out.println("\nDisponibilidade:\n ");
-		ap.mostraDisponibilidade();
+		dadosApartamento.mostraDisponibilidade(op-1);
 		
 		dadosReserva.addDados(ap, p);
 		

@@ -2,7 +2,6 @@ package modelo;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.text.DateFormat;
 import java.text.ParseException;  
 
 public abstract class Imovel {
@@ -92,7 +91,7 @@ public abstract class Imovel {
 		}
 	}
 	
-	public void mostraDisponibilidade() {
+	/*public void mostraDisponibilidade() {
 		String dateToStr;
 		String ocupacao;
 		System.out.println("Data\t\tOcupação");
@@ -105,5 +104,5 @@ public abstract class Imovel {
 			}
 			System.out.println(dateToStr + "\t" + ocupacao);
 		}
-	}
+	}*/
 }
