@@ -15,8 +15,9 @@ public class ViewMenuUsuarios implements ActionListener{
 	private static JButton listarUsuarios = new JButton("Listar Usuários");
 	private static JButton voltar = new JButton("Voltar");
 	
+	
 	public ViewMenuUsuarios() {
-
+		
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
 		titulo.setBounds(160, 10, 180, 30);
 		cadastrarUsuario.setBounds(160, 80, 180, 30);
@@ -32,7 +33,17 @@ public class ViewMenuUsuarios implements ActionListener{
 		janela.add(listarUsuarios);
 		janela.add(voltar);
 		
-		janela.setSize(500, 400);
+		// Criacao de variaveis para determinar o tamanho da janela
+		int jframeW = 500;
+		int jframeH= 400;
+		janela.setSize(jframeW, jframeH);
+		
+		// Codigo para colocar a janela no meio da tela, essa variavel dim pega o tamanho do display
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		int locationX = (dim.width - jframeW)/2;
+		int locationY = (dim.height - jframeH)/2;
+		janela.setLocation(locationX, locationY);
+		
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		janela.setVisible(true);
 		

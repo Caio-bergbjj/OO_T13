@@ -2,43 +2,64 @@ package view;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import controle.*;
+import modelo.Casa;
+import modelo.Imovel;
 
 public class ViewMenuImoveis implements ActionListener{
-
-	private static JFrame janela = new JFrame("Menu");
-	private static JLabel titulo = new JLabel("Menu imóveis", SwingConstants.CENTER);
-	private static JButton cadastrarCasa = new JButton("Cadastrar Casa");
-	private static JButton cadastraApartamento = new JButton("Cadastrar Apartamento");
-	private static JButton listarImoveis = new JButton("Listar Imóveis");
-	private static JButton excluirCasa = new JButton("Excluir Casa");
-	private static JButton excluirApartamento = new JButton("Excluir Apartamento");
+	
+	private static DadosCasa dadosCasa;
+	
+	private static JFrame janela = new JFrame("Imóveis");
+	private static JLabel titulo = new JLabel("Imóveis", SwingConstants.CENTER);
 	private static JButton voltar = new JButton("Voltar");
+	private static JList<Imovel> listaImoveis = new JList<Imovel>();
+	private static JTextField buscaImovel = new JTextField();
+	private static JLabel labelBusca = new JLabel("Digite aqui o nome o imóvel");
+	private static JButton btnBusca = new JButton("Buscar");
+	private static JButton cadastrarNovo = new JButton("Cadastrar novo imóvel");
+	
+	
 	
 	public ViewMenuImoveis() {
-
+		
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
-		titulo.setBounds(160, 10, 180, 30);
-		cadastrarCasa.setBounds(160, 80, 180, 30);
-		cadastraApartamento.setBounds(160, 120, 180, 30);
-		listarImoveis.setBounds(160, 160, 180, 30);
-		excluirCasa.setBounds(160, 200, 180, 30);
-		excluirApartamento.setBounds(160, 240, 180, 30);
-		voltar.setBounds(160, 280, 180, 30);
+		voltar.setBounds(10, 10, 100, 30);
+		titulo.setBounds(210, 10, 180, 30);
+		listaImoveis.setBounds(10, 50, 450, 300);
+		cadastrarNovo.setBounds(400, 525, 180, 30);
+		labelBusca.setBounds(10, 360, 180, 20);
+		buscaImovel.setBounds(10, 380, 350, 20);
+		btnBusca.setBounds(370, 380, 90, 20);
 		
 		janela.setLayout(null);
 		
 		janela.add(titulo);
-		janela.add(cadastrarCasa);
-		janela.add(cadastraApartamento);
-		janela.add(listarImoveis);
-		janela.add(excluirCasa);
-		janela.add(excluirApartamento);
 		janela.add(voltar);
+		janela.add(listaImoveis);
+		janela.add(cadastrarNovo);
+		janela.add(labelBusca);
+		janela.add(buscaImovel);
+		janela.add(btnBusca);
 		
-		janela.setSize(500, 400);
+		// Criacao de variaveis para determinar o tamanho da janela
+		int jframeW = 600;
+		int jframeH= 600;
+		janela.setSize(jframeW, jframeH);
+		
+		// Codigo para colocar a janela no meio da tela, essa variavel dim pega o tamanho do display
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		int locationX = (dim.width - jframeW)/2;
+		int locationY = (dim.height - jframeH)/2;
+		janela.setLocation(locationX, locationY);
+
+		
+		
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		janela.setVisible(true);
 		

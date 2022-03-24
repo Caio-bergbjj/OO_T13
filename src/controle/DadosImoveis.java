@@ -94,6 +94,9 @@ public abstract class DadosImoveis{
 		return listaImovel.get(index);
 	}
 	
+	public ArrayList<Imovel> get(){
+		return listaImovel;
+	}
 
 	public void preencheDisponibilidade(Imovel imovel, Periodo periodo) {
 		Disponibilidade dispo;
