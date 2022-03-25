@@ -64,6 +64,7 @@ public class ViewMenuImoveis implements ActionListener{
 		janela.setVisible(true);
 		
 		voltar.addActionListener(this);
+		cadastrarNovo.addActionListener(this);
 	}
 	
 	@Override
@@ -72,8 +73,11 @@ public class ViewMenuImoveis implements ActionListener{
 		
 		if(src == voltar) {
 			janela.dispose();
-			new ViewMenu();
-			
+			new ViewMenu();		
+		}
+		if(src == cadastrarNovo) {
+			janela.dispose();
+			new ViewCadastroImovel();
 		}
 		
 	}
