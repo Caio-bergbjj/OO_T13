@@ -83,6 +83,7 @@ public class ViewCadastroImovel implements ActionListener{
 	private static JRadioButton naoCond = new JRadioButton("N");
 	
 	private static JButton cadastrar = new JButton("Cadastrar");
+	
 	public ViewCadastroImovel() {
 		
 		// Titulo da janela e voltar
@@ -284,18 +285,8 @@ public class ViewCadastroImovel implements ActionListener{
 		
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		Object src = e.getSource();
-		
-		if(src == voltar) {
-			casa.setSelected(false);
-			ap.setSelected(false);
-			janela.dispose();
-			new ViewMenuImoveis();
-			
-		}
-		if(src == casa) {
+	private static void setVisibleFormCasa(boolean opcao) {
+		if(opcao) {
 			// Setando o Form Casas visible
 			lCategoria.setVisible(true);
 			categoria.setVisible(true);
@@ -305,7 +296,35 @@ public class ViewCadastroImovel implements ActionListener{
 			lPisc.setVisible(true);
 			simPisc.setVisible(true);
 			naoPisc.setVisible(true);
-			
+		}else {
+			// Setando o Form Casa invisivel
+			lCategoria.setVisible(false);
+			categoria.setVisible(false);
+			lWifi.setVisible(false);
+			simWifi.setVisible(false);
+			naoWifi.setVisible(false);
+			lPisc.setVisible(false);
+			simPisc.setVisible(false);
+			naoPisc.setVisible(false);
+		}
+	}
+	
+	private static void setVisibleFormAp(boolean opcao) {
+		if(opcao) {
+			// Setando o Form Ap visivel
+			lElevador.setVisible(true);
+			simElevador.setVisible(true);
+			naoElevador.setVisible(true);
+			lSacada.setVisible(true);
+			simSacada.setVisible(true);
+			naoSacada.setVisible(true);
+			lGaragem.setVisible(true);
+			simGaragem.setVisible(true);
+			naoGaragem.setVisible(true);
+			lCond.setVisible(true);
+			simCond.setVisible(true);
+			naoCond.setVisible(true);
+		}else {
 			// Setando o Form Ap invisivel
 			lElevador.setVisible(false);
 			simElevador.setVisible(false);
@@ -320,30 +339,53 @@ public class ViewCadastroImovel implements ActionListener{
 			simCond.setVisible(false);
 			naoCond.setVisible(false);
 		}
-		if(src == ap) {
-			// Setando o Form Casa invisivel
-			lCategoria.setVisible(false);
-			categoria.setVisible(false);
-			lWifi.setVisible(false);
-			simWifi.setVisible(false);
-			naoWifi.setVisible(false);
-			lPisc.setVisible(false);
-			simPisc.setVisible(false);
-			naoPisc.setVisible(false);
+	}
+	
+	private static void limparCampos() {
+		buttonGroup.clearSelection();
+		buttonGroup2.clearSelection();
+		buttonGroup3.clearSelection();
+		buttonGroup4.clearSelection();
+		buttonGroup5.clearSelection();
+		buttonGroup6.clearSelection();
+		buttonGroup7.clearSelection();
+		tituloImovel.setText("");
+		cep.setText("");
+		cidade.setText("");
+		bairro.setText("");
+		lote.setText("");
+		rua.setText("");
+		comp.setText("");
+		valor.setText("");
+		qtdQuartos.setText("");
+		qtdCamas.setText("");
+		qtdBanheiros.setText("");
+		qtdHospedes.setText("");
+		qtdAndares.setText("");    
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object src = e.getSource();
+		
+		if(src == voltar) {
+			// Método que limpar todos os campos ja preenchidos
+			limparCampos();
+			janela.dispose();
+			new ViewMenuImoveis();
 			
-			// Setando o Form Ap visivel
-			lElevador.setVisible(true);
-			simElevador.setVisible(true);
-			naoElevador.setVisible(true);
-			lSacada.setVisible(true);
-			simSacada.setVisible(true);
-			naoSacada.setVisible(true);
-			lGaragem.setVisible(true);
-			simGaragem.setVisible(true);
-			naoGaragem.setVisible(true);
-			lCond.setVisible(true);
-			simCond.setVisible(true);
-			naoCond.setVisible(true);
+		}
+		if(src == casa) {
+			// Controle de visibilidade dos formularios
+			setVisibleFormCasa(true);
+			setVisibleFormAp(false);
+	
+		}
+		if(src == ap) {
+			// Controle de visibilidade dos formularios
+			setVisibleFormCasa(false);
+			setVisibleFormAp(true);
+
 		}
 		
 		
