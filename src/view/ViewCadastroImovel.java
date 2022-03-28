@@ -63,6 +63,26 @@ public class ViewCadastroImovel implements ActionListener{
 	private static JRadioButton simPisc = new JRadioButton("S");
 	private static JRadioButton naoPisc = new JRadioButton("N");
 	
+	
+	// Form Ap
+	private static JLabel lElevador = new JLabel("O Apartamento possui elevador?");
+	private static ButtonGroup buttonGroup4 = new ButtonGroup();
+	private static JRadioButton simElevador = new JRadioButton("S");
+	private static JRadioButton naoElevador = new JRadioButton("N");
+	private static JLabel lSacada = new JLabel("O Apartamento possui Sacada?");
+	private static ButtonGroup buttonGroup5 = new ButtonGroup();
+	private static JRadioButton simSacada = new JRadioButton("S");
+	private static JRadioButton naoSacada = new JRadioButton("N");
+	private static JLabel lGaragem = new JLabel("O Apartamento possui Garagem?");
+	private static ButtonGroup buttonGroup6 = new ButtonGroup();
+	private static JRadioButton simGaragem = new JRadioButton("S");
+	private static JRadioButton naoGaragem = new JRadioButton("N");
+	private static JLabel lCond = new JLabel("O Apartamento possui Condomínio?");
+	private static ButtonGroup buttonGroup7 = new ButtonGroup();
+	private static JRadioButton simCond = new JRadioButton("S");
+	private static JRadioButton naoCond = new JRadioButton("N");
+	
+	private static JButton cadastrar = new JButton("Cadastrar");
 	public ViewCadastroImovel() {
 		
 		// Titulo da janela e voltar
@@ -168,11 +188,13 @@ public class ViewCadastroImovel implements ActionListener{
 		simWifi.setVisible(false);
 		naoWifi.setBounds(160, 420, 40, 20);
 		naoWifi.setVisible(false);
-		lPisc.setBounds(10, 450, 130, 20);
+		buttonGroup3.add(simPisc);
+		buttonGroup3.add(naoPisc);
+		lPisc.setBounds(10, 440, 130, 20);
 		lPisc.setVisible(false);
-		simPisc.setBounds(140, 450, 40, 20);
+		simPisc.setBounds(140, 440, 40, 20);
 		simPisc.setVisible(false);
-		naoPisc.setBounds(180, 450, 40, 20);
+		naoPisc.setBounds(180, 440, 40, 20);
 		naoPisc.setVisible(false);
 		
 		janela.add(lCategoria);
@@ -184,11 +206,65 @@ public class ViewCadastroImovel implements ActionListener{
 		janela.add(simPisc);
 		janela.add(naoPisc);
 		
+		// Form Apartamento
+		lElevador.setBounds(10, 370, 220, 20);
+		lElevador.setVisible(false);
+		buttonGroup4.add(simElevador);
+		buttonGroup4.add(naoElevador);
+		simElevador.setBounds(220, 370, 40, 20);
+		simElevador.setVisible(false);
+		naoElevador.setBounds(260, 370, 40, 20);
+		naoElevador.setVisible(false);
+		
+		lSacada.setBounds(10, 390, 220, 20);
+		lSacada.setVisible(false);
+		buttonGroup5.add(simSacada);
+		buttonGroup5.add(naoSacada);
+		simSacada.setBounds(220, 390, 40, 20);
+		simSacada.setVisible(false);
+		naoSacada.setBounds(260, 390, 40, 20);
+		naoSacada.setVisible(false);
+		
+		lGaragem.setBounds(10, 410, 220, 20);
+		lGaragem.setVisible(false);
+		buttonGroup6.add(simGaragem);
+		buttonGroup6.add(naoGaragem);
+		simGaragem.setBounds(220, 410, 40, 20);
+		simGaragem.setVisible(false);
+		naoGaragem.setBounds(260, 410, 40, 20);
+		naoGaragem.setVisible(false);
+		
+		lCond.setBounds(10, 430, 220, 20);
+		lCond.setVisible(false);
+		buttonGroup7.add(simCond);
+		buttonGroup7.add(naoCond);
+		simCond.setBounds(220, 430, 40, 20);
+		simCond.setVisible(false);
+		naoCond.setBounds(260, 430, 40, 20);
+		naoCond.setVisible(false);
+		
+		janela.add(lElevador);
+		janela.add(simElevador);
+		janela.add(naoElevador);
+		janela.add(naoSacada);
+		janela.add(lSacada);
+		janela.add(simSacada);
+		janela.add(naoSacada);
+		janela.add(simGaragem);
+		janela.add(lGaragem);
+		janela.add(naoGaragem);
+		janela.add(lCond);
+		janela.add(simCond);
+		janela.add(naoCond);
+		
+		cadastrar.setBounds(380, 475, 100, 30);
+		janela.add(cadastrar);
+		
 		janela.setLayout(null);
 	
 		// Criacao de variaveis para determinar o tamanho da janela
 		int jframeW = 500;
-		int jframeH= 600;
+		int jframeH= 550;
 		janela.setSize(jframeW, jframeH);
 		
 		// Codigo para colocar a janela no meio da tela, essa variavel dim pega o tamanho do display
@@ -220,6 +296,7 @@ public class ViewCadastroImovel implements ActionListener{
 			
 		}
 		if(src == casa) {
+			// Setando o Form Casas visible
 			lCategoria.setVisible(true);
 			categoria.setVisible(true);
 			lWifi.setVisible(true);
@@ -228,8 +305,23 @@ public class ViewCadastroImovel implements ActionListener{
 			lPisc.setVisible(true);
 			simPisc.setVisible(true);
 			naoPisc.setVisible(true);
+			
+			// Setando o Form Ap invisivel
+			lElevador.setVisible(false);
+			simElevador.setVisible(false);
+			naoElevador.setVisible(false);
+			lSacada.setVisible(false);
+			simSacada.setVisible(false);
+			naoSacada.setVisible(false);
+			lGaragem.setVisible(false);
+			simGaragem.setVisible(false);
+			naoGaragem.setVisible(false);
+			lCond.setVisible(false);
+			simCond.setVisible(false);
+			naoCond.setVisible(false);
 		}
 		if(src == ap) {
+			// Setando o Form Casa invisivel
 			lCategoria.setVisible(false);
 			categoria.setVisible(false);
 			lWifi.setVisible(false);
@@ -238,6 +330,20 @@ public class ViewCadastroImovel implements ActionListener{
 			lPisc.setVisible(false);
 			simPisc.setVisible(false);
 			naoPisc.setVisible(false);
+			
+			// Setando o Form Ap visivel
+			lElevador.setVisible(true);
+			simElevador.setVisible(true);
+			naoElevador.setVisible(true);
+			lSacada.setVisible(true);
+			simSacada.setVisible(true);
+			naoSacada.setVisible(true);
+			lGaragem.setVisible(true);
+			simGaragem.setVisible(true);
+			naoGaragem.setVisible(true);
+			lCond.setVisible(true);
+			simCond.setVisible(true);
+			naoCond.setVisible(true);
 		}
 		
 		
