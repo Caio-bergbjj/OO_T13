@@ -49,7 +49,7 @@ public class DadosPessoa{
 		Telefone telefone = new Telefone(ddd,numero);
 
 		//Criando o objeto pessoa
-		Pessoa p = new Pessoa(nome, cpf, telefone, email);
+		Pessoa p = new Pessoa(nome, cpf,email, telefone);
 		
 		
 		listaPessoa.add(p); // adicionando o imovel no array list

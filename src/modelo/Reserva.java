@@ -21,7 +21,7 @@ public class Reserva {
 	public int getId_reserva() {
 		return id_reserva;
 	}
-	public void setId_reserva(int id_reserva) {
+	public void setId(int id_reserva) {
 		this.id_reserva = id_reserva;
 	}
 	public Imovel getImovel() {
