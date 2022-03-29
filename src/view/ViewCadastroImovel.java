@@ -84,7 +84,19 @@ public class ViewCadastroImovel implements ActionListener{
 	
 	private static JButton cadastrar = new JButton("Cadastrar");
 	
-	public ViewCadastroImovel() {
+	private DadosCasa dadosCasa;
+	private DadosApartamento dadosApartamento;
+	private DadosPessoa dadosPessoa;
+	private DadosReserva dadosReserva;
+	
+	public ViewCadastroImovel(DadosCasa dadosCasa, DadosApartamento dadosApartamento, DadosPessoa dadosPessoa,
+			DadosReserva dadosReserva) {
+		
+		
+		this.dadosCasa = dadosCasa;
+		this.dadosApartamento = dadosApartamento;
+		this.dadosPessoa = dadosPessoa;
+		this.dadosReserva = dadosReserva;
 		
 		// Titulo da janela e voltar
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
@@ -372,7 +384,7 @@ public class ViewCadastroImovel implements ActionListener{
 			// Método que limpar todos os campos ja preenchidos
 			limparCampos();
 			janela.dispose();
-			new ViewMenuImoveis();
+			new ViewMenuImoveis(dadosCasa, dadosApartamento, dadosPessoa, dadosReserva);
 			
 		}
 		if(src == casa) {

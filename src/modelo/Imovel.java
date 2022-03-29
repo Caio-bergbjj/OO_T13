@@ -13,6 +13,7 @@ public abstract class Imovel {
 	private Disponibilidade disponibilidade[]; 
 	private double nota; 
 	private Descricao descricao;
+	private Pessoa dono;
 	
 	public Imovel(String titulo, double valor, Descricao descricao) {
 		this.titulo = titulo;

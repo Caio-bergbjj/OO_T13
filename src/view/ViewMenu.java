@@ -13,9 +13,19 @@ public class ViewMenu implements ActionListener{
 	private static JButton btnImoveis = new JButton("Gerenciar Imoveis");
 	private static JButton btnUsuarios = new JButton("Gerenciar Usuários");
 	
+	private DadosCasa dadosCasa;
+	private DadosApartamento dadosApartamento;
+	private DadosPessoa dadosPessoa;
+	private DadosReserva dadosReserva;
 	
-	
-	public ViewMenu() {
+	public ViewMenu(DadosCasa dadosCasa,
+			DadosApartamento dadosApartamento, DadosPessoa dadosPessoa, DadosReserva dadosReserva) {
+		
+		
+		this.dadosCasa = dadosCasa;
+		this.dadosApartamento = dadosApartamento;
+		this.dadosPessoa = dadosPessoa;
+		this.dadosReserva = dadosReserva;
 		
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
 		titulo.setBounds(110, 10, 180, 30);
@@ -59,12 +69,12 @@ public class ViewMenu implements ActionListener{
 		
 		if(src == btnImoveis) {
 			janela.dispose();
-			new ViewMenuImoveis();
+			new ViewMenuImoveis(dadosCasa, dadosApartamento, dadosPessoa, dadosReserva);
 			
 		}
 		if(src == btnUsuarios) {
 			janela.dispose();
-			new ViewMenuUsuarios();
+			new ViewMenuUsuarios(dadosCasa, dadosApartamento, dadosPessoa, dadosReserva);
 			
 		}
 		

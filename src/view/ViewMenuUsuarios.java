@@ -15,8 +15,19 @@ public class ViewMenuUsuarios implements ActionListener{
 	private static JButton listarUsuarios = new JButton("Listar Usuários");
 	private static JButton voltar = new JButton("Voltar");
 	
+	private DadosCasa dadosCasa;
+	private DadosApartamento dadosApartamento;
+	private DadosPessoa dadosPessoa;
+	private DadosReserva dadosReserva;
 	
-	public ViewMenuUsuarios() {
+	public ViewMenuUsuarios(DadosCasa dadosCasa, DadosApartamento dadosApartamento, DadosPessoa dadosPessoa,
+						DadosReserva dadosReserva) {
+		
+		
+		this.dadosCasa = dadosCasa;
+		this.dadosApartamento = dadosApartamento;
+		this.dadosPessoa = dadosPessoa;
+		this.dadosReserva = dadosReserva;
 		
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
 		titulo.setBounds(160, 10, 180, 30);
@@ -56,7 +67,7 @@ public class ViewMenuUsuarios implements ActionListener{
 		
 		if(src == voltar) {	
 			janela.dispose();
-			new ViewMenu();	
+			new ViewMenu(dadosCasa, dadosApartamento, dadosPessoa, dadosReserva);	
 		}
 		
 	}

@@ -3,7 +3,7 @@ public class Reserva {
 	
 	private int id_reserva;
 	private Imovel imovel;
-	private Pessoa pessoa;
+	private Pessoa hospede;
 	private Periodo periodo;
 	static int contando = 1;
 	
@@ -12,7 +12,7 @@ public class Reserva {
 	public Reserva(Imovel imovel, Pessoa pessoa, Periodo periodo) {
 		super();
 		this.imovel = imovel;
-		this.pessoa = pessoa;
+		this.hospede = pessoa;
 		this.periodo = periodo;
 		this.id_reserva = contando;
 		contando ++;
@@ -31,10 +31,10 @@ public class Reserva {
 		this.imovel = imovel;
 	}
 	public Pessoa getPessoa() {
-		return pessoa;
+		return hospede;
 	}
 	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
+		this.hospede = pessoa;
 	}
 	public Periodo getPeriodo() {
 		return periodo;

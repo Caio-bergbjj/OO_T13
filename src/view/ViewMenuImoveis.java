@@ -13,8 +13,6 @@ import modelo.Imovel;
 
 public class ViewMenuImoveis implements ActionListener{
 	
-	private static DadosCasa dadosCasa;
-	
 	private static JFrame janela = new JFrame("Imóveis");
 	private static JLabel titulo = new JLabel("Imóveis", SwingConstants.CENTER);
 	private static JButton voltar = new JButton("Voltar");
@@ -24,9 +22,18 @@ public class ViewMenuImoveis implements ActionListener{
 	private static JButton btnBusca = new JButton("Buscar");
 	private static JButton cadastrarNovo = new JButton("Cadastrar novo imóvel");
 	
+	private DadosCasa dadosCasa;
+	private DadosApartamento dadosApartamento;
+	private DadosPessoa dadosPessoa;
+	private DadosReserva dadosReserva;
 	
-	
-	public ViewMenuImoveis() {
+	public ViewMenuImoveis(DadosCasa dadosCasa,DadosApartamento dadosApartamento,
+			DadosPessoa dadosPessoa, DadosReserva dadosReserva) {
+		
+		this.dadosCasa = dadosCasa;
+		this.dadosApartamento = dadosApartamento;
+		this.dadosPessoa = dadosPessoa;
+		this.dadosReserva = dadosReserva;
 		
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
 		voltar.setBounds(10, 10, 100, 30);
@@ -73,11 +80,11 @@ public class ViewMenuImoveis implements ActionListener{
 		
 		if(src == voltar) {
 			janela.dispose();
-			new ViewMenu();		
+			new ViewMenu(dadosCasa, dadosApartamento, dadosPessoa, dadosReserva);		
 		}
 		if(src == cadastrarNovo) {
 			janela.dispose();
-			new ViewCadastroImovel();
+			new ViewCadastroImovel(dadosCasa, dadosApartamento, dadosPessoa, dadosReserva);
 		}
 		
 	}
