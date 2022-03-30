@@ -59,19 +59,52 @@ public class ControleDados {
 			Apartamento ap = new Apartamento(dadosApartamento[0], Double.parseDouble(dadosApartamento[1]), 
 					new Descricao( Integer.parseInt(dadosApartamento[2]), Integer.parseInt(dadosApartamento[3]), Integer.parseInt(dadosApartamento[4]),
 							Integer.parseInt(dadosApartamento[5]), Integer.parseInt(dadosApartamento[6])), info[0], info[1], info[2], info[3] );
+			d.inserirApartamento(ap);
 			return true;
 		}
 	}
 	
-	public boolean inserirCasa(String[] dadosCasa, String[] endereco) {
+	public boolean inserirCasa(String[] dadosCasa, String[] endereco, boolean[] info) {
 	
-	if(!dadosCasa[1].matches("[0-9]+") || !dadosCasa[3].matches("[0-9]+") || !dadosCasa[4].matches("[0-9]+")) {
-		return false;
-	} else {
-		Pessoa p = new Pessoa(dadosCasa[0], dadosCasa[1], dadosCasa[2], 
-				new Telefone((short) Integer.parseInt(dadosCasa[3]), Integer.parseInt(dadosCasa[4])));
-		d.inserirPessoa(p);
+		if(!dadosCasa[1].matches("[1-9]+") || !dadosCasa[2].matches("[1-9]+") || !dadosCasa[3].matches("[1-9]+") 
+				|| !dadosCasa[4].matches("[1-9]+") || !dadosCasa[6].matches("[1-9]+")) {
+			return false;
+		} else {
+			Casa casa = new Casa(dadosCasa[0], Double.parseDouble(dadosCasa[1]),
+					new Descricao( Integer.parseInt(dadosCasa[2]), Integer.parseInt(dadosCasa[3]), Integer.parseInt(dadosCasa[4]),
+							Integer.parseInt(dadosCasa[5]), Integer.parseInt(dadosCasa[6])), info[0], info[1] );
+			d.inserirCasa(casa);
+			return true;
+		}
+	}
+	
+	public boolean inserirReserva() {
+			//Falta implementação
+			return true;
+	}
+	
+	public boolean removerPessoa(int i) {
+		for(Reserva reserva : d.getReservas()) {
+			if(reserva.getPessoa().equals(d.getPessoas().get(i))) {
+				return false; // Pessoa esta com uma reserva pendente ainda
+			}
+		}
+		d.getPessoas().remove(i);
 		return true;
 	}
-}
+	
+	public boolean removerApartamento() {
+		
+		return true;
+	}
+	public boolean removerCasa() {
+	
+	return true;
+	}
+	
+	public boolean removerReserva() {
+		
+		return true;
+	}
+	
 }

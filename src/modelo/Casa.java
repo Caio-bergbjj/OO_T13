@@ -6,11 +6,15 @@ public class Casa extends Imovel{
 	private boolean temPiscina;
 	private boolean temWifi;
 	
-	public Casa(String titulo, double valor, Descricao descricao) {
-		super(titulo, valor, descricao);
-		
-	}
 	
+	
+	public Casa(String titulo, double valor, Descricao descricao, boolean temPiscina,
+			boolean temWifi) {
+		super(titulo, valor, descricao);
+		this.temPiscina = temPiscina;
+		this.temWifi = temWifi;
+	}
+
 	public String getCategoria() {
 		return categoria;
 	}

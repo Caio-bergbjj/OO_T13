@@ -60,7 +60,7 @@ public abstract class DadosImoveis{
 		Descricao desc  = new Descricao(qtdQuartos, qtdCamas, qtdBanheiros, qtdAndar, qtdHospedes);
 		
 		// Cria o imovel do tipo requrido; Casa para i = 1 , Apartamento para i != 1;  
-		Imovel imovel = ( i == 1) ? (new Casa(nome, valor, desc)):(new Apartamento(nome, valor, desc));
+		Imovel imovel = ( i == 1) ? (new Casa(nome, valor, desc, true, false)):(new Apartamento(nome, valor, desc));
 		
 		listaImovel.add(imovel); // adicionando o imovel no array list
 		imovel.setId(listaImovel.size()); // colocando o Id como a posicao + 1 no array list  
