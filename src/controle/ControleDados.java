@@ -93,17 +93,27 @@ public class ControleDados {
 		return true;
 	}
 	
-	public boolean removerApartamento() {
-		
+	public boolean removerApartamento(int i) {
+		for(Reserva reserva : d.getReservas()) {
+			if(reserva.getImovel().equals(d.getApartamentos().get(i))) {
+				return false; // Pessoa esta com uma reserva pendente ainda
+			}
+		}
+		d.getApartamentos().remove(i);
 		return true;
 	}
-	public boolean removerCasa() {
-	
-	return true;
+	public boolean removerCasa(int i) {
+		for(Reserva reserva : d.getReservas()) {
+			if(reserva.getImovel().equals(d.getCasas().get(i))) {
+				return false; // Pessoa esta com uma reserva pendente ainda
+			}
+		}
+		d.getApartamentos().remove(i);
+		return true;
 	}
 	
-	public boolean removerReserva() {
-		
+	public boolean removerReserva(int i) {
+		d.getReservas().remove(i);
 		return true;
 	}
 	
