@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -170,15 +171,16 @@ public class ViewCadastroUsuario implements ActionListener{
 	
 	private static void limparCampos() {
 		nomeUsuario.setText("");
-		cep.setText("");
-		cpf.setText("");
+		cep.setValue(null);
+		cpf.setValue(null);
 		email.setText("");
-		telefone.setText("");
+		telefone.setValue(null);
 		cidade.setText("");
 		bairro.setText("");
 		lote.setText("");
 		rua.setText("");
-		comp.setText("");  
+		comp.setText("");
+
 	}
 	 
 	
@@ -193,14 +195,40 @@ public class ViewCadastroUsuario implements ActionListener{
 			new ViewMenuUsuarios(dadosCasa, dadosApartamento, dadosPessoa, dadosReserva);	
 		}
 		if(src == cadastrar) {	
-			if(Validador.validaCpf(cpf.getText())) {
-				JOptionPane.showMessageDialog(null, "Cpf OK" + cpf.getText(), null, 
-						JOptionPane.INFORMATION_MESSAGE);
-			}else {
-				JOptionPane.showMessageDialog(null, "Cpf com problema" + cpf.getText(), null, 
-						JOptionPane.INFORMATION_MESSAGE);
+				ArrayList<String> erros = verificarCampos();
+				
+				if(erros.size() > 0) {
+					JOptionPane.showMessageDialog(null, String.join("\n", erros)
+							, null, 
+							JOptionPane.ERROR_MESSAGE);
 			}
 		}
 			
+	}
+	
+	private static ArrayList<String> verificarCampos() {
+		ArrayList<String> erros = new ArrayList<String>();
+		
+		if(nomeUsuario.getText().isEmpty())
+			erros.add("+ Nome não foi preenchido!");
+		if(!Validador.validaCpf(cpf.getText()))
+			erros.add("+ CPF inválido");
+		if(cep.getValue() == null)
+			erros.add("+ Cep inválido");
+		if(cidade.getText().isEmpty())
+			erros.add("+ Cidade não preenchida!");
+		if(uf.getSelectedItem() == null)
+			erros.add("+ UF não selecionada!");
+		if(bairro.getText().isEmpty())
+			erros.add("+ Bairro não preenchido!");
+		if(rua.getText().isEmpty())
+			erros.add("+ Rua não preenchida!");
+		if(lote.getText().isEmpty())
+			erros.add("+ Lote não preenchido!");
+		if(comp.getText().isEmpty())
+			erros.add("+ Complemento não preenchido!");
+		if(telefone.getValue() == null)
+			erros.add("+ Telefone inválido");
+		return erros;
 	}
 }

@@ -2,9 +2,15 @@ package view;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.stream.IntStream;
 
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
+
 import controle.*;
+import modelo.Casa;
+import modelo.Descricao;
 
 public class ViewCadastroImovel implements ActionListener{
 	
@@ -21,11 +27,11 @@ public class ViewCadastroImovel implements ActionListener{
 	private static JRadioButton ap = new JRadioButton("Apartamento");
 	private static JButton voltar = new JButton("Voltar");
 	
-	private static SpinnerModel model0 = new SpinnerNumberModel(0, 0, 20, 1); 
-	private static SpinnerModel model1 = new SpinnerNumberModel(0, 0, 20, 1); 
-	private static SpinnerModel model2 = new SpinnerNumberModel(0, 0, 20, 1); 
-	private static SpinnerModel model3 = new SpinnerNumberModel(0, 0, 20, 1); 
-	private static SpinnerModel model4 = new SpinnerNumberModel(0, 0, 20, 1); 
+	private static SpinnerModel model0 = new SpinnerNumberModel(1, 1, 20, 1); 
+	private static SpinnerModel model1 = new SpinnerNumberModel(1, 1, 20, 1); 
+	private static SpinnerModel model2 = new SpinnerNumberModel(1, 1, 20, 1); 
+	private static SpinnerModel model3 = new SpinnerNumberModel(1, 1, 20, 1); 
+	private static SpinnerModel model4 = new SpinnerNumberModel(1, 1, 20, 1); 
 	
 	// Form Geral
 	private static JLabel lTituloImovel = new JLabel("Título do Imóvel");
@@ -45,7 +51,7 @@ public class ViewCadastroImovel implements ActionListener{
 	private static JLabel lComp = new JLabel("Complemento");
 	private static JTextField comp = new JTextField();
 	private static JLabel lValor = new JLabel("Valor");
-	private static JTextField valor = new JTextField();
+	private static JFormattedTextField  valor = new JFormattedTextField (Validador.Mascara("####,##"));
 	private static JLabel lQtdQuartos = new JLabel("Quantidade de quartos");
 	private static JSpinner qtdQuartos = new JSpinner(model0);
 	private static JLabel lQtdCamas = new JLabel("Quantidade de camas");
@@ -209,7 +215,7 @@ public class ViewCadastroImovel implements ActionListener{
 		naoWifi.setVisible(false);
 		buttonGroup3.add(simPisc);
 		buttonGroup3.add(naoPisc);
-		lPisc.setBounds(10, 440, 130, 20);
+		lPisc.setBounds(10, 440, 150, 20);
 		lPisc.setVisible(false);
 		simPisc.setBounds(140, 440, 40, 20);
 		simPisc.setVisible(false);
@@ -299,6 +305,7 @@ public class ViewCadastroImovel implements ActionListener{
 		voltar.addActionListener(this);
 		casa.addActionListener(this);
 		ap.addActionListener(this);
+		cadastrar.addActionListener(this);
 		
 		
 	}
@@ -368,13 +375,13 @@ public class ViewCadastroImovel implements ActionListener{
 		buttonGroup6.clearSelection();
 		buttonGroup7.clearSelection();
 		tituloImovel.setText("");
-		cep.setText("");
+		cep.setValue(null);
 		cidade.setText("");
 		bairro.setText("");
 		lote.setText("");
 		rua.setText("");
 		comp.setText("");
-		valor.setText("");
+		valor.setValue(null);
 		qtdQuartos.setValue(0);
 		qtdCamas.setValue(0);
 		qtdBanheiros.setValue(0);
@@ -405,8 +412,53 @@ public class ViewCadastroImovel implements ActionListener{
 			setVisibleFormAp(true);
 
 		}
+		if(src == cadastrar) {
+			ArrayList<String> erros = verificarCampos();
+			
+			if(erros.size() > 0) {
+				JOptionPane.showMessageDialog(null, String.join("\n", erros)
+						, null, 
+						JOptionPane.ERROR_MESSAGE);
+			}
+			
+		}
 		
+	}
+
+	private static ArrayList<String> verificarCampos() {
+		ArrayList<String> erros = new ArrayList<String>();
 		
+		if(buttonGroup.getSelection() == null)
+			erros.add("+ Tipo de imóvel não selecionado!");
+		if(tituloImovel.getText().isEmpty())
+			erros.add("+ Título do Imóvel não preenchido!");
+		if(cep.getValue() == null)
+			erros.add("+ Cep inválido");
+		if(cidade.getText().isEmpty())
+			erros.add("+ Cidade não preenchida!");
+		if(uf.getSelectedItem() == null)
+			erros.add("+ UF não selecionada!");
+		if(bairro.getText().isEmpty())
+			erros.add("+ Bairro não preenchido!");
+		if(rua.getText().isEmpty())
+			erros.add("+ Rua não preenchida!");
+		if(lote.getText().isEmpty())
+			erros.add("+ Lote não preenchido!");
+		if(comp.getText().isEmpty())
+			erros.add("+ Complemento não preenchido!");
+		if(valor.getValue() == null)
+			erros.add("+ Valor inválido");
+		if(casa.isSelected()) {
+			if(categoria.getText().isEmpty())
+				erros.add("+ Categoria não preenchida");
+			if(buttonGroup2.getSelection() == null || buttonGroup3.getSelection() == null)
+				erros.add("+ Preencha todos os campos de Sim ou Não");
+		}else {
+			if(buttonGroup4.getSelection() == null || buttonGroup5.getSelection() == null
+					|| buttonGroup6.getSelection() == null || buttonGroup7.getSelection() == null)
+				erros.add("+ Preencha todos os campos de Sim ou Não");
+		}
+		return erros;
 	}
 	
 }
