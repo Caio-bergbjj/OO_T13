@@ -95,20 +95,11 @@ public class ViewCadastroImovel implements ActionListener{
 	private static JRadioButton naoCond = new JRadioButton("N");
 	
 	private static JButton cadastrar = new JButton("Cadastrar");
+	private static ControleDados dados;
 	
-	private DadosCasa dadosCasa;
-	private DadosApartamento dadosApartamento;
-	private DadosPessoa dadosPessoa;
-	private DadosReserva dadosReserva;
-	
-	public ViewCadastroImovel(DadosCasa dadosCasa, DadosApartamento dadosApartamento, DadosPessoa dadosPessoa,
-			DadosReserva dadosReserva) {
+	public ViewCadastroImovel(ControleDados d) {
+		dados = d;
 		
-		
-		this.dadosCasa = dadosCasa;
-		this.dadosApartamento = dadosApartamento;
-		this.dadosPessoa = dadosPessoa;
-		this.dadosReserva = dadosReserva;
 		
 		// Titulo da janela e voltar
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
@@ -397,7 +388,7 @@ public class ViewCadastroImovel implements ActionListener{
 			// Método que limpar todos os campos ja preenchidos
 			limparCampos();
 			janela.dispose();
-			new ViewMenuImoveis(dadosCasa, dadosApartamento, dadosPessoa, dadosReserva);
+			new ViewMenuImoveis(null);
 			
 		}
 		if(src == casa) {

@@ -25,8 +25,7 @@ public class ViewMenuUsuarios implements ActionListener{
 	private  JButton btnBusca = new JButton("Buscar");
 	private static JButton cadastrarNovo = new JButton("Cadastrar novo Usuário");
 	
-	public ViewMenuUsuarios(DadosCasa dadosCasa,DadosApartamento dadosApartamento,
-			DadosPessoa dadosPessoa, DadosReserva dadosReserva) {
+	public ViewMenuUsuarios(ControleDados dados) {
 		
 		
 		this.dadosCasa = dadosCasa;

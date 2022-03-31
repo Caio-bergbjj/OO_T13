@@ -5,7 +5,6 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import controle.*;
@@ -13,11 +12,6 @@ import modelo.Casa;
 import modelo.Imovel;
 
 public class ViewMenuImoveis implements ActionListener{
-	
-	private DadosCasa dadosCasa;
-	private DadosApartamento dadosApartamento;
-	private DadosPessoa dadosPessoa;
-	private DadosReserva dadosReserva;
 	
 	ArrayList<Imovel> listaCasas; 
 	ArrayList<Imovel> listaAps; 
@@ -38,17 +32,11 @@ public class ViewMenuImoveis implements ActionListener{
 	private static ButtonGroup buttonGroup = new ButtonGroup();
 	private static JRadioButton casa = new JRadioButton("Casas");
 	private static JRadioButton ap = new JRadioButton("Apartamentos");
+	private static ControleDados dados;
 	
-	public ViewMenuImoveis(DadosCasa dadosCasa,DadosApartamento dadosApartamento,
-			DadosPessoa dadosPessoa, DadosReserva dadosReserva) {
+	public ViewMenuImoveis(ControleDados d) {
 		
-		
-		this.dadosCasa = dadosCasa;
-		this.dadosApartamento = dadosApartamento;
-		this.dadosPessoa = dadosPessoa;
-		this.dadosReserva = dadosReserva;
-		
-		listaCasas = dadosCasa.get();
+		listaCasas = dados.getCasas();
 		listaAps = dadosApartamento.get();
 		
 		for(Imovel i : listaCasas) {
@@ -150,11 +138,11 @@ public class ViewMenuImoveis implements ActionListener{
 		}
 		if(src == voltar) {
 			janela.dispose();
-			new ViewMenu(dadosCasa, dadosApartamento, dadosPessoa, dadosReserva);		
+			new ViewMenu();		
 		}
 		if(src == cadastrarNovo) {
 			janela.dispose();
-			new ViewCadastroImovel(dadosCasa, dadosApartamento, dadosPessoa, dadosReserva);
+			new ViewCadastroImovel(dados);
 		}
 		if(src == btnBusca) {
 			if(buscaImovel.getText().equals("")) {
