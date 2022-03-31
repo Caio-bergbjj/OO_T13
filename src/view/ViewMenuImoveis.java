@@ -31,7 +31,7 @@ public class ViewMenuImoveis implements ActionListener{
 	private static JButton voltar = new JButton("Voltar");
 	private  JList<String> listaImoveis = new JList<String>();
 	private  JTextField buscaImovel = new JTextField();
-	private static JLabel labelBusca = new JLabel("Digite aqui o nome o imóvel");
+	private static JLabel labelBusca = new JLabel("Digite aqui o título do imóvel");
 	private  JButton btnBusca = new JButton("Buscar");
 	private static JButton cadastrarNovo = new JButton("Cadastrar novo imóvel");
 	

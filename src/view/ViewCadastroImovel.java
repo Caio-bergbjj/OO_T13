@@ -21,11 +21,17 @@ public class ViewCadastroImovel implements ActionListener{
 	private static JRadioButton ap = new JRadioButton("Apartamento");
 	private static JButton voltar = new JButton("Voltar");
 	
+	private static SpinnerModel model0 = new SpinnerNumberModel(0, 0, 20, 1); 
+	private static SpinnerModel model1 = new SpinnerNumberModel(0, 0, 20, 1); 
+	private static SpinnerModel model2 = new SpinnerNumberModel(0, 0, 20, 1); 
+	private static SpinnerModel model3 = new SpinnerNumberModel(0, 0, 20, 1); 
+	private static SpinnerModel model4 = new SpinnerNumberModel(0, 0, 20, 1); 
+	
 	// Form Geral
 	private static JLabel lTituloImovel = new JLabel("Título do Imóvel");
 	private static JTextField tituloImovel = new JTextField();
 	private static JLabel lCep = new JLabel("CEP");
-	private static JTextField cep = new JTextField();
+	private static JFormattedTextField  cep = new JFormattedTextField (Validador.Mascara("#####-###"));
 	private static JLabel lCidade = new JLabel("Cidade");
 	private static JTextField cidade = new JTextField();
 	private static JLabel lUf = new JLabel("UF");
@@ -41,15 +47,15 @@ public class ViewCadastroImovel implements ActionListener{
 	private static JLabel lValor = new JLabel("Valor");
 	private static JTextField valor = new JTextField();
 	private static JLabel lQtdQuartos = new JLabel("Quantidade de quartos");
-	private static JTextField qtdQuartos = new JTextField();
+	private static JSpinner qtdQuartos = new JSpinner(model0);
 	private static JLabel lQtdCamas = new JLabel("Quantidade de camas");
-	private static JTextField qtdCamas = new JTextField();
+	private static JSpinner qtdCamas = new JSpinner(model1);
 	private static JLabel lQtdBanheiros = new JLabel("Quantidade de banheiros");
-	private static JTextField qtdBanheiros = new JTextField();
+	private static JSpinner qtdBanheiros = new JSpinner(model2);
 	private static JLabel lQtdHospedes = new JLabel("Quantidade de hóspedes");
-	private static JTextField qtdHospedes = new JTextField();
+	private static JSpinner qtdHospedes = new JSpinner(model3);
 	private static JLabel lQtdAndares = new JLabel("Quantidade de andares");
-	private static JTextField qtdAndares = new JTextField();
+	private static JSpinner qtdAndares = new JSpinner(model4);
 	
 	// Form Casa
 	private static JLabel lCategoria = new JLabel("Categoria da Casa");
@@ -145,19 +151,19 @@ public class ViewCadastroImovel implements ActionListener{
 		valor.setBounds(10, 250, 100, 20);
 		
 		lQtdQuartos.setBounds(10, 280, 150, 20);
-		qtdQuartos.setBounds(160, 280, 30, 20);
+		qtdQuartos.setBounds(160, 280, 40, 20);
 		
 		lQtdCamas.setBounds(10, 310, 150, 20);
-		qtdCamas.setBounds(160, 310, 30, 20);
+		qtdCamas.setBounds(160, 310, 40, 20);
 		
 		lQtdBanheiros.setBounds(10, 340, 150, 20);
-		qtdBanheiros.setBounds(160, 340, 30, 20);
+		qtdBanheiros.setBounds(160, 340, 40, 20);
 		
-		lQtdHospedes.setBounds(200, 280, 150, 20);
-		qtdHospedes.setBounds(350, 280, 30, 20);
+		lQtdHospedes.setBounds(210, 280, 150, 20);
+		qtdHospedes.setBounds(360, 280, 40, 20);
 		
-		lQtdAndares.setBounds(200, 310, 150, 20);
-		qtdAndares.setBounds(350, 310, 30, 20);
+		lQtdAndares.setBounds(210, 310, 150, 20);
+		qtdAndares.setBounds(360, 310, 40, 20);
 		
 		janela.add(lTituloImovel);
 		janela.add(tituloImovel);
@@ -369,11 +375,11 @@ public class ViewCadastroImovel implements ActionListener{
 		rua.setText("");
 		comp.setText("");
 		valor.setText("");
-		qtdQuartos.setText("");
-		qtdCamas.setText("");
-		qtdBanheiros.setText("");
-		qtdHospedes.setText("");
-		qtdAndares.setText("");    
+		qtdQuartos.setValue(0);
+		qtdCamas.setValue(0);
+		qtdBanheiros.setValue(0);
+		qtdHospedes.setValue(0);
+		qtdAndares.setValue(0);   
 	}
 	
 	@Override
