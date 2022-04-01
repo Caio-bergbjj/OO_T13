@@ -2,19 +2,16 @@ package view;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import controle.*;
+import modelo.Apartamento;
 import modelo.Casa;
-import modelo.Imovel;
 
 public class ViewMenuImoveis implements ActionListener{
 	
-	ArrayList<Imovel> listaCasas; 
-	ArrayList<Imovel> listaAps; 
+	ArrayList<Casa> listaCasas; 
+	ArrayList<Apartamento> listaAps; 
 	String[] listaTotalCasas;
 	String[] listaTotalAps;
 	ArrayList<String> listaAtual = new ArrayList<String>();
@@ -35,23 +32,14 @@ public class ViewMenuImoveis implements ActionListener{
 	private static ControleDados dados;
 	
 	public ViewMenuImoveis(ControleDados d) {
+		dados = d;
 		
 		listaCasas = dados.getCasas();
-		listaAps = dadosApartamento.get();
+		listaAps = dados.getApartamentos();
+		listaTotalCasas = dados.listaCasas();
+		listaTotalAps = dados.listaAp();
 		
-		for(Imovel i : listaCasas) {
-			listaAtual.add(i.getTitulo());
-		}
-		
-		listaTotalCasas = new String[listaCasas.size()];
-		listaTotalAps = new String[listaAps.size()];
-        
-		for(int i=0;i<listaCasas.size();i++) {
-        	listaTotalCasas[i] = listaCasas.get(i).getTitulo();
-        }
-		for(int i=0;i<listaAps.size();i++) {
-        	listaTotalAps[i] = listaAps.get(i).getTitulo();
-        }
+		listaAtual.toArray(listaTotalCasas);
 		
 		listaImoveis.setListData(listaTotalCasas);
 		JScrollPane scrollPane = new JScrollPane();
@@ -121,9 +109,7 @@ public class ViewMenuImoveis implements ActionListener{
 			listaImoveis.setListData(listaTotalCasas);
 			listaImoveis.updateUI();
 			listaAtual.clear();
-			for(Imovel i : listaCasas) {
-				listaAtual.add(i.getTitulo());
-			}
+			listaAtual.toArray(listaTotalCasas);
 			buscaImovel.setText("");
 			
 		}
@@ -131,9 +117,7 @@ public class ViewMenuImoveis implements ActionListener{
 			listaImoveis.setListData(listaTotalAps);
 			listaImoveis.updateUI();
 			listaAtual.clear();
-			for(Imovel i : listaAps) {
-				listaAtual.add(i.getTitulo());
-			}
+			listaAtual.toArray(listaTotalAps);
 			buscaImovel.setText("");
 		}
 		if(src == voltar) {

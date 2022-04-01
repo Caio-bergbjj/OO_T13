@@ -12,6 +12,7 @@ public abstract class Imovel {
 	private double valor; //1
 	private Disponibilidade disponibilidade[]; 
 	private Descricao descricao; // 2,3,4,5,6
+	@SuppressWarnings("unused")
 	private Pessoa dono;
 	
 	public Imovel(String titulo, double valor, Descricao descricao) {

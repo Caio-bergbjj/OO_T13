@@ -43,14 +43,15 @@ public class ViewMenu implements ActionListener{
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		janela.setVisible(true);
 		
-		btnImoveis.addActionListener(this);
-		btnUsuarios.addActionListener(this);
 	}
 	
-//	public static void main(String[] args) {
-//		new ViewMenu();
-//			
-//	}
+	public static void main(String[] args) {
+		ViewMenu menu = new ViewMenu();
+		
+		btnImoveis.addActionListener(menu);
+		btnUsuarios.addActionListener(menu);
+			
+	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {

@@ -4,13 +4,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
-
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
-
 import controle.*;
-import modelo.Casa;
-import modelo.Descricao;
 
 public class ViewCadastroImovel implements ActionListener{
 	
@@ -388,7 +384,7 @@ public class ViewCadastroImovel implements ActionListener{
 			// Método que limpar todos os campos ja preenchidos
 			limparCampos();
 			janela.dispose();
-			new ViewMenuImoveis(null);
+			new ViewMenuImoveis(dados);
 			
 		}
 		if(src == casa) {

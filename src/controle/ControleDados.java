@@ -118,7 +118,7 @@ public class ControleDados {
 	}
 	
 	public String[] listaCasas() {
-		String[] lista = null;
+		String[] lista = new String[d.getCasas().size()];
 		int i = 0;
 		
 		for(Casa casa : d.getCasas()) {
@@ -131,7 +131,7 @@ public class ControleDados {
 	}
 	
 	public String[] listaAp() {
-		String[] lista = null;
+		String[] lista = new String[d.getApartamentos().size()];
 		int i = 0;
 		
 		for(Apartamento ap : d.getApartamentos()) {
