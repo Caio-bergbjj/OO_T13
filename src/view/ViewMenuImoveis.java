@@ -5,13 +5,9 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import controle.*;
-import modelo.Apartamento;
-import modelo.Casa;
 
 public class ViewMenuImoveis implements ActionListener{
 	
-	ArrayList<Casa> listaCasas; 
-	ArrayList<Apartamento> listaAps; 
 	String[] listaTotalCasas;
 	String[] listaTotalAps;
 	ArrayList<String> listaAtual = new ArrayList<String>();
@@ -34,10 +30,8 @@ public class ViewMenuImoveis implements ActionListener{
 	public ViewMenuImoveis(ControleDados d) {
 		dados = d;
 		
-		listaCasas = dados.getCasas();
-		listaAps = dados.getApartamentos();
 		listaTotalCasas = dados.listaCasas();
-		listaTotalAps = dados.listaAp();
+		listaTotalAps = dados.listaAps();
 		
 		for(String nome : listaTotalCasas) {
 			listaAtual.add(nome);

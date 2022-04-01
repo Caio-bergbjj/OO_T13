@@ -6,10 +6,11 @@ import javax.swing.*;
 import controle.*;
 
 public class ViewMenuUsuarios implements ActionListener{
+	
+	String[]listaTotalUsuarios;
 
 	private static JFrame janela = new JFrame("Usuários");
 	private static JLabel titulo = new JLabel("Usuários", SwingConstants.CENTER);
-
 	private static JButton voltar = new JButton("Voltar");
 	private  JList<String> listaUsuarios= new JList<String>();
 	private  JTextField buscaUsuario = new JTextField();
@@ -21,8 +22,10 @@ public class ViewMenuUsuarios implements ActionListener{
 	public ViewMenuUsuarios(ControleDados d) {
 		dados = d;
 		
+		listaTotalUsuarios = d.listaUsuarios();
 		
-//		listaUsuarios.setListData();
+		
+		listaUsuarios.setListData(listaTotalUsuarios);
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 50, 300, 300);
 		scrollPane.setViewportView(listaUsuarios);
@@ -63,7 +66,6 @@ public class ViewMenuUsuarios implements ActionListener{
 		
 		voltar.addActionListener(this);
 		cadastrarNovo.addActionListener(this);
-
 		btnBusca.addActionListener(this);
 	}
 	
@@ -78,6 +80,29 @@ public class ViewMenuUsuarios implements ActionListener{
 		if(src == cadastrarNovo) {
 			janela.dispose();
 			new ViewCadastroUsuario(dados);
+		}
+		if(src == btnBusca) {
+			if(buscaUsuario.getText().equals("")) {
+				JOptionPane.showMessageDialog(null,"Campo de busca em branco!!", null, 
+						JOptionPane.ERROR_MESSAGE);
+			}else {
+				boolean achei = false;
+				for(String nome : listaTotalUsuarios){
+					if(nome.equals(buscaUsuario.getText())) {
+						String[] listaBusca = new String[1];
+						listaBusca[0] = buscaUsuario.getText();
+						listaUsuarios.setListData(listaBusca);
+						achei = true;
+						break;
+					}
+				}
+				if(!achei) {
+					JOptionPane.showMessageDialog(null,"Título não encontrado", null, 
+							JOptionPane.WARNING_MESSAGE);
+					buscaUsuario.setText("");
+				}
+			
+			}
 		}
 		
 	}

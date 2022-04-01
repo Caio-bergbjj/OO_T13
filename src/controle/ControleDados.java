@@ -130,12 +130,25 @@ public class ControleDados {
 		return lista;
 	}
 	
-	public String[] listaAp() {
+	public String[] listaAps() {
 		String[] lista = new String[d.getApartamentos().size()];
 		int i = 0;
 		
 		for(Apartamento ap : d.getApartamentos()) {
 			lista[i] = ap.getTitulo();
+			i++;
+		}
+		
+		
+		return lista;
+	}
+	
+	public String[] listaUsuarios() {
+		String[] lista = new String[d.getPessoas().size()];
+		int i = 0;
+		
+		for(Pessoa p : d.getPessoas()) {
+			lista[i] = p.getNome();
 			i++;
 		}
 		
