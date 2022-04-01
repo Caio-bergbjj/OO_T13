@@ -39,7 +39,9 @@ public class ViewMenuImoveis implements ActionListener{
 		listaTotalCasas = dados.listaCasas();
 		listaTotalAps = dados.listaAp();
 		
-		listaAtual.toArray(listaTotalCasas);
+		for(String nome : listaTotalCasas) {
+			listaAtual.add(nome);
+		}
 		
 		listaImoveis.setListData(listaTotalCasas);
 		JScrollPane scrollPane = new JScrollPane();
@@ -109,7 +111,9 @@ public class ViewMenuImoveis implements ActionListener{
 			listaImoveis.setListData(listaTotalCasas);
 			listaImoveis.updateUI();
 			listaAtual.clear();
-			listaAtual.toArray(listaTotalCasas);
+			for(String nome : listaTotalCasas) {
+				listaAtual.add(nome);
+			}
 			buscaImovel.setText("");
 			
 		}
@@ -117,7 +121,9 @@ public class ViewMenuImoveis implements ActionListener{
 			listaImoveis.setListData(listaTotalAps);
 			listaImoveis.updateUI();
 			listaAtual.clear();
-			listaAtual.toArray(listaTotalAps);
+			for(String nome : listaTotalAps) {
+				listaAtual.add(nome);
+			}
 			buscaImovel.setText("");
 		}
 		if(src == voltar) {
