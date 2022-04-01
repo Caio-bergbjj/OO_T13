@@ -28,7 +28,7 @@ public class ViewCadastroImovel implements ActionListener{
 	private static SpinnerModel model2 = new SpinnerNumberModel(1, 1, 20, 1); 
 	private static SpinnerModel model3 = new SpinnerNumberModel(1, 1, 20, 1); 
 	private static SpinnerModel model4 = new SpinnerNumberModel(1, 1, 20, 1); 
-	
+	private static SpinnerModel model5 = new SpinnerNumberModel(1, 1, 1000, 1); 
 	// Form Geral
 	private static JLabel lTituloImovel = new JLabel("Título do Imóvel");
 	private static JTextField tituloImovel = new JTextField();
@@ -46,6 +46,8 @@ public class ViewCadastroImovel implements ActionListener{
 	private static JTextField rua = new JTextField();
 	private static JLabel lComp = new JLabel("Complemento");
 	private static JTextField comp = new JTextField();
+	private static JLabel lNum = new JLabel("Número");
+	private static JSpinner num = new JSpinner(model5);
 	private static JLabel lValor = new JLabel("Valor");
 	private static JFormattedTextField  valor = new JFormattedTextField (Validador.Mascara("####,##"));
 	private static JLabel lQtdQuartos = new JLabel("Quantidade de quartos");
@@ -140,6 +142,10 @@ public class ViewCadastroImovel implements ActionListener{
 		lComp.setBounds(160, 190, 100, 20);
 		comp.setBounds(160, 210, 230, 20);
 		
+		lNum.setBounds(400, 200, 100, 20);
+		num.setBounds(400, 220, 50, 20);
+		num.setValue(0);
+		
 		lValor.setBounds(10, 230, 50, 20);
 		valor.setBounds(10, 250, 100, 20);
 		
@@ -174,6 +180,8 @@ public class ViewCadastroImovel implements ActionListener{
 		janela.add(rua);
 		janela.add(lComp);
 		janela.add(comp);
+		janela.add(lNum);
+		janela.add(num);
 		janela.add(lValor);
 		janela.add(valor);
 		janela.add(lQtdQuartos);
@@ -373,7 +381,16 @@ public class ViewCadastroImovel implements ActionListener{
 		qtdCamas.setValue(0);
 		qtdBanheiros.setValue(0);
 		qtdHospedes.setValue(0);
-		qtdAndares.setValue(0);   
+		qtdAndares.setValue(0);
+		num.setValue(0);
+	}
+	
+	private static boolean parseBool(String text) {
+		if(text.equals("S"))
+			return true;
+			
+		else
+			return false;
 	}
 	
 	@Override
@@ -406,6 +423,14 @@ public class ViewCadastroImovel implements ActionListener{
 				JOptionPane.showMessageDialog(null, String.join("\n", erros)
 						, null, 
 						JOptionPane.ERROR_MESSAGE);
+			}else {
+				if(ap.isSelected()) {
+					String[] dadosApartamento = {titulo.getText(), valor.getText(), qtdQuartos.getValue().toString(),
+							qtdCamas.getValue().toString(), qtdBanheiros.getValue().toString(), qtdAndares.getValue().toString(),
+							qtdHospedes.getValue().toString()};
+					String[] endereço = {};
+//					boolean[] info = {parseBool(temElevador)}
+				}
 			}
 			
 		}

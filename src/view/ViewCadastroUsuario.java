@@ -13,7 +13,10 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import controle.ControleDados;
 
@@ -26,6 +29,8 @@ public class ViewCadastroUsuario implements ActionListener{
 	private static JFrame janela = new JFrame("CadastroUsuario");
 	private static JLabel titulo = new JLabel("Cadastrar Usuario", SwingConstants.CENTER);
 	private static JButton voltar = new JButton("Voltar");
+	
+	private static SpinnerModel model0 = new SpinnerNumberModel(1, 1, 1000, 1); 
 	
 	// Form Geral
 	private static JLabel lNomeUsuario = new JLabel("Nome do Usuario");
@@ -48,6 +53,8 @@ public class ViewCadastroUsuario implements ActionListener{
 	private static JTextField rua = new JTextField();
 	private static JLabel lComp = new JLabel("Complemento");
 	private static JTextField comp = new JTextField();
+	private static JLabel lNum = new JLabel("Número");
+	private static JSpinner num = new JSpinner(model0);
 	private static JFormattedTextField  telefone = new JFormattedTextField (Validador.Mascara("(##) # ####-####"));
 	private static JLabel lTelefone = new JLabel("Telefone");
 	private static JButton cadastrar = new JButton("Cadastrar");
@@ -96,6 +103,10 @@ public class ViewCadastroUsuario implements ActionListener{
 		lComp.setBounds(160, 200, 100, 20);
 		comp.setBounds(160, 220, 230, 20);
 		
+		lNum.setBounds(400, 200, 100, 20);
+		num.setBounds(400, 220, 50, 20);
+		num.setValue(0);
+		
 		lTelefone.setBounds(10, 240, 100, 20);
 		telefone.setBounds(10, 260, 100, 20);
 		
@@ -119,6 +130,8 @@ public class ViewCadastroUsuario implements ActionListener{
 		janela.add(rua);
 		janela.add(lComp);
 		janela.add(comp);
+		janela.add(lNum);
+		janela.add(num);
 		janela.add(lTelefone);
 		janela.add(telefone);
 		
@@ -159,7 +172,7 @@ public class ViewCadastroUsuario implements ActionListener{
 		lote.setText("");
 		rua.setText("");
 		comp.setText("");
-
+		num.setValue(0);
 	}
 	 
 	
@@ -180,7 +193,7 @@ public class ViewCadastroUsuario implements ActionListener{
 					JOptionPane.showMessageDialog(null, String.join("\n", erros)
 							, null, 
 							JOptionPane.ERROR_MESSAGE);
-			}
+				}
 		}
 			
 	}
