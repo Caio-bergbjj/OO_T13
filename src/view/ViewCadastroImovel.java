@@ -384,7 +384,7 @@ public class ViewCadastroImovel implements ActionListener{
 			// Método que limpar todos os campos ja preenchidos
 			limparCampos();
 			janela.dispose();
-			new ViewMenuImoveis(dados);
+			new ViewMenuListas(dados,1);
 			
 		}
 		if(src == casa) {

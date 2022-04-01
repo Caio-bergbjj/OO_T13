@@ -59,12 +59,12 @@ public class ViewMenu implements ActionListener{
 		
 		if(src == btnImoveis) {
 			janela.dispose();
-			new ViewMenuImoveis(dados);
+			new ViewMenuListas(dados, 1);
 			
 		}
 		if(src == btnUsuarios) {
 			janela.dispose();
-			new ViewMenuUsuarios(dados);
+			new ViewMenuListas(dados, 2);
 			
 		}
 		

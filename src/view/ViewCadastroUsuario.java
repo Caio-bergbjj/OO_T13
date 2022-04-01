@@ -171,7 +171,7 @@ public class ViewCadastroUsuario implements ActionListener{
 			// Método que limpar todos os campos ja preenchidos
 			limparCampos();
 			janela.dispose();
-			new ViewMenuUsuarios(dados);	
+			new ViewMenuListas(dados, 2);	
 		}
 		if(src == cadastrar) {	
 				ArrayList<String> erros = verificarCampos();
