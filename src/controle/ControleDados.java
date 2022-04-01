@@ -117,4 +117,61 @@ public class ControleDados {
 		return true;
 	}
 	
+	public String[] listaCasas() {
+		String[] lista = new String[d.getCasas().size()];
+		int i = 0;
+		
+		for(Casa casa : d.getCasas()) {
+			lista[i] = casa.getTitulo();
+			i++;
+		}
+		
+		
+		return lista;
+	}
+	
+	public String[] listaAp() {
+		String[] lista = new String[d.getApartamentos().size()];
+		int i = 0;
+		
+		for(Apartamento ap : d.getApartamentos()) {
+			lista[i] = ap.getTitulo();
+			i++;
+		}
+		
+		
+		return lista;
+	}
+	
 }
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

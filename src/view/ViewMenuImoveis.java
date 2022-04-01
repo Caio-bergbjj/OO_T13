@@ -2,25 +2,16 @@ package view;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import controle.*;
+import modelo.Apartamento;
 import modelo.Casa;
-import modelo.Imovel;
 
 public class ViewMenuImoveis implements ActionListener{
 	
-	private DadosCasa dadosCasa;
-	private DadosApartamento dadosApartamento;
-	private DadosPessoa dadosPessoa;
-	private DadosReserva dadosReserva;
-	
-	ArrayList<Imovel> listaCasas; 
-	ArrayList<Imovel> listaAps; 
+	ArrayList<Casa> listaCasas; 
+	ArrayList<Apartamento> listaAps; 
 	String[] listaTotalCasas;
 	String[] listaTotalAps;
 	ArrayList<String> listaAtual = new ArrayList<String>();
@@ -38,32 +29,19 @@ public class ViewMenuImoveis implements ActionListener{
 	private static ButtonGroup buttonGroup = new ButtonGroup();
 	private static JRadioButton casa = new JRadioButton("Casas");
 	private static JRadioButton ap = new JRadioButton("Apartamentos");
+	private static ControleDados dados;
 	
-	public ViewMenuImoveis(DadosCasa dadosCasa,DadosApartamento dadosApartamento,
-			DadosPessoa dadosPessoa, DadosReserva dadosReserva) {
+	public ViewMenuImoveis(ControleDados d) {
+		dados = d;
 		
+		listaCasas = dados.getCasas();
+		listaAps = dados.getApartamentos();
+		listaTotalCasas = dados.listaCasas();
+		listaTotalAps = dados.listaAp();
 		
-		this.dadosCasa = dadosCasa;
-		this.dadosApartamento = dadosApartamento;
-		this.dadosPessoa = dadosPessoa;
-		this.dadosReserva = dadosReserva;
-		
-		listaCasas = dadosCasa.get();
-		listaAps = dadosApartamento.get();
-		
-		for(Imovel i : listaCasas) {
-			listaAtual.add(i.getTitulo());
+		for(String nome : listaTotalCasas) {
+			listaAtual.add(nome);
 		}
-		
-		listaTotalCasas = new String[listaCasas.size()];
-		listaTotalAps = new String[listaAps.size()];
-        
-		for(int i=0;i<listaCasas.size();i++) {
-        	listaTotalCasas[i] = listaCasas.get(i).getTitulo();
-        }
-		for(int i=0;i<listaAps.size();i++) {
-        	listaTotalAps[i] = listaAps.get(i).getTitulo();
-        }
 		
 		listaImoveis.setListData(listaTotalCasas);
 		JScrollPane scrollPane = new JScrollPane();
@@ -133,8 +111,8 @@ public class ViewMenuImoveis implements ActionListener{
 			listaImoveis.setListData(listaTotalCasas);
 			listaImoveis.updateUI();
 			listaAtual.clear();
-			for(Imovel i : listaCasas) {
-				listaAtual.add(i.getTitulo());
+			for(String nome : listaTotalCasas) {
+				listaAtual.add(nome);
 			}
 			buscaImovel.setText("");
 			
@@ -143,18 +121,18 @@ public class ViewMenuImoveis implements ActionListener{
 			listaImoveis.setListData(listaTotalAps);
 			listaImoveis.updateUI();
 			listaAtual.clear();
-			for(Imovel i : listaAps) {
-				listaAtual.add(i.getTitulo());
+			for(String nome : listaTotalAps) {
+				listaAtual.add(nome);
 			}
 			buscaImovel.setText("");
 		}
 		if(src == voltar) {
 			janela.dispose();
-			new ViewMenu(dadosCasa, dadosApartamento, dadosPessoa, dadosReserva);		
+			new ViewMenu();		
 		}
 		if(src == cadastrarNovo) {
 			janela.dispose();
-			new ViewCadastroImovel(dadosCasa, dadosApartamento, dadosPessoa, dadosReserva);
+			new ViewCadastroImovel(dados);
 		}
 		if(src == btnBusca) {
 			if(buscaImovel.getText().equals("")) {

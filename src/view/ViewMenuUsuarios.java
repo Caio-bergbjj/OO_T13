@@ -2,19 +2,11 @@ package view;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
-
 import javax.swing.*;
 import controle.*;
-import modelo.Imovel;
 
 public class ViewMenuUsuarios implements ActionListener{
 
-	private DadosCasa dadosCasa;
-	private DadosApartamento dadosApartamento;
-	private DadosPessoa dadosPessoa;
-	private DadosReserva dadosReserva;
-	
 	private static JFrame janela = new JFrame("Usuários");
 	private static JLabel titulo = new JLabel("Usuários", SwingConstants.CENTER);
 
@@ -24,16 +16,11 @@ public class ViewMenuUsuarios implements ActionListener{
 	private static JLabel labelBusca = new JLabel("Digite aqui o nome do usuario");
 	private  JButton btnBusca = new JButton("Buscar");
 	private static JButton cadastrarNovo = new JButton("Cadastrar novo Usuário");
+	private static ControleDados dados;
 	
-	public ViewMenuUsuarios(DadosCasa dadosCasa,DadosApartamento dadosApartamento,
-			DadosPessoa dadosPessoa, DadosReserva dadosReserva) {
+	public ViewMenuUsuarios(ControleDados d) {
+		dados = d;
 		
-		
-		this.dadosCasa = dadosCasa;
-		this.dadosApartamento = dadosApartamento;
-		this.dadosPessoa = dadosPessoa;
-		this.dadosReserva = dadosReserva;
-
 		
 //		listaUsuarios.setListData();
 		JScrollPane scrollPane = new JScrollPane();
@@ -86,11 +73,11 @@ public class ViewMenuUsuarios implements ActionListener{
 		
 		if(src == voltar) {	
 			janela.dispose();
-			new ViewMenu(dadosCasa, dadosApartamento, dadosPessoa, dadosReserva);	
+			new ViewMenu();	
 		}
 		if(src == cadastrarNovo) {
 			janela.dispose();
-			new ViewCadastroUsuario(dadosCasa, dadosApartamento, dadosPessoa, dadosReserva);
+			new ViewCadastroUsuario(dados);
 		}
 		
 	}

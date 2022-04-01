@@ -1,4 +1,5 @@
 package view;
+
 import controle.Validador;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -6,26 +7,15 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
-import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import javax.swing.SpinnerModel;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-import javax.swing.text.MaskFormatter;
-
-import controle.DadosApartamento;
-import controle.DadosCasa;
-import controle.DadosPessoa;
-import controle.DadosReserva;
+import controle.ControleDados;
 
 public class ViewCadastroUsuario implements ActionListener{
 	
@@ -61,112 +51,101 @@ public class ViewCadastroUsuario implements ActionListener{
 	private static JFormattedTextField  telefone = new JFormattedTextField (Validador.Mascara("(##) # ####-####"));
 	private static JLabel lTelefone = new JLabel("Telefone");
 	private static JButton cadastrar = new JButton("Cadastrar");
+	private static ControleDados dados;
 	
+	public ViewCadastroUsuario(ControleDados d) {
+		dados = d;
 	
-	private DadosCasa dadosCasa;
-	private DadosApartamento dadosApartamento;
-	private DadosPessoa dadosPessoa;
-	private DadosReserva dadosReserva;
+		// Titulo da janela e voltar
+		titulo.setFont(new Font("Arial", Font.BOLD, 20));
+		titulo.setBounds(160, 10, 180, 30);
+		voltar.setBounds(10, 10, 100, 30);
+		janela.add(titulo);
+		janela.add(voltar);
+		
+		// Form Geral
+		lNomeUsuario.setBounds(10, 80, 100, 20);
+		nomeUsuario.setBounds(10, 100, 300, 20);
+		
+		lCpf.setBounds(10, 120, 100, 20);
+		cpf.setBounds(10, 140, 100, 20);
+		
+		lEmail.setBounds(120, 120, 100, 20);
+		email.setBounds(120, 140, 300, 20);
+		
+		lCep.setBounds(10, 160, 100, 20);
+		cep.setBounds(10, 180, 100, 20);
+		
+		lCidade.setBounds(120, 160, 100, 20);
+		cidade.setBounds(120, 180, 120, 20);
+		
+		lUf.setBounds(250, 160, 50, 20);
+		uf.setBounds(250, 180, 50, 20);
+		// Setando -1 pois assim nenhum item aparece selecionado
+		uf.setSelectedIndex(-1);
+		
+		lBairro.setBounds(310, 160, 80, 20);
+		bairro.setBounds(310, 180, 100, 20);
+		
+		lLote.setBounds(10, 200, 100, 20);
+		lote.setBounds(10, 220, 80, 20);
+		
+		lRua.setBounds(100, 200, 50, 20);
+		rua.setBounds(100, 220, 50, 20);
+		
+		lComp.setBounds(160, 200, 100, 20);
+		comp.setBounds(160, 220, 230, 20);
+		
+		lTelefone.setBounds(10, 240, 100, 20);
+		telefone.setBounds(10, 260, 100, 20);
+		
+		janela.add(lNomeUsuario);
+		janela.add(nomeUsuario);
+		janela.add(lCep);
+		janela.add(cep);
+		janela.add(lCpf);
+		janela.add(cpf);
+		janela.add(lEmail);
+		janela.add(email);
+		janela.add(lCidade);
+		janela.add(cidade);
+		janela.add(lUf);
+		janela.add(uf);
+		janela.add(lBairro);
+		janela.add(bairro);
+		janela.add(lLote);
+		janela.add(lote);
+		janela.add(lRua);
+		janela.add(rua);
+		janela.add(lComp);
+		janela.add(comp);
+		janela.add(lTelefone);
+		janela.add(telefone);
+		
 	
-	public ViewCadastroUsuario(DadosCasa dadosCasa, DadosApartamento dadosApartamento, DadosPessoa dadosPessoa,
-	DadosReserva dadosReserva) {
-	
-	
-	this.dadosCasa = dadosCasa;
-	this.dadosApartamento = dadosApartamento;
-	this.dadosPessoa = dadosPessoa;
-	this.dadosReserva = dadosReserva;
-	
-	// Titulo da janela e voltar
-	titulo.setFont(new Font("Arial", Font.BOLD, 20));
-	titulo.setBounds(160, 10, 180, 30);
-	voltar.setBounds(10, 10, 100, 30);
-	janela.add(titulo);
-	janela.add(voltar);
-	
-	// Form Geral
-	lNomeUsuario.setBounds(10, 80, 100, 20);
-	nomeUsuario.setBounds(10, 100, 300, 20);
-	
-	lCpf.setBounds(10, 120, 100, 20);
-	cpf.setBounds(10, 140, 100, 20);
-	
-	lEmail.setBounds(120, 120, 100, 20);
-	email.setBounds(120, 140, 300, 20);
-	
-	lCep.setBounds(10, 160, 100, 20);
-	cep.setBounds(10, 180, 100, 20);
-	
-	lCidade.setBounds(120, 160, 100, 20);
-	cidade.setBounds(120, 180, 120, 20);
-	
-	lUf.setBounds(250, 160, 50, 20);
-	uf.setBounds(250, 180, 50, 20);
-	// Setando -1 pois assim nenhum item aparece selecionado
-	uf.setSelectedIndex(-1);
-	
-	lBairro.setBounds(310, 160, 80, 20);
-	bairro.setBounds(310, 180, 100, 20);
-	
-	lLote.setBounds(10, 200, 100, 20);
-	lote.setBounds(10, 220, 80, 20);
-	
-	lRua.setBounds(100, 200, 50, 20);
-	rua.setBounds(100, 220, 50, 20);
-	
-	lComp.setBounds(160, 200, 100, 20);
-	comp.setBounds(160, 220, 230, 20);
-	
-	lTelefone.setBounds(10, 240, 100, 20);
-	telefone.setBounds(10, 260, 100, 20);
-	
-	janela.add(lNomeUsuario);
-	janela.add(nomeUsuario);
-	janela.add(lCep);
-	janela.add(cep);
-	janela.add(lCpf);
-	janela.add(cpf);
-	janela.add(lEmail);
-	janela.add(email);
-	janela.add(lCidade);
-	janela.add(cidade);
-	janela.add(lUf);
-	janela.add(uf);
-	janela.add(lBairro);
-	janela.add(bairro);
-	janela.add(lLote);
-	janela.add(lote);
-	janela.add(lRua);
-	janela.add(rua);
-	janela.add(lComp);
-	janela.add(comp);
-	janela.add(lTelefone);
-	janela.add(telefone);
-	
-
-	
-	cadastrar.setBounds(380, 375, 100, 30);
-	janela.add(cadastrar);
-	
-	janela.setLayout(null);
-	
-	// Criacao de variaveis para determinar o tamanho da janela
-	int jframeW = 500;
-	int jframeH= 450;
-	janela.setSize(jframeW, jframeH);
-	
-	// Codigo para colocar a janela no meio da tela, essa variavel dim pega o tamanho do display
-	Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-	int locationX = (dim.width - jframeW)/2;
-	int locationY = (dim.height - jframeH)/2;
-	janela.setLocation(locationX, locationY);
-	
-	
-	janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	janela.setVisible(true);
-	
-	voltar.addActionListener(this);	
-	cadastrar.addActionListener(this);
+		
+		cadastrar.setBounds(380, 375, 100, 30);
+		janela.add(cadastrar);
+		
+		janela.setLayout(null);
+		
+		// Criacao de variaveis para determinar o tamanho da janela
+		int jframeW = 500;
+		int jframeH= 450;
+		janela.setSize(jframeW, jframeH);
+		
+		// Codigo para colocar a janela no meio da tela, essa variavel dim pega o tamanho do display
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		int locationX = (dim.width - jframeW)/2;
+		int locationY = (dim.height - jframeH)/2;
+		janela.setLocation(locationX, locationY);
+		
+		
+		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		janela.setVisible(true);
+		
+		voltar.addActionListener(this);	
+		cadastrar.addActionListener(this);
 	}
 	
 	private static void limparCampos() {
@@ -192,7 +171,7 @@ public class ViewCadastroUsuario implements ActionListener{
 			// Método que limpar todos os campos ja preenchidos
 			limparCampos();
 			janela.dispose();
-			new ViewMenuUsuarios(dadosCasa, dadosApartamento, dadosPessoa, dadosReserva);	
+			new ViewMenuUsuarios(dados);	
 		}
 		if(src == cadastrar) {	
 				ArrayList<String> erros = verificarCampos();

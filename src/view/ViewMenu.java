@@ -2,7 +2,6 @@ package view;
 
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 import controle.*;
 
@@ -12,20 +11,10 @@ public class ViewMenu implements ActionListener{
 	private static JLabel titulo = new JLabel("Menu Principal", SwingConstants.CENTER);
 	private static JButton btnImoveis = new JButton("Gerenciar Imoveis");
 	private static JButton btnUsuarios = new JButton("Gerenciar Usuários");
+	public static ControleDados dados = new ControleDados();
 	
-	private DadosCasa dadosCasa;
-	private DadosApartamento dadosApartamento;
-	private DadosPessoa dadosPessoa;
-	private DadosReserva dadosReserva;
 	
-	public ViewMenu(DadosCasa dadosCasa,
-			DadosApartamento dadosApartamento, DadosPessoa dadosPessoa, DadosReserva dadosReserva) {
-		
-		
-		this.dadosCasa = dadosCasa;
-		this.dadosApartamento = dadosApartamento;
-		this.dadosPessoa = dadosPessoa;
-		this.dadosReserva = dadosReserva;
+	public ViewMenu() {
 		
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
 		titulo.setBounds(110, 10, 180, 30);
@@ -54,14 +43,15 @@ public class ViewMenu implements ActionListener{
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		janela.setVisible(true);
 		
-		btnImoveis.addActionListener(this);
-		btnUsuarios.addActionListener(this);
 	}
 	
-//	public static void main(String[] args) {
-//		new ViewMenu();
-//			
-//	}
+	public static void main(String[] args) {
+		ViewMenu menu = new ViewMenu();
+		
+		btnImoveis.addActionListener(menu);
+		btnUsuarios.addActionListener(menu);
+			
+	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -69,12 +59,12 @@ public class ViewMenu implements ActionListener{
 		
 		if(src == btnImoveis) {
 			janela.dispose();
-			new ViewMenuImoveis(dadosCasa, dadosApartamento, dadosPessoa, dadosReserva);
+			new ViewMenuImoveis(dados);
 			
 		}
 		if(src == btnUsuarios) {
 			janela.dispose();
-			new ViewMenuUsuarios(dadosCasa, dadosApartamento, dadosPessoa, dadosReserva);
+			new ViewMenuUsuarios(dados);
 			
 		}
 		
