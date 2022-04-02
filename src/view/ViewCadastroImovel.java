@@ -388,11 +388,11 @@ public class ViewCadastroImovel implements ActionListener, KeyListener{
 		rua.setText("");
 		comp.setText("");
 		valor.setValue(null);
-		qtdQuartos.setValue(0);
-		qtdCamas.setValue(0);
-		qtdBanheiros.setValue(0);
-		qtdHospedes.setValue(0);
-		qtdAndares.setValue(0);
+		qtdQuartos.setValue(1);
+		qtdCamas.setValue(1);
+		qtdBanheiros.setValue(1);
+		qtdHospedes.setValue(1);
+		qtdAndares.setValue(1);
 		num.setValue(0);
 	}
 	

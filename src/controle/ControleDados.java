@@ -40,7 +40,7 @@ public class ControleDados {
 	
 	public boolean inserirPessoa(String[] dadosPessoa, String[] endereco) {
 		
-		if(!dadosPessoa[1].matches("[0-9]+") || !dadosPessoa[3].matches("[0-9]+") || !dadosPessoa[4].matches("[0-9]+")) {
+		if(!dadosPessoa[1].matches("[0-9.-]+") || !dadosPessoa[3].matches("[0-9]+") || !dadosPessoa[4].matches("[0-9]+")) {
 			return false;
 		} else {
 			Pessoa p = new Pessoa(dadosPessoa[0], dadosPessoa[1], dadosPessoa[2], 

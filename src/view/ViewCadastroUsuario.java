@@ -30,7 +30,7 @@ public class ViewCadastroUsuario implements ActionListener{
 	private static JLabel titulo = new JLabel("Cadastrar Usuario", SwingConstants.CENTER);
 	private static JButton voltar = new JButton("Voltar");
 	
-	private static SpinnerModel model0 = new SpinnerNumberModel(1, 1, 1000, 1); 
+	private static SpinnerModel model0 = new SpinnerNumberModel(1, 0, 1000, 1); 
 	
 	// Form Geral
 	private static JLabel lNomeUsuario = new JLabel("Nome do Usuario");
@@ -195,6 +195,21 @@ public class ViewCadastroUsuario implements ActionListener{
 					JOptionPane.showMessageDialog(null, String.join("\n", erros)
 							, null, 
 							JOptionPane.ERROR_MESSAGE);
+				}else {
+					String ddd = telefone.getText().substring(1, 3);
+					String tele = Validador.removeCaracteresEspeciais(telefone.getText().substring(5, 16));
+					String[] dadosPessoa = {nomeUsuario.getText(), cpf.getText(), email.getText(),
+							ddd, tele};
+					String[] endereco = {};
+				    boolean inserir  = dados.inserirPessoa(dadosPessoa, endereco);
+				    System.out.println(inserir);
+					limparCampos();
+					janela.dispose();
+					new ViewMenuListas(dados,2);
+					// Enviando Mensagem de Sucesso
+					JOptionPane.showMessageDialog(null, "Pessoa cadastrada com Sucesso!!"
+							, null, 
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 		}
 			
