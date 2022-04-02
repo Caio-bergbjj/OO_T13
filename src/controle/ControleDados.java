@@ -52,7 +52,7 @@ public class ControleDados {
 	
 	public boolean inserirApartamento(String[] dadosApartamento, String[] endereco, boolean[] info) {
 		
-		if(!dadosApartamento[1].matches("[1-9]+") || !dadosApartamento[2].matches("[1-9]+") || !dadosApartamento[3].matches("[1-9]+") 
+		if(!dadosApartamento[1].matches("[1-9.]+") || !dadosApartamento[2].matches("[1-9]+") || !dadosApartamento[3].matches("[1-9]+") 
 				|| !dadosApartamento[4].matches("[1-9]+") || !dadosApartamento[6].matches("[1-9]+")) {
 			return false;
 		} else {
@@ -66,13 +66,13 @@ public class ControleDados {
 	
 	public boolean inserirCasa(String[] dadosCasa, String[] endereco, boolean[] info) {
 	
-		if(!dadosCasa[1].matches("[1-9]+") || !dadosCasa[2].matches("[1-9]+") || !dadosCasa[3].matches("[1-9]+") 
-				|| !dadosCasa[4].matches("[1-9]+") || !dadosCasa[6].matches("[1-9]+")) {
+		if(!dadosCasa[1].matches("[1-9.]+") || !dadosCasa[3].matches("[1-9]+") || !dadosCasa[4].matches("[1-9]+") 
+				|| !dadosCasa[5].matches("[1-9]+") || !dadosCasa[6].matches("[1-9]+") || !dadosCasa[7].matches("[1-9]+")) {
 			return false;
 		} else {
-			Casa casa = new Casa(dadosCasa[0], Double.parseDouble(dadosCasa[1]),
-					new Descricao( Integer.parseInt(dadosCasa[2]), Integer.parseInt(dadosCasa[3]), Integer.parseInt(dadosCasa[4]),
-							Integer.parseInt(dadosCasa[5]), Integer.parseInt(dadosCasa[6])), info[0], info[1] );
+			Casa casa = new Casa(dadosCasa[0], Double.parseDouble(dadosCasa[1]), dadosCasa[2], 
+					new Descricao( Integer.parseInt(dadosCasa[3]), Integer.parseInt(dadosCasa[4]), Integer.parseInt(dadosCasa[5]),
+							Integer.parseInt(dadosCasa[6]), Integer.parseInt(dadosCasa[7])), info[0], info[1] );
 			d.inserirCasa(casa);
 			return true;
 		}

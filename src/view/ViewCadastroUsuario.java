@@ -106,6 +106,8 @@ public class ViewCadastroUsuario implements ActionListener{
 		lNum.setBounds(400, 200, 100, 20);
 		num.setBounds(400, 220, 50, 20);
 		num.setValue(0);
+		JFormattedTextField numTf = ((JSpinner.DefaultEditor)num.getEditor()).getTextField();
+		numTf.setEditable(false);
 		
 		lTelefone.setBounds(10, 240, 100, 20);
 		telefone.setBounds(10, 260, 100, 20);

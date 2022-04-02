@@ -8,7 +8,7 @@ import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import controle.*;
 
-public class ViewCadastroImovel implements ActionListener{
+public class ViewCadastroImovel implements ActionListener, KeyListener{
 	
 	private static String[] listaUF = {"AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG",
 					 				   "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", 
@@ -28,7 +28,7 @@ public class ViewCadastroImovel implements ActionListener{
 	private static SpinnerModel model2 = new SpinnerNumberModel(1, 1, 20, 1); 
 	private static SpinnerModel model3 = new SpinnerNumberModel(1, 1, 20, 1); 
 	private static SpinnerModel model4 = new SpinnerNumberModel(1, 1, 20, 1); 
-	private static SpinnerModel model5 = new SpinnerNumberModel(1, 1, 1000, 1); 
+	private static SpinnerModel model5 = new SpinnerNumberModel(0, 0, 1000, 1); 
 	// Form Geral
 	private static JLabel lTituloImovel = new JLabel("Título do Imóvel");
 	private static JTextField tituloImovel = new JTextField();
@@ -119,7 +119,6 @@ public class ViewCadastroImovel implements ActionListener{
 		// Form Geral
 		lTituloImovel.setBounds(10, 110, 100, 20);
 		tituloImovel.setBounds(10, 130, 300, 20);
-		
 		lCep.setBounds(10, 150, 100, 20);
 		cep.setBounds(10, 170, 100, 20);
 		
@@ -142,27 +141,39 @@ public class ViewCadastroImovel implements ActionListener{
 		lComp.setBounds(160, 190, 100, 20);
 		comp.setBounds(160, 210, 230, 20);
 		
-		lNum.setBounds(400, 200, 100, 20);
-		num.setBounds(400, 220, 50, 20);
+		lNum.setBounds(400, 190, 100, 20);
+		num.setBounds(400, 210, 50, 20);
 		num.setValue(0);
+		JFormattedTextField numTf = ((JSpinner.DefaultEditor)num.getEditor()).getTextField();
+		numTf.setEditable(false);
 		
 		lValor.setBounds(10, 230, 50, 20);
 		valor.setBounds(10, 250, 100, 20);
 		
 		lQtdQuartos.setBounds(10, 280, 150, 20);
 		qtdQuartos.setBounds(160, 280, 40, 20);
+		JFormattedTextField quartosTf = ((JSpinner.DefaultEditor)qtdQuartos.getEditor()).getTextField();
+		quartosTf.setEditable(false);
 		
 		lQtdCamas.setBounds(10, 310, 150, 20);
 		qtdCamas.setBounds(160, 310, 40, 20);
+		JFormattedTextField camastf = ((JSpinner.DefaultEditor)qtdCamas.getEditor()).getTextField();
+		camastf.setEditable(false);
 		
 		lQtdBanheiros.setBounds(10, 340, 150, 20);
 		qtdBanheiros.setBounds(160, 340, 40, 20);
+		JFormattedTextField banheirosTf = ((JSpinner.DefaultEditor)qtdBanheiros.getEditor()).getTextField();
+		banheirosTf.setEditable(false);
 		
 		lQtdHospedes.setBounds(210, 280, 150, 20);
 		qtdHospedes.setBounds(360, 280, 40, 20);
+		JFormattedTextField hospedesTf = ((JSpinner.DefaultEditor)qtdHospedes.getEditor()).getTextField();
+		hospedesTf.setEditable(false);
 		
 		lQtdAndares.setBounds(210, 310, 150, 20);
 		qtdAndares.setBounds(360, 310, 40, 20);
+		JFormattedTextField andaresTf = ((JSpinner.DefaultEditor)qtdAndares.getEditor()).getTextField();
+		andaresTf.setEditable(false);
 		
 		janela.add(lTituloImovel);
 		janela.add(tituloImovel);
@@ -385,14 +396,6 @@ public class ViewCadastroImovel implements ActionListener{
 		num.setValue(0);
 	}
 	
-	private static boolean parseBool(String text) {
-		if(text.equals("S"))
-			return true;
-			
-		else
-			return false;
-	}
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
@@ -425,11 +428,35 @@ public class ViewCadastroImovel implements ActionListener{
 						JOptionPane.ERROR_MESSAGE);
 			}else {
 				if(ap.isSelected()) {
-					String[] dadosApartamento = {titulo.getText(), valor.getText(), qtdQuartos.getValue().toString(),
+					String[] dadosApartamento = {tituloImovel.getText(), valor.getText().replace(',', '.'), qtdQuartos.getValue().toString(),
 							qtdCamas.getValue().toString(), qtdBanheiros.getValue().toString(), qtdAndares.getValue().toString(),
 							qtdHospedes.getValue().toString()};
-					String[] endereço = {};
-//					boolean[] info = {parseBool(temElevador)}
+					String[] endereco = {};
+					boolean[] info = getInfoAp();
+					dados.inserirApartamento(dadosApartamento, endereco, info);
+					
+					limparCampos();
+					janela.dispose();
+					new ViewMenuListas(dados,1);
+					// Enviando Mensagem de Sucesso
+					JOptionPane.showMessageDialog(null, "Apartamento cadastrado com Sucesso!!"
+							, null, 
+							JOptionPane.INFORMATION_MESSAGE);
+				}else if(casa.isSelected()) {
+					String[] dadosCasa = {tituloImovel.getText(), valor.getText().replace(',', '.'), categoria.getText(), qtdQuartos.getValue().toString(),
+							qtdCamas.getValue().toString(), qtdBanheiros.getValue().toString(), qtdAndares.getValue().toString(),
+							qtdHospedes.getValue().toString()};
+					String[] endereco = {};
+					boolean[] info = getInfoCs();
+				    dados.inserirCasa(dadosCasa, endereco, info);
+
+					limparCampos();
+					janela.dispose();
+					new ViewMenuListas(dados,1);
+					// Enviando Mensagem de Sucesso
+					JOptionPane.showMessageDialog(null, "Casa cadastrada com Sucesso!!"
+							, null, 
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 			
@@ -471,6 +498,85 @@ public class ViewCadastroImovel implements ActionListener{
 				erros.add("+ Preencha todos os campos de Sim ou Não");
 		}
 		return erros;
+	}
+	
+	private static boolean [] getInfoAp() {
+		boolean[] info = new boolean[4];
+		
+		//temElevador
+		if(simElevador.isSelected())
+			info[0] = true;
+		else
+			info[0] = false;
+		
+		// temSacada
+		if(simSacada.isSelected())
+			info[1] = true;
+		else
+			info[1] = false;
+		
+		// temGaragem
+		if(simGaragem.isSelected())
+			info[2] = true;
+		else
+			info[2] = false;
+		
+		// temCondominio
+		
+		if(simCond.isSelected())
+			info[3] = true;
+		else
+			info[3] = false;
+		
+			
+			
+		
+		return info;
+	}
+	
+	private static boolean [] getInfoCs() {
+		boolean[] info = new boolean[2];
+		
+		if(simWifi.isSelected())
+			info[0] = true;
+		else
+			info[0] = false;
+		
+		if(simPisc.isSelected())
+			info[1] = true;
+		else
+			info[1] = false;
+		
+		return info;
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		Object src = e.getSource();
+		if(src == num)
+			JOptionPane.showMessageDialog(null, "Deubom"
+					, null, 
+					JOptionPane.ERROR_MESSAGE);
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		Object src = e.getSource();
+		if(src == num)
+			JOptionPane.showMessageDialog(null, "Deubom"
+					, null, 
+					JOptionPane.ERROR_MESSAGE);
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		Object src = e.getSource();
+		if(src == num)
+			JOptionPane.showMessageDialog(null, "Deubom"
+					, null, 
+					JOptionPane.ERROR_MESSAGE);
+		
 	}
 	
 }

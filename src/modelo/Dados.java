@@ -16,7 +16,7 @@ public class Dados {
 			Pessoa p = new Pessoa("Pessoa " + i, telefone);
 			Descricao desc = new Descricao(i + 1, i + 1, i, (i > 5) ? i : i - 2, i + 2);
 			Apartamento ap = new Apartamento("Apartamento " + i, 100050 * 2, desc);
-			Casa casa = new Casa("Casa " + i, 103450 * 2, desc, true, false);
+			Casa casa = new Casa("Casa " + i,103450 * 2, "categoria"+i, desc, true, false);
 
 			pessoas.add(p);
 			casas.add(casa);
