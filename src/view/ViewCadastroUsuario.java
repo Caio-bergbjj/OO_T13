@@ -22,43 +22,43 @@ import controle.ControleDados;
 
 public class ViewCadastroUsuario implements ActionListener{
 	
-	private static String[] listaUF = {"AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG",
+	private String[] listaUF = {"AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG",
 			   "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", 
 			   "RS", "SC", "SE", "SP", "TO"};
 	
-	private static JFrame janela = new JFrame("CadastroUsuario");
-	private static JLabel titulo = new JLabel("Cadastrar Usuario", SwingConstants.CENTER);
-	private static JButton voltar = new JButton("Voltar");
+	private JFrame janela = new JFrame("CadastroUsuario");
+	private JLabel titulo = new JLabel("Cadastrar Usuario", SwingConstants.CENTER);
+	private JButton voltar = new JButton("Voltar");
 	
-	private static SpinnerModel model0 = new SpinnerNumberModel(1, 0, 1000, 1); 
+	private SpinnerModel model0 = new SpinnerNumberModel(1, 0, 1000, 1); 
 	
 	// Form Geral
-	private static JLabel lNomeUsuario = new JLabel("Nome do Usuario");
-	private static JTextField nomeUsuario = new JTextField();
-	private static JLabel lCpf = new JLabel("CPF");
-	private static JFormattedTextField  cpf = new JFormattedTextField (Validador.Mascara("###.###.###-##"));
-	private static JLabel lEmail = new JLabel("Email");
-	private static JTextField email = new JTextField();
-	private static JLabel lCep = new JLabel("CEP");
-	private static JFormattedTextField  cep = new JFormattedTextField (Validador.Mascara("#####-###"));
-	private static JLabel lCidade = new JLabel("Cidade");
-	private static JTextField cidade = new JTextField();
-	private static JLabel lUf = new JLabel("UF");
-	private static JComboBox<String> uf = new JComboBox<String>(listaUF);
-	private static JLabel lBairro = new JLabel("Bairro");
-	private static JTextField bairro = new JTextField();
-	private static JLabel lLote = new JLabel("Rua");
-	private static JTextField lote = new JTextField();
-	private static JLabel lRua = new JLabel("Lote");
-	private static JTextField rua = new JTextField();
-	private static JLabel lComp = new JLabel("Complemento");
-	private static JTextField comp = new JTextField();
-	private static JLabel lNum = new JLabel("Número");
-	private static JSpinner num = new JSpinner(model0);
-	private static JFormattedTextField  telefone = new JFormattedTextField (Validador.Mascara("(##) # ####-####"));
-	private static JLabel lTelefone = new JLabel("Telefone");
-	private static JButton cadastrar = new JButton("Cadastrar");
-	private static ControleDados dados;
+	private JLabel lNomeUsuario = new JLabel("Nome do Usuario");
+	private JTextField nomeUsuario = new JTextField();
+	private JLabel lCpf = new JLabel("CPF");
+	private JFormattedTextField  cpf = new JFormattedTextField (Validador.Mascara("###.###.###-##"));
+	private JLabel lEmail = new JLabel("Email");
+	private JTextField email = new JTextField();
+	private JLabel lCep = new JLabel("CEP");
+	private JFormattedTextField  cep = new JFormattedTextField (Validador.Mascara("#####-###"));
+	private JLabel lCidade = new JLabel("Cidade");
+	private JTextField cidade = new JTextField();
+	private JLabel lUf = new JLabel("UF");
+	private JComboBox<String> uf = new JComboBox<String>(listaUF);
+	private JLabel lBairro = new JLabel("Bairro");
+	private JTextField bairro = new JTextField();
+	private JLabel lLote = new JLabel("Rua");
+	private JTextField lote = new JTextField();
+	private JLabel lRua = new JLabel("Lote");
+	private JTextField rua = new JTextField();
+	private JLabel lComp = new JLabel("Complemento");
+	private JTextField comp = new JTextField();
+	private JLabel lNum = new JLabel("Número");
+	private JSpinner num = new JSpinner(model0);
+	private JFormattedTextField  telefone = new JFormattedTextField (Validador.Mascara("(##) # ####-####"));
+	private JLabel lTelefone = new JLabel("Telefone");
+	private JButton cadastrar = new JButton("Cadastrar");
+	private ControleDados dados;
 	
 	public ViewCadastroUsuario(ControleDados d) {
 		dados = d;
@@ -163,18 +163,18 @@ public class ViewCadastroUsuario implements ActionListener{
 		cadastrar.addActionListener(this);
 	}
 	
-	private static void limparCampos() {
-		nomeUsuario.setText("");
-		cep.setValue(null);
-		cpf.setValue(null);
-		email.setText("");
-		telefone.setValue(null);
-		cidade.setText("");
-		bairro.setText("");
-		lote.setText("");
-		rua.setText("");
-		comp.setText("");
-		num.setValue(0);
+	private void limparCampos() {
+		this.nomeUsuario.setText("");
+		this.cep.setValue(null);
+		this.cpf.setValue(null);
+		this.email.setText("");
+		this.telefone.setValue(null);
+		this.cidade.setText("");
+		this.bairro.setText("");
+		this.lote.setText("");
+		this.rua.setText("");
+		this.comp.setText("");
+		this.num.setValue(0);
 	}
 	 
 	
@@ -202,20 +202,26 @@ public class ViewCadastroUsuario implements ActionListener{
 							ddd, tele};
 					String[] endereco = {};
 				    boolean inserir  = dados.inserirPessoa(dadosPessoa, endereco);
-				    System.out.println(inserir);
+
 					limparCampos();
 					janela.dispose();
 					new ViewMenuListas(dados,2);
 					// Enviando Mensagem de Sucesso
-					JOptionPane.showMessageDialog(null, "Pessoa cadastrada com Sucesso!!"
-							, null, 
-							JOptionPane.INFORMATION_MESSAGE);
+					if(inserir) {
+						JOptionPane.showMessageDialog(null, "Usuário cadastrado com Sucesso!!"
+								, null, 
+								JOptionPane.INFORMATION_MESSAGE);
+					}else {					
+						JOptionPane.showMessageDialog(null, "Tivemos algum problema inesperado"
+								, null, 
+								JOptionPane.INFORMATION_MESSAGE);
+					}
 				}
 		}
 			
 	}
 	
-	private static ArrayList<String> verificarCampos() {
+	private ArrayList<String> verificarCampos() {
 		ArrayList<String> erros = new ArrayList<String>();
 		
 		if(nomeUsuario.getText().isEmpty())
