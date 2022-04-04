@@ -8,27 +8,27 @@ import controle.*;
 
 public class ViewCadastroImovel implements ActionListener{
 	
-	private static String[] listaUF = {"AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG",
+	private String[] listaUF = {"AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG",
 					 				   "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", 
 					 				   "RS", "SC", "SE", "SP", "TO"};
 		
-	private static JFrame janela = new JFrame("CadastroImovel");
-	private static JLabel titulo = new JLabel("Cadastrar Imóveis", SwingConstants.CENTER);
+	private JFrame janela = new JFrame("CadastroImovel");
+	private JLabel titulo = new JLabel("Cadastrar Imï¿½veis", SwingConstants.CENTER);
 	
-	private static JLabel lbutton = new JLabel("Tipo de imóvel");
-	private static ButtonGroup buttonGroup = new ButtonGroup();
-	private static JRadioButton casa = new JRadioButton("Casa");
-	private static JRadioButton ap = new JRadioButton("Apartamento");
-	private static JButton voltar = new JButton("Voltar");
+	private JLabel lbutton = new JLabel("Tipo de imï¿½vel");
+	private ButtonGroup buttonGroup = new ButtonGroup();
+	private JRadioButton casa = new JRadioButton("Casa");
+	private JRadioButton ap = new JRadioButton("Apartamento");
+	private JButton voltar = new JButton("Voltar");
 	
-	private static SpinnerModel model0 = new SpinnerNumberModel(1, 1, 20, 1); 
-	private static SpinnerModel model1 = new SpinnerNumberModel(1, 1, 20, 1); 
-	private static SpinnerModel model2 = new SpinnerNumberModel(1, 1, 20, 1); 
-	private static SpinnerModel model3 = new SpinnerNumberModel(1, 1, 20, 1); 
-	private static SpinnerModel model4 = new SpinnerNumberModel(1, 1, 20, 1); 
-	private static SpinnerModel model5 = new SpinnerNumberModel(0, 0, 1000, 1); 
+	private SpinnerModel model0 = new SpinnerNumberModel(1, 1, 20, 1); 
+	private SpinnerModel model1 = new SpinnerNumberModel(1, 1, 20, 1); 
+	private SpinnerModel model2 = new SpinnerNumberModel(1, 1, 20, 1); 
+	private SpinnerModel model3 = new SpinnerNumberModel(1, 1, 20, 1); 
+	private SpinnerModel model4 = new SpinnerNumberModel(1, 1, 20, 1); 
+	private SpinnerModel model5 = new SpinnerNumberModel(0, 0, 1000, 1); 
 	// Form Geral
-	private static JLabel lTituloImovel = new JLabel("Título do Imóvel");
+	private static JLabel lTituloImovel = new JLabel("Tï¿½tulo do Imï¿½vel");
 	private static JTextField tituloImovel = new JTextField();
 	private static JLabel lCep = new JLabel("CEP");
 	private static JFormattedTextField  cep = new JFormattedTextField (Validador.Mascara("#####-###"));
@@ -46,7 +46,7 @@ public class ViewCadastroImovel implements ActionListener{
 	private static JTextField rua = new JTextField();
 	private static JLabel lComp = new JLabel("Complemento");
 	private static JTextField comp = new JTextField();
-	private static JLabel lNum = new JLabel("Número");
+	private static JLabel lNum = new JLabel("Nï¿½mero");
 	private static JSpinner num = new JSpinner(model5);
 	private static JLabel lValor = new JLabel("Valor");
 	private static JFormattedTextField  valor = new JFormattedTextField (Validador.Mascara("####,##"));
@@ -56,44 +56,44 @@ public class ViewCadastroImovel implements ActionListener{
 	private static JSpinner qtdCamas = new JSpinner(model1);
 	private static JLabel lQtdBanheiros = new JLabel("Quantidade de banheiros");
 	private static JSpinner qtdBanheiros = new JSpinner(model2);
-	private static JLabel lQtdHospedes = new JLabel("Quantidade de hóspedes");
+	private static JLabel lQtdHospedes = new JLabel("Quantidade de hï¿½spedes");
 	private static JSpinner qtdHospedes = new JSpinner(model3);
 	private static JLabel lQtdAndares = new JLabel("Quantidade de andares");
 	private static JSpinner qtdAndares = new JSpinner(model4);
-	
+
 	// Form Casa
-	private static JLabel lCategoria = new JLabel("Categoria da Casa");
-	private static JTextField categoria = new JTextField();
-	private static JLabel lWifi = new JLabel("A casa possui Wifi?");
-	private static ButtonGroup buttonGroup2 = new ButtonGroup();
-	private static JRadioButton simWifi = new JRadioButton("S");
-	private static JRadioButton naoWifi = new JRadioButton("N");
-	private static JLabel lPisc = new JLabel("A casa possui Piscina?");
-	private static ButtonGroup buttonGroup3 = new ButtonGroup();
-	private static JRadioButton simPisc = new JRadioButton("S");
-	private static JRadioButton naoPisc = new JRadioButton("N");
+	private JLabel lCategoria = new JLabel("Categoria da Casa");
+	private JTextField categoria = new JTextField();
+	private JLabel lWifi = new JLabel("A casa possui Wifi?");
+	private ButtonGroup buttonGroup2 = new ButtonGroup();
+	private JRadioButton simWifi = new JRadioButton("S");
+	private JRadioButton naoWifi = new JRadioButton("N");
+	private JLabel lPisc = new JLabel("A casa possui Piscina?");
+	private ButtonGroup buttonGroup3 = new ButtonGroup();
+	private JRadioButton simPisc = new JRadioButton("S");
+	private JRadioButton naoPisc = new JRadioButton("N");
 	
 	
 	// Form Ap
-	private static JLabel lElevador = new JLabel("O Apartamento possui elevador?");
-	private static ButtonGroup buttonGroup4 = new ButtonGroup();
-	private static JRadioButton simElevador = new JRadioButton("S");
-	private static JRadioButton naoElevador = new JRadioButton("N");
-	private static JLabel lSacada = new JLabel("O Apartamento possui Sacada?");
-	private static ButtonGroup buttonGroup5 = new ButtonGroup();
-	private static JRadioButton simSacada = new JRadioButton("S");
-	private static JRadioButton naoSacada = new JRadioButton("N");
-	private static JLabel lGaragem = new JLabel("O Apartamento possui Garagem?");
-	private static ButtonGroup buttonGroup6 = new ButtonGroup();
-	private static JRadioButton simGaragem = new JRadioButton("S");
-	private static JRadioButton naoGaragem = new JRadioButton("N");
-	private static JLabel lCond = new JLabel("O Apartamento possui Condomínio?");
-	private static ButtonGroup buttonGroup7 = new ButtonGroup();
-	private static JRadioButton simCond = new JRadioButton("S");
-	private static JRadioButton naoCond = new JRadioButton("N");
+	private JLabel lElevador = new JLabel("O Apartamento possui elevador?");
+	private ButtonGroup buttonGroup4 = new ButtonGroup();
+	private JRadioButton simElevador = new JRadioButton("S");
+	private JRadioButton naoElevador = new JRadioButton("N");
+	private JLabel lSacada = new JLabel("O Apartamento possui Sacada?");
+	private ButtonGroup buttonGroup5 = new ButtonGroup();
+	private JRadioButton simSacada = new JRadioButton("S");
+	private JRadioButton naoSacada = new JRadioButton("N");
+	private JLabel lGaragem = new JLabel("O Apartamento possui Garagem?");
+	private ButtonGroup buttonGroup6 = new ButtonGroup();
+	private JRadioButton simGaragem = new JRadioButton("S");
+	private JRadioButton naoGaragem = new JRadioButton("N");
+	private JLabel lCond = new JLabel("O Apartamento possui Condomï¿½nio?");
+	private ButtonGroup buttonGroup7 = new ButtonGroup();
+	private JRadioButton simCond = new JRadioButton("S");
+	private JRadioButton naoCond = new JRadioButton("N");
 	
-	private static JButton cadastrar = new JButton("Cadastrar");
-	private static ControleDados dados;
+	private JButton cadastrar = new JButton("Cadastrar");
+	private ControleDados dados;
 	
 	public ViewCadastroImovel(ControleDados d) {
 		dados = d;
@@ -324,84 +324,85 @@ public class ViewCadastroImovel implements ActionListener{
 		
 	}
 	
-	private static void setVisibleFormCasa(boolean opcao) {
+	private void setVisibleFormCasa(boolean opcao) {
 		if(opcao) {
 			// Setando o Form Casas visible
-			lCategoria.setVisible(true);
-			categoria.setVisible(true);
-			lWifi.setVisible(true);
-			simWifi.setVisible(true);
-			naoWifi.setVisible(true);
-			lPisc.setVisible(true);
-			simPisc.setVisible(true);
-			naoPisc.setVisible(true);
+			this.lCategoria.setVisible(true);
+			this.categoria.setVisible(true);
+			this.lWifi.setVisible(true);
+			this.simWifi.setVisible(true);
+			this.naoWifi.setVisible(true);
+			this.lPisc.setVisible(true);
+			this.simPisc.setVisible(true);
+			this.naoPisc.setVisible(true);
 		}else {
 			// Setando o Form Casa invisivel
-			lCategoria.setVisible(false);
-			categoria.setVisible(false);
-			lWifi.setVisible(false);
-			simWifi.setVisible(false);
-			naoWifi.setVisible(false);
-			lPisc.setVisible(false);
-			simPisc.setVisible(false);
-			naoPisc.setVisible(false);
+			this.lCategoria.setVisible(false);
+			this.categoria.setVisible(false);
+			this.lWifi.setVisible(false);
+			this.simWifi.setVisible(false);
+			this.naoWifi.setVisible(false);
+			this.lPisc.setVisible(false);
+			this.simPisc.setVisible(false);
+			this.naoPisc.setVisible(false);
 		}
 	}
 	
-	private static void setVisibleFormAp(boolean opcao) {
+	private  void setVisibleFormAp(boolean opcao) {
 		if(opcao) {
 			// Setando o Form Ap visivel
-			lElevador.setVisible(true);
-			simElevador.setVisible(true);
-			naoElevador.setVisible(true);
-			lSacada.setVisible(true);
-			simSacada.setVisible(true);
-			naoSacada.setVisible(true);
-			lGaragem.setVisible(true);
-			simGaragem.setVisible(true);
-			naoGaragem.setVisible(true);
-			lCond.setVisible(true);
-			simCond.setVisible(true);
-			naoCond.setVisible(true);
+			this.lElevador.setVisible(true);
+			this.simElevador.setVisible(true);
+			this.naoElevador.setVisible(true);
+			this.lSacada.setVisible(true);
+			this.simSacada.setVisible(true);
+			this.naoSacada.setVisible(true);
+			this.lGaragem.setVisible(true);
+			this.simGaragem.setVisible(true);
+			this.naoGaragem.setVisible(true);
+			this.lCond.setVisible(true);
+			this.simCond.setVisible(true);
+			this.naoCond.setVisible(true);
 		}else {
 			// Setando o Form Ap invisivel
-			lElevador.setVisible(false);
-			simElevador.setVisible(false);
-			naoElevador.setVisible(false);
-			lSacada.setVisible(false);
-			simSacada.setVisible(false);
-			naoSacada.setVisible(false);
-			lGaragem.setVisible(false);
-			simGaragem.setVisible(false);
-			naoGaragem.setVisible(false);
-			lCond.setVisible(false);
-			simCond.setVisible(false);
-			naoCond.setVisible(false);
+			this.lElevador.setVisible(false);
+			this.simElevador.setVisible(false);
+			this.naoElevador.setVisible(false);
+			this.lSacada.setVisible(false);
+			this.simSacada.setVisible(false);
+			this.naoSacada.setVisible(false);
+			this.lGaragem.setVisible(false);
+			this.simGaragem.setVisible(false);
+			this.naoGaragem.setVisible(false);
+			this.lCond.setVisible(false);
+			this.simCond.setVisible(false);
+			this.naoCond.setVisible(false);
 		}
 	}
 	
-	private static void limparCampos() {
-		buttonGroup.clearSelection();
-		buttonGroup2.clearSelection();
-		buttonGroup3.clearSelection();
-		buttonGroup4.clearSelection();
-		buttonGroup5.clearSelection();
-		buttonGroup6.clearSelection();
-		buttonGroup7.clearSelection();
-		tituloImovel.setText("");
-		cep.setValue(null);
-		cidade.setText("");
-		bairro.setText("");
-		lote.setText("");
-		rua.setText("");
-		comp.setText("");
-		valor.setValue(null);
-		qtdQuartos.setValue(1);
-		qtdCamas.setValue(1);
-		qtdBanheiros.setValue(1);
-		qtdHospedes.setValue(1);
-		qtdAndares.setValue(1);
-		num.setValue(0);
+	private  void limparCampos() {
+		this.buttonGroup.clearSelection();
+		this.buttonGroup2.clearSelection();
+		this.buttonGroup3.clearSelection();
+		this.buttonGroup4.clearSelection();
+		this.buttonGroup5.clearSelection();
+		this.buttonGroup6.clearSelection();
+		this.buttonGroup7.clearSelection();
+		this.tituloImovel.setText("");
+		this.cep.setValue(null);
+		this.cidade.setText("");
+		this.bairro.setText("");
+		this.lote.setText("");
+		this.rua.setText("");
+		this.comp.setText("");
+		this.valor.setValue(null);
+		this.qtdQuartos.setValue(1);
+		this.qtdCamas.setValue(1);
+		this.qtdBanheiros.setValue(1);
+		this.qtdHospedes.setValue(1);
+		this.qtdAndares.setValue(1);
+		this.num.setValue(0);
+		this.categoria.setText("");
 	}
 	
 	@Override
@@ -409,7 +410,7 @@ public class ViewCadastroImovel implements ActionListener{
 		Object src = e.getSource();
 		
 		if(src == voltar) {
-			// Método que limpar todos os campos ja preenchidos
+			// Mï¿½todo que limpar todos os campos ja preenchidos
 			limparCampos();
 			janela.dispose();
 			new ViewMenuListas(dados,1);
@@ -434,7 +435,6 @@ public class ViewCadastroImovel implements ActionListener{
 				JOptionPane.showMessageDialog(null, String.join("\n", erros)
 						, null, 
 						JOptionPane.ERROR_MESSAGE);
-				System.out.println(String.join("\n", erros));
 			}else {
 				if(ap.isSelected()) {
 					String[] dadosApartamento = {tituloImovel.getText(), valor.getText().replace(',', '.'), qtdQuartos.getValue().toString(),
@@ -450,7 +450,6 @@ public class ViewCadastroImovel implements ActionListener{
 					new ViewMenuListas(dados,1);
 					// Enviando Mensagem de Sucesso
 					if(inserir) {
-						erros.clear();
 						JOptionPane.showMessageDialog(null, "Apartamento cadastrado com Sucesso!!"
 								, null, 
 								JOptionPane.INFORMATION_MESSAGE);
@@ -475,7 +474,6 @@ public class ViewCadastroImovel implements ActionListener{
 					new ViewMenuListas(dados,1);
 					// Enviando Mensagem de Sucesso
 					if(inserir) {
-						System.out.println("Erros - " +  String.join("\n", erros));
 						JOptionPane.showMessageDialog(null, "Casa cadastrado com Sucesso!!"
 								, null, 
 								JOptionPane.INFORMATION_MESSAGE);
@@ -486,48 +484,47 @@ public class ViewCadastroImovel implements ActionListener{
 					}
 				}
 			}
-			
 		}
 		
 	}
 
-	private static ArrayList<String> verificarCampos() {
+	private ArrayList<String> verificarCampos() {
 		ArrayList<String> erros = new ArrayList<String>();
 		
 		if(buttonGroup.getSelection() == null)
-			erros.add("+ Tipo de imóvel não selecionado!");
+			erros.add("+ Tipo de imï¿½vel nï¿½o selecionado!");
 		if(tituloImovel.getText().isEmpty())
-			erros.add("+ Título do Imóvel não preenchido!");
+			erros.add("+ Tï¿½tulo do Imï¿½vel nï¿½o preenchido!");
 		if(cep.getValue() == null)
-			erros.add("+ Cep inválido");
+			erros.add("+ Cep invï¿½lido");
 		if(cidade.getText().isEmpty())
-			erros.add("+ Cidade não preenchida!");
+			erros.add("+ Cidade nï¿½o preenchida!");
 		if(uf.getSelectedItem() == null)
-			erros.add("+ UF não selecionada!");
+			erros.add("+ UF nï¿½o selecionada!");
 		if(bairro.getText().isEmpty())
-			erros.add("+ Bairro não preenchido!");
+			erros.add("+ Bairro nï¿½o preenchido!");
 		if(rua.getText().isEmpty())
-			erros.add("+ Rua não preenchida!");
+			erros.add("+ Rua nï¿½o preenchida!");
 		if(lote.getText().isEmpty())
-			erros.add("+ Lote não preenchido!");
+			erros.add("+ Lote nï¿½o preenchido!");
 		if(comp.getText().isEmpty())
-			erros.add("+ Complemento não preenchido!");
+			erros.add("+ Complemento nï¿½o preenchido!");
 		if(valor.getValue() == null)
-			erros.add("+ Valor inválido");
+			erros.add("+ Valor invï¿½lido");
 		if(casa.isSelected()) {
 			if(categoria.getText().isEmpty())
-				erros.add("+ Categoria não preenchida");
+				erros.add("+ Categoria nï¿½o preenchida");
 			if(buttonGroup2.getSelection() == null || buttonGroup3.getSelection() == null)
-				erros.add("+ Preencha todos os campos de Sim ou Não");
+				erros.add("+ Preencha todos os campos de Sim ou Nï¿½o");
 		}else {
 			if(buttonGroup4.getSelection() == null || buttonGroup5.getSelection() == null
 					|| buttonGroup6.getSelection() == null || buttonGroup7.getSelection() == null)
-				erros.add("+ Preencha todos os campos de Sim ou Não");
+				erros.add("+ Preencha todos os campos de Sim ou Nï¿½o");
 		}
 		return erros;
 	}
 	
-	private static boolean [] getInfoAp() {
+	private boolean [] getInfoAp() {
 		boolean[] info = new boolean[4];
 		
 		//temElevador
@@ -561,7 +558,7 @@ public class ViewCadastroImovel implements ActionListener{
 		return info;
 	}
 	
-	private static boolean [] getInfoCs() {
+	private boolean [] getInfoCs() {
 		boolean[] info = new boolean[2];
 		
 		if(simWifi.isSelected())
