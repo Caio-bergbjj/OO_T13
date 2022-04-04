@@ -11,8 +11,8 @@ public class Dados {
 	
 	public void fillWithSomeData() {
 		
-		String[] listaCidade = {"Rio Branco", "Maceio" , "Manaus", "Macapa", "Salvador", "Fortaleza", "Brasilia", "Vitoria", "Goiania", "Sao Luis" };
-		String[] listaUF = {"AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA"};
+		String[] listaCidade = {"Rio Branco", "Maceio" , "Manaus", "Macapa", "Salvador", "Fortaleza", "Brasilia", "Vitoria", "Goiania", "Sao Luis" , "Belo Horizonte"};
+		String[] listaUF = {"AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG"};
 		for (int i = 0; i <= 10; i++) {
 			
 			Endereco end = new Endereco("70"+i+"43-23"+i, listaCidade[i], listaUF[i], "bairro", Integer.toString(i), Integer.toString(i+2), "imovel", i+1);

@@ -492,34 +492,34 @@ public class ViewCadastroImovel implements ActionListener{
 		ArrayList<String> erros = new ArrayList<String>();
 		
 		if(buttonGroup.getSelection() == null)
-			erros.add("+ Tipo de im�vel n�o selecionado!");
+			erros.add("+ Tipo de imovel nao selecionado!");
 		if(tituloImovel.getText().isEmpty())
-			erros.add("+ T�tulo do Im�vel n�o preenchido!");
+			erros.add("+ Titulo do Imovel nao preenchido!");
 		if(cep.getValue() == null)
-			erros.add("+ Cep inv�lido");
+			erros.add("+ Cep invalido");
 		if(cidade.getText().isEmpty())
-			erros.add("+ Cidade n�o preenchida!");
+			erros.add("+ Cidade nao preenchida!");
 		if(uf.getSelectedItem() == null)
-			erros.add("+ UF n�o selecionada!");
+			erros.add("+ UF nao selecionada!");
 		if(bairro.getText().isEmpty())
-			erros.add("+ Bairro n�o preenchido!");
+			erros.add("+ Bairro nao preenchido!");
 		if(rua.getText().isEmpty())
-			erros.add("+ Rua n�o preenchida!");
+			erros.add("+ Rua nao preenchida!");
 		if(lote.getText().isEmpty())
-			erros.add("+ Lote n�o preenchido!");
+			erros.add("+ Lote nao preenchido!");
 		if(comp.getText().isEmpty())
-			erros.add("+ Complemento n�o preenchido!");
+			erros.add("+ Complemento nao preenchido!");
 		if(valor.getValue() == null)
-			erros.add("+ Valor inv�lido");
+			erros.add("+ Valor invalido");
 		if(casa.isSelected()) {
 			if(categoria.getText().isEmpty())
-				erros.add("+ Categoria n�o preenchida");
+				erros.add("+ Categoria nao preenchida");
 			if(buttonGroup2.getSelection() == null || buttonGroup3.getSelection() == null)
-				erros.add("+ Preencha todos os campos de Sim ou N�o");
+				erros.add("+ Preencha todos os campos de Sim ou Nao");
 		}else {
 			if(buttonGroup4.getSelection() == null || buttonGroup5.getSelection() == null
 					|| buttonGroup6.getSelection() == null || buttonGroup7.getSelection() == null)
-				erros.add("+ Preencha todos os campos de Sim ou N�o");
+				erros.add("+ Preencha todos os campos de Sim ou Nao");
 		}
 		return erros;
 	}

@@ -26,6 +26,11 @@ public class Endereco {
 	}
 	
 	
+	public Endereco() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public String getCep() {
 		return cep;
 	}
