@@ -12,13 +12,14 @@ public abstract class Imovel {
 	private double valor; //1
 	private Disponibilidade disponibilidade[]; 
 	private Descricao descricao; // 2,3,4,5,6
-	@SuppressWarnings("unused")
 	private Pessoa dono;
 	
-	public Imovel(String titulo, double valor, Descricao descricao) {
+	public Imovel(String titulo, double valor, Descricao descricao, Pessoa dono, Endereco endereco) {
 		this.titulo = titulo;
 		this.valor = valor;
 		this.descricao = descricao;
+		this.endereco = endereco;
+		this.setDono(dono);
 		this.geraDisponibilidade();
 	}
 	
@@ -84,6 +85,16 @@ public abstract class Imovel {
 			this.disponibilidade[i].setOcupacao(false);
 			cal.add(Calendar.DATE, 1);
 		}
+	}
+
+
+	public Pessoa getDono() {
+		return dono;
+	}
+
+
+	public void setDono(Pessoa dono) {
+		this.dono = dono;
 	}
 	
 	/*public void mostraDisponibilidade() {

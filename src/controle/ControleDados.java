@@ -50,29 +50,31 @@ public class ControleDados {
 		}
 	}
 	
-	public boolean inserirApartamento(String[] dadosApartamento, String[] endereco, boolean[] info) {
+	public boolean inserirApartamento(String[] dadosApartamento, String[] endereco, boolean[] info, int i) {
 		
 		if(!dadosApartamento[1].matches("[0-9.]+") || !dadosApartamento[2].matches("[1-9]+") || !dadosApartamento[3].matches("[1-9]+") 
 				|| !dadosApartamento[4].matches("[1-9]+") || !dadosApartamento[6].matches("[1-9]+")) {
 			return false;
 		} else {
+			Pessoa p = d.getPessoas().get(i);
 			Apartamento ap = new Apartamento(dadosApartamento[0], Double.parseDouble(dadosApartamento[1]), 
 					new Descricao( Integer.parseInt(dadosApartamento[2]), Integer.parseInt(dadosApartamento[3]), Integer.parseInt(dadosApartamento[4]),
-							Integer.parseInt(dadosApartamento[5]), Integer.parseInt(dadosApartamento[6])), info[0], info[1], info[2], info[3] );
+							Integer.parseInt(dadosApartamento[5]), Integer.parseInt(dadosApartamento[6])), info[0], info[1], info[2], info[3], p );
 			d.inserirApartamento(ap);
 			return true;
 		}
 	}
 	
-	public boolean inserirCasa(String[] dadosCasa, String[] endereco, boolean[] info) {
+	public boolean inserirCasa(String[] dadosCasa, String[] endereco, boolean[] info, int i) {
 	
 		if(!dadosCasa[1].matches("[0-9.]+") || !dadosCasa[3].matches("[1-9]+") || !dadosCasa[4].matches("[1-9]+") 
 				|| !dadosCasa[5].matches("[1-9]+") || !dadosCasa[6].matches("[1-9]+") || !dadosCasa[7].matches("[1-9]+")) {
 			return false;
 		} else {
+			Pessoa p = d.getPessoas().get(i);
 			Casa casa = new Casa(dadosCasa[0], Double.parseDouble(dadosCasa[1]), dadosCasa[2], 
 					new Descricao( Integer.parseInt(dadosCasa[3]), Integer.parseInt(dadosCasa[4]), Integer.parseInt(dadosCasa[5]),
-							Integer.parseInt(dadosCasa[6]), Integer.parseInt(dadosCasa[7])), info[0], info[1] );
+							Integer.parseInt(dadosCasa[6]), Integer.parseInt(dadosCasa[7])), info[0], info[1], p );
 			d.inserirCasa(casa);
 			return true;
 		}

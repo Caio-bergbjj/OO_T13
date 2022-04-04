@@ -26,6 +26,7 @@ public class ViewMenuListas implements ActionListener, ListSelectionListener{
 	private static JLabel labelBusca;
 	private  JButton btnBusca = new JButton("Buscar");
 	private static JButton cadastrarNovo;
+	private static JButton reservar = new JButton("Reservar");
 	private static ButtonGroup buttonGroup = new ButtonGroup();
 	private static JRadioButton casa = new JRadioButton("Casas");
 	private static JRadioButton ap = new JRadioButton("Apartamentos");
@@ -50,10 +51,9 @@ public class ViewMenuListas implements ActionListener, ListSelectionListener{
 		}
 		if(op == 2) {
 			s = "Usuario";
-			listaTotalUsuarios = d.listaUsuarios();
+			listaTotalUsuarios = dados.listaUsuarios();
 			listaUsuarios.setListData(listaTotalUsuarios);
 			listaUsuarios.addListSelectionListener(this);
-			
 			
 		}
 		
@@ -72,6 +72,7 @@ public class ViewMenuListas implements ActionListener, ListSelectionListener{
 			janela.add(casa);
 			janela.add(ap);
 			janela.add(filtros);
+			janela.add(reservar);
 			
 		}	
 		if(op == 2) {
@@ -87,6 +88,7 @@ public class ViewMenuListas implements ActionListener, ListSelectionListener{
 		casa.setSelected(true);
 		ap.setBounds(330, 70, 120, 20);
 		cadastrarNovo.setBounds(300, 475, 180, 30);
+		reservar.setBounds(120, 475, 100, 30);
 		labelBusca.setBounds(10, 360, 180, 20);
 		buscaNome.setBounds(10, 380, 210, 20);
 		btnBusca.setBounds(230, 380, 80, 20);
@@ -120,6 +122,7 @@ public class ViewMenuListas implements ActionListener, ListSelectionListener{
 		voltar.addActionListener(this);
 		cadastrarNovo.addActionListener(this);
 		btnBusca.addActionListener(this);
+		reservar.addActionListener(this);
 	}
 	
 	@Override
@@ -191,6 +194,11 @@ public class ViewMenuListas implements ActionListener, ListSelectionListener{
 				}
 			}
 			
+		}
+		
+		if(src == reservar) {
+			janela.dispose();
+			new ViewReservar(dados);
 		}
 		
 	}

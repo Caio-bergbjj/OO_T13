@@ -8,8 +8,8 @@ public class Apartamento extends Imovel{
 	private boolean temCondominio;//10
 	
 	public Apartamento(String titulo, double valor, Descricao descricao, boolean temElevador, boolean temSacada,
-			boolean temGaragem, boolean temCondominio) {
-		super(titulo, valor, descricao);
+			boolean temGaragem, boolean temCondominio, Pessoa dono, Endereco endereco) {
+		super(titulo, valor, descricao, dono, endereco);
 		this.temElevador = temElevador;
 		this.temSacada = temSacada;
 		this.temGaragem = temGaragem;
@@ -17,8 +17,8 @@ public class Apartamento extends Imovel{
 	}
 
 
-	public Apartamento(String titulo, double valor, Descricao descricao) {
-		super(titulo, valor, descricao);
+	public Apartamento(String titulo, double valor, Descricao descricao, Pessoa dono, Endereco endereco) {
+		super(titulo, valor, descricao, dono, endereco);
 		
 	}
 	

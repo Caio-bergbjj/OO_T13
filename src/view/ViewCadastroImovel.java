@@ -3,11 +3,7 @@ package view;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.stream.IntStream;
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.text.MaskFormatter;
 import controle.*;
 
 public class ViewCadastroImovel implements ActionListener{
@@ -40,6 +36,8 @@ public class ViewCadastroImovel implements ActionListener{
 	private static JTextField cidade = new JTextField();
 	private static JLabel lUf = new JLabel("UF");
 	private static JComboBox<String> uf = new JComboBox<String>(listaUF);
+	private static JLabel LDono = new JLabel("Proprietario");
+	private static JComboBox<String> dono;
 	private static JLabel lBairro = new JLabel("Bairro");
 	private static JTextField bairro = new JTextField();
 	private static JLabel lLote = new JLabel("Rua");
@@ -101,6 +99,8 @@ public class ViewCadastroImovel implements ActionListener{
 		dados = d;
 		
 		
+		dono = new JComboBox<String>(dados.listaUsuarios());
+		
 		// Titulo da janela e voltar
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
 		titulo.setBounds(160, 10, 180, 30);
@@ -130,6 +130,10 @@ public class ViewCadastroImovel implements ActionListener{
 		lUf.setBounds(250, 150, 50, 20);
 		uf.setBounds(250, 170, 50, 20);
 		uf.setSelectedIndex(-1);
+		
+		LDono.setBounds(350,110,80,20);
+		dono.setBounds(350, 130, 80, 20);
+		dono.setSelectedIndex(-1);
 		
 		lBairro.setBounds(310	, 150, 80, 20);
 		bairro.setBounds(310, 170, 100, 20);
@@ -185,6 +189,8 @@ public class ViewCadastroImovel implements ActionListener{
 		janela.add(cidade);
 		janela.add(lUf);
 		janela.add(uf);
+		janela.add(LDono);
+		janela.add(dono);
 		janela.add(lBairro);
 		janela.add(bairro);
 		janela.add(lLote);
@@ -436,8 +442,9 @@ public class ViewCadastroImovel implements ActionListener{
 							qtdHospedes.getValue().toString()};
 					String[] endereco = {};
 					boolean[] info = getInfoAp();
-					boolean inserir = dados.inserirApartamento(dadosApartamento, endereco, info);
-					
+					int i = dono.getSelectedIndex();
+					boolean inserir = dados.inserirApartamento(dadosApartamento, endereco, info, i);
+	
 					limparCampos();
 					janela.dispose();
 					new ViewMenuListas(dados,1);
@@ -459,7 +466,9 @@ public class ViewCadastroImovel implements ActionListener{
 							qtdHospedes.getValue().toString()};
 					String[] endereco = {};
 					boolean[] info = getInfoCs();
-				    boolean inserir = dados.inserirCasa(dadosCasa, endereco, info);
+					int i = dono.getSelectedIndex();
+					boolean inserir = dados.inserirCasa(dadosCasa, endereco, info, i);
+
 
 					limparCampos();
 					janela.dispose();
