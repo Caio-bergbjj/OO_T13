@@ -5,10 +5,12 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.text.MaskFormatter;
 import controle.*;
 
-public class ViewCadastroImovel implements ActionListener, KeyListener{
+public class ViewCadastroImovel implements ActionListener{
 	
 	private static String[] listaUF = {"AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG",
 					 				   "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", 
@@ -551,32 +553,4 @@ public class ViewCadastroImovel implements ActionListener, KeyListener{
 		
 	}
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-		Object src = e.getSource();
-		if(src == num)
-			JOptionPane.showMessageDialog(null, "Deubom"
-					, null, 
-					JOptionPane.ERROR_MESSAGE);
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		Object src = e.getSource();
-		if(src == num)
-			JOptionPane.showMessageDialog(null, "Deubom"
-					, null, 
-					JOptionPane.ERROR_MESSAGE);
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		Object src = e.getSource();
-		if(src == num)
-			JOptionPane.showMessageDialog(null, "Deubom"
-					, null, 
-					JOptionPane.ERROR_MESSAGE);
-		
-	}
-	
 }

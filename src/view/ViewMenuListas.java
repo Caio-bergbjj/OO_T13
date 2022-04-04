@@ -4,9 +4,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import controle.*;
 
-public class ViewMenuListas implements ActionListener{
+public class ViewMenuListas implements ActionListener, ListSelectionListener{
 	
 	String[] listaTotalCasas;
 	String[] listaTotalAps;
@@ -43,11 +46,14 @@ public class ViewMenuListas implements ActionListener{
 				listaAtual.add(nome);
 			}
 			listaImoveis.setListData(listaTotalCasas);
+			listaImoveis.addListSelectionListener(this);
 		}
 		if(op == 2) {
 			s = "Usuario";
 			listaTotalUsuarios = d.listaUsuarios();
 			listaUsuarios.setListData(listaTotalUsuarios);
+			listaUsuarios.addListSelectionListener(this);
+			
 			
 		}
 		
@@ -187,5 +193,25 @@ public class ViewMenuListas implements ActionListener{
 			
 		}
 		
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		Object src = e.getSource();
+		
+		if(e.getValueIsAdjusting() && casa.isSelected() && src == listaImoveis
+				&& listaImoveis.getSelectedIndex() != -1) {
+			janela.dispose();
+			new ViewDetalhe(1, dados, listaImoveis.getSelectedIndex());
+		}
+		if(e.getValueIsAdjusting() && ap.isSelected() && src == listaImoveis
+				&& listaImoveis.getSelectedIndex() != -1) {
+			janela.dispose();
+			new ViewDetalhe(2, dados, listaImoveis.getSelectedIndex());
+		}
+		if(e.getValueIsAdjusting() && src == listaUsuarios) {
+			janela.dispose();
+			new ViewDetalhe(3, dados, listaUsuarios.getSelectedIndex());
+		}
 	}	
 }
