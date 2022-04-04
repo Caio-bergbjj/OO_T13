@@ -428,6 +428,7 @@ public class ViewCadastroImovel implements ActionListener{
 				JOptionPane.showMessageDialog(null, String.join("\n", erros)
 						, null, 
 						JOptionPane.ERROR_MESSAGE);
+				System.out.println(String.join("\n", erros));
 			}else {
 				if(ap.isSelected()) {
 					String[] dadosApartamento = {tituloImovel.getText(), valor.getText().replace(',', '.'), qtdQuartos.getValue().toString(),
@@ -435,30 +436,45 @@ public class ViewCadastroImovel implements ActionListener{
 							qtdHospedes.getValue().toString()};
 					String[] endereco = {};
 					boolean[] info = getInfoAp();
-					dados.inserirApartamento(dadosApartamento, endereco, info);
+					boolean inserir = dados.inserirApartamento(dadosApartamento, endereco, info);
 					
 					limparCampos();
 					janela.dispose();
 					new ViewMenuListas(dados,1);
 					// Enviando Mensagem de Sucesso
-					JOptionPane.showMessageDialog(null, "Apartamento cadastrado com Sucesso!!"
-							, null, 
-							JOptionPane.INFORMATION_MESSAGE);
+					if(inserir) {
+						erros.clear();
+						JOptionPane.showMessageDialog(null, "Apartamento cadastrado com Sucesso!!"
+								, null, 
+								JOptionPane.INFORMATION_MESSAGE);
+					}else {
+						JOptionPane.showMessageDialog(null, "Tivemos algum problema inesperado"
+								, null, 
+								JOptionPane.INFORMATION_MESSAGE);
+					}
+					
 				}else if(casa.isSelected()) {
 					String[] dadosCasa = {tituloImovel.getText(), valor.getText().replace(',', '.'), categoria.getText(), qtdQuartos.getValue().toString(),
 							qtdCamas.getValue().toString(), qtdBanheiros.getValue().toString(), qtdAndares.getValue().toString(),
 							qtdHospedes.getValue().toString()};
 					String[] endereco = {};
 					boolean[] info = getInfoCs();
-				    dados.inserirCasa(dadosCasa, endereco, info);
+				    boolean inserir = dados.inserirCasa(dadosCasa, endereco, info);
 
 					limparCampos();
 					janela.dispose();
 					new ViewMenuListas(dados,1);
 					// Enviando Mensagem de Sucesso
-					JOptionPane.showMessageDialog(null, "Casa cadastrada com Sucesso!!"
-							, null, 
-							JOptionPane.INFORMATION_MESSAGE);
+					if(inserir) {
+						System.out.println("Erros - " +  String.join("\n", erros));
+						JOptionPane.showMessageDialog(null, "Casa cadastrado com Sucesso!!"
+								, null, 
+								JOptionPane.INFORMATION_MESSAGE);
+					}else {					
+						JOptionPane.showMessageDialog(null, "Tivemos algum problema inesperado"
+								, null, 
+								JOptionPane.INFORMATION_MESSAGE);
+					}
 				}
 			}
 			

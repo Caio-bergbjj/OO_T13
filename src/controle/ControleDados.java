@@ -52,7 +52,7 @@ public class ControleDados {
 	
 	public boolean inserirApartamento(String[] dadosApartamento, String[] endereco, boolean[] info) {
 		
-		if(!dadosApartamento[1].matches("[1-9.]+") || !dadosApartamento[2].matches("[1-9]+") || !dadosApartamento[3].matches("[1-9]+") 
+		if(!dadosApartamento[1].matches("[0-9.]+") || !dadosApartamento[2].matches("[1-9]+") || !dadosApartamento[3].matches("[1-9]+") 
 				|| !dadosApartamento[4].matches("[1-9]+") || !dadosApartamento[6].matches("[1-9]+")) {
 			return false;
 		} else {
@@ -66,7 +66,7 @@ public class ControleDados {
 	
 	public boolean inserirCasa(String[] dadosCasa, String[] endereco, boolean[] info) {
 	
-		if(!dadosCasa[1].matches("[1-9.]+") || !dadosCasa[3].matches("[1-9]+") || !dadosCasa[4].matches("[1-9]+") 
+		if(!dadosCasa[1].matches("[0-9.]+") || !dadosCasa[3].matches("[1-9]+") || !dadosCasa[4].matches("[1-9]+") 
 				|| !dadosCasa[5].matches("[1-9]+") || !dadosCasa[6].matches("[1-9]+") || !dadosCasa[7].matches("[1-9]+")) {
 			return false;
 		} else {
