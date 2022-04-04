@@ -8,7 +8,7 @@ import controle.*;
 
 public class ViewCadastroImovel implements ActionListener{
 	
-	private String[] listaUF = {"AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG",
+	private static String[] listaUF = {"AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG",
 					 				   "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", 
 					 				   "RS", "SC", "SE", "SP", "TO"};
 		
@@ -28,38 +28,38 @@ public class ViewCadastroImovel implements ActionListener{
 	private SpinnerModel model4 = new SpinnerNumberModel(1, 1, 20, 1); 
 	private SpinnerModel model5 = new SpinnerNumberModel(0, 0, 1000, 1); 
 	// Form Geral
-	private static JLabel lTituloImovel = new JLabel("T�tulo do Im�vel");
-	private static JTextField tituloImovel = new JTextField();
-	private static JLabel lCep = new JLabel("CEP");
-	private static JFormattedTextField  cep = new JFormattedTextField (Validador.Mascara("#####-###"));
-	private static JLabel lCidade = new JLabel("Cidade");
-	private static JTextField cidade = new JTextField();
-	private static JLabel lUf = new JLabel("UF");
-	private static JComboBox<String> uf = new JComboBox<String>(listaUF);
-	private static JLabel LDono = new JLabel("Proprietario");
-	private static JComboBox<String> dono;
-	private static JLabel lBairro = new JLabel("Bairro");
-	private static JTextField bairro = new JTextField();
-	private static JLabel lLote = new JLabel("Rua");
-	private static JTextField lote = new JTextField();
-	private static JLabel lRua = new JLabel("Lote");
-	private static JTextField rua = new JTextField();
-	private static JLabel lComp = new JLabel("Complemento");
-	private static JTextField comp = new JTextField();
-	private static JLabel lNum = new JLabel("N�mero");
-	private static JSpinner num = new JSpinner(model5);
-	private static JLabel lValor = new JLabel("Valor");
-	private static JFormattedTextField  valor = new JFormattedTextField (Validador.Mascara("####,##"));
-	private static JLabel lQtdQuartos = new JLabel("Quantidade de quartos");
-	private static JSpinner qtdQuartos = new JSpinner(model0);
-	private static JLabel lQtdCamas = new JLabel("Quantidade de camas");
-	private static JSpinner qtdCamas = new JSpinner(model1);
-	private static JLabel lQtdBanheiros = new JLabel("Quantidade de banheiros");
-	private static JSpinner qtdBanheiros = new JSpinner(model2);
-	private static JLabel lQtdHospedes = new JLabel("Quantidade de h�spedes");
-	private static JSpinner qtdHospedes = new JSpinner(model3);
-	private static JLabel lQtdAndares = new JLabel("Quantidade de andares");
-	private static JSpinner qtdAndares = new JSpinner(model4);
+	private JLabel lTituloImovel = new JLabel("T�tulo do Im�vel");
+	private JTextField tituloImovel = new JTextField();
+	private JLabel lCep = new JLabel("CEP");
+	private JFormattedTextField  cep = new JFormattedTextField (Validador.Mascara("#####-###"));
+	private JLabel lCidade = new JLabel("Cidade");
+	private JTextField cidade = new JTextField();
+	private JLabel lUf = new JLabel("UF");
+	private JComboBox<String> uf = new JComboBox<String>(listaUF);
+	private JLabel LDono = new JLabel("Proprietario");
+	private JComboBox<String> dono;
+	private JLabel lBairro = new JLabel("Bairro");
+	private JTextField bairro = new JTextField();
+	private JLabel lLote = new JLabel("Rua");
+	private JTextField lote = new JTextField();
+	private JLabel lRua = new JLabel("Lote");
+	private JTextField rua = new JTextField();
+	private JLabel lComp = new JLabel("Complemento");
+	private JTextField comp = new JTextField();
+	private JLabel lNum = new JLabel("N�mero");
+	private JSpinner num = new JSpinner(model5);
+	private JLabel lValor = new JLabel("Valor");
+	private JFormattedTextField  valor = new JFormattedTextField (Validador.Mascara("####,##"));
+	private JLabel lQtdQuartos = new JLabel("Quantidade de quartos");
+	private JSpinner qtdQuartos = new JSpinner(model0);
+	private JLabel lQtdCamas = new JLabel("Quantidade de camas");
+	private JSpinner qtdCamas = new JSpinner(model1);
+	private JLabel lQtdBanheiros = new JLabel("Quantidade de banheiros");
+	private JSpinner qtdBanheiros = new JSpinner(model2);
+	private JLabel lQtdHospedes = new JLabel("Quantidade de h�spedes");
+	private JSpinner qtdHospedes = new JSpinner(model3);
+	private JLabel lQtdAndares = new JLabel("Quantidade de andares");
+	private JSpinner qtdAndares = new JSpinner(model4);
 
 	// Form Casa
 	private JLabel lCategoria = new JLabel("Categoria da Casa");
