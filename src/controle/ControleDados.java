@@ -41,7 +41,7 @@ public class ControleDados {
 		return this.d.getReservas();
 	}
 	
-	public boolean inserirPessoa(String[] dadosPessoa, String[] endereco, int flag, int index) {
+	public boolean inserirEditarPessoa(String[] dadosPessoa, String[] endereco, int flag, int index) {
 		
 		if(!dadosPessoa[1].matches("[0-9.-]+") || !dadosPessoa[3].matches("[0-9]+") || !dadosPessoa[4].matches("[0-9]+")) {
 			return false;
@@ -49,6 +49,7 @@ public class ControleDados {
 			Pessoa p = new Pessoa(dadosPessoa[0], dadosPessoa[1], dadosPessoa[2], 
 					new Telefone((short) Integer.parseInt(dadosPessoa[3]), Integer.parseInt(dadosPessoa[4])), 
 					new Endereco(endereco[0], endereco[1], endereco[2], endereco[3], endereco[4], endereco[5], endereco[6], endereco[7]));
+			// 1 -> insere nova, 2 -> edita alguma
 			if(flag == 1)
 				d.inserirPessoa(p);
 			else if (flag == 2)
@@ -57,7 +58,7 @@ public class ControleDados {
 		}
 	}
 	
-	public boolean inserirApartamento(String[] dadosApartamento, String[] endereco, boolean[] info, int i, int flag, int index) {
+	public boolean inserirEditarApartamento(String[] dadosApartamento, String[] endereco, boolean[] info, int i, int flag, int index) {
 		
 		if(!dadosApartamento[1].matches("[0-9.]+") || !dadosApartamento[2].matches("[1-9]+") || !dadosApartamento[3].matches("[1-9]+") 
 				|| !dadosApartamento[4].matches("[1-9]+") || !dadosApartamento[6].matches("[1-9]+")) {
@@ -68,6 +69,7 @@ public class ControleDados {
 					new Descricao( Integer.parseInt(dadosApartamento[2]), Integer.parseInt(dadosApartamento[3]), Integer.parseInt(dadosApartamento[4]),
 							Integer.parseInt(dadosApartamento[5]), Integer.parseInt(dadosApartamento[6])), info[0], info[1], info[2], info[3], p, 
 					new Endereco(endereco[0], endereco[1], endereco[2], endereco[3], endereco[4], endereco[5], endereco[6], endereco[7]));
+			// 1 -> insere nova, 2 -> edita alguma
 			if(flag == 1)
 				d.inserirApartamento(ap);
 			else if(flag == 2)
@@ -76,7 +78,7 @@ public class ControleDados {
 		}
 	}
 	
-	public boolean inserirCasa(String[] dadosCasa, String[] endereco, boolean[] info, int i, int flag, int index) {
+	public boolean inserirEditarCasa(String[] dadosCasa, String[] endereco, boolean[] info, int i, int flag, int index) {
 	
 		if(!dadosCasa[1].matches("[0-9.]+") || !dadosCasa[3].matches("[1-9]+") || !dadosCasa[4].matches("[1-9]+") 
 				|| !dadosCasa[5].matches("[1-9]+") || !dadosCasa[6].matches("[1-9]+") || !dadosCasa[7].matches("[1-9]+")) {
@@ -88,7 +90,7 @@ public class ControleDados {
 							Integer.parseInt(dadosCasa[6]), Integer.parseInt(dadosCasa[7])), info[0], info[1], p, 
 					new Endereco(endereco[0], endereco[1], endereco[2], endereco[3], endereco[4], endereco[5], endereco[6], endereco[7]));
 			
-			// 1 insere nova, 2 edita alguma
+			// 1 -> insere nova, 2 -> edita alguma
 			if(flag == 1) {
 				d.inserirCasa(casa);
 			}else if (flag == 2){
@@ -97,11 +99,6 @@ public class ControleDados {
 
 			return true;
 		}
-	}
-	
-	public boolean inserirReserva() {
-			//Falta implementação
-			return true;
 	}
 	
 	public boolean removerPessoa(int i) {
@@ -184,25 +181,22 @@ public class ControleDados {
 		
 		int k = 0;
 		
-		switch(tipo) {
+		switch(tipo) { //  pegando o imovel de acordo com o tipo de imovel selecionado
 		case 1 -> imovel = d.getCasas().get(indexImovel);
 		case 2 -> imovel = d.getApartamentos().get(indexImovel);
 		}
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Date data_inicial = null;
-		Date data_final = null;
 		
-		try {
-			data_inicial = sdf.parse(dataInicial);
-			data_final = sdf.parse(dataFinal);
-			calI.setTime(data_inicial);
-			calF.setTime(data_final);
+		try { 
+			calI.setTime(sdf.parse(dataInicial));
+			calF.setTime(sdf.parse(dataFinal));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 
-		for(int i = (calI.get(Calendar.DAY_OF_YEAR)-1); i<= (calF.get(Calendar.DAY_OF_YEAR)-1);i++) {
+		for(int i = (calI.get(Calendar.DAY_OF_YEAR)-1); i<= (calF.get(Calendar.DAY_OF_YEAR)-1);i++) { 
+			// verificando a disponibilidade no intervalo fornecido
 			
 			if(imovel.getDisponibilidade(i).getOcupacao()) {
 				dataOcupada[k] = imovel.getDisponibilidade(i).getData().toString();
@@ -213,10 +207,10 @@ public class ControleDados {
 		}
 		String [] data = new String[k+1];
 		for(int z = 0; z < k; z++) data[z] = dataOcupada[z];
-		return data;
+		return data; // retornando as datas que nao estavam disponiveis, se estiver disponivel retorna null
 	}
 	
-	public void reservar(String dataInicial, String dataFinal, int indexImovel, int indexPessoa, int tipo) {
+	public void inserirReserva(String dataInicial, String dataFinal, int indexImovel, int indexPessoa, int tipo) {
 		
 		Imovel imovel = null;
 		Calendar calI = (Calendar) Calendar.getInstance();

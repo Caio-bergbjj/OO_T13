@@ -681,7 +681,7 @@ public class ViewDetalhe implements ActionListener{
 							lote.getText(), rua.getText(), comp.getText(), num.getValue().toString()};
 					boolean[] info = getInfoAp();
 					int i = dono.getSelectedIndex();
-					boolean inserir = dados.inserirApartamento(dadosApartamento, endereco, info, i, 2, posi);
+					boolean inserir = dados.inserirEditarApartamento(dadosApartamento, endereco, info, i, 2, posi);
 
 					janela.dispose();
 					new ViewMenuListas(dados,1);
@@ -704,7 +704,7 @@ public class ViewDetalhe implements ActionListener{
 							lote.getText(), rua.getText(), comp.getText(), num.getValue().toString()};
 					boolean[] info = getInfoCs();
 					int i = dono.getSelectedIndex();
-					boolean inserir = dados.inserirCasa(dadosCasa, endereco, info, i, 2, posi);
+					boolean inserir = dados.inserirEditarCasa(dadosCasa, endereco, info, i, 2, posi);
 
 					janela.dispose();
 					new ViewMenuListas(dados,1);
@@ -726,7 +726,7 @@ public class ViewDetalhe implements ActionListener{
 							ddd, tele};
 					String[] endereco = {cep.getText(), cidade.getText(), uf.getSelectedItem().toString(), bairro.getText(),
 							lote.getText(), rua.getText(), comp.getText(), num.getValue().toString()};
-				    boolean inserir  = dados.inserirPessoa(dadosPessoa, endereco, 2, posi);
+				    boolean inserir  = dados.inserirEditarPessoa(dadosPessoa, endereco, 2, posi);
 
 					janela.dispose();
 					new ViewMenuListas(dados,2);

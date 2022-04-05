@@ -2,11 +2,7 @@ package view;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -127,13 +123,14 @@ public class ViewReservar implements ListSelectionListener, ActionListener {
 		Object src = e.getSource();
 		
 		if(src == casa) {
+			// atualizando o ComboBox de acordo com o tipo de imovel
 			im.removeAllItems();
 			for(String s : dados.listaCasas()) {im.addItem(s);}
 			im.setSelectedIndex(-1);
 			im.updateUI();
 		}
 		if(src == ap) {
-			
+			// atualizando o ComboBox de acordo com o tipo de imovel
 			im.removeAllItems();
 			for(String s : dados.listaAps()) {im.addItem(s);}
 			im.setSelectedIndex(-1);
@@ -148,13 +145,14 @@ public class ViewReservar implements ListSelectionListener, ActionListener {
 			
 			if(ap.isSelected()) {
 				try {
+					//Olhando a disponibilidade do imovel
 					dataOcupada = dados.verificarDisponibilidade(jFormattedTextDataI.getText(),
-							jFormattedTextDataF.getText(), im.getSelectedIndex(), 1);
-					if( dataOcupada [0] == null ) {
-						dados.reservar(jFormattedTextDataI.getText(),
+							jFormattedTextDataF.getText(), im.getSelectedIndex(), 1); 
+					if( dataOcupada [0] == null ) { // se nao tiver data ocupada tudo certo
+						dados.inserirReserva(jFormattedTextDataI.getText(),
 								jFormattedTextDataF.getText(), im.getSelectedIndex(), locatario.getSelectedIndex() , 1);
 						mensagemSucessoCadastro();
-					} else {
+					} else { // se tiver alguma data ocupada parecer erro
 						mensagemErroCadastro(dataOcupada);
 					}
 				} catch (Exception e2) {
@@ -168,7 +166,7 @@ public class ViewReservar implements ListSelectionListener, ActionListener {
 					dataOcupada = dados.verificarDisponibilidade(jFormattedTextDataI.getText(),
 							jFormattedTextDataF.getText(), im.getSelectedIndex(), 2);
 					if(dataOcupada[0] == null) {
-						dados.reservar(jFormattedTextDataI.getText(),
+						dados.inserirReserva(jFormattedTextDataI.getText(),
 								jFormattedTextDataF.getText(), im.getSelectedIndex(),locatario.getSelectedIndex(), 2);
 						mensagemSucessoCadastro();
 					} else {
