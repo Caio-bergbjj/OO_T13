@@ -144,7 +144,7 @@ public class ViewReservar implements ListSelectionListener, ActionListener {
 			String[] dataOcupada;
 			
 			if(ap.isSelected()) {
-				//try {
+				try {
 					//Olhando a disponibilidade do imovel
 					dataOcupada = dados.verificarDisponibilidade(jFormattedTextDataI.getText(),
 							jFormattedTextDataF.getText(), im.getSelectedIndex(), 1); 
@@ -155,16 +155,16 @@ public class ViewReservar implements ListSelectionListener, ActionListener {
 					} else { // se tiver alguma data ocupada parecer erro
 						mensagemErroCadastro(dataOcupada);
 					}
-				/*} catch (Exception e2) {
+				} catch (Exception e2) {
 					System.out.println(e2.getMessage());
 					JOptionPane.showMessageDialog(null, "Dados Incompletos ou errados"
 					, null, 
 					JOptionPane.ERROR_MESSAGE);
 					
-				}*/
+				}
 				
 			} else {
-				//try {
+				try {
 					dataOcupada = dados.verificarDisponibilidade(jFormattedTextDataI.getText(),
 							jFormattedTextDataF.getText(), im.getSelectedIndex(), 2);
 					if(dataOcupada[0] == null) {
@@ -174,12 +174,12 @@ public class ViewReservar implements ListSelectionListener, ActionListener {
 					} else {
 						mensagemErroCadastro(dataOcupada);
 					}
-				/*} catch (Exception e2) {
+				} catch (Exception e2) {
 					System.out.println(e2.getMessage());
 					JOptionPane.showMessageDialog(null, "Dados Incompletos ou errados"
 							, null, 
 							JOptionPane.ERROR_MESSAGE);
-				}*/
+				}
 			}
 		}
 		
