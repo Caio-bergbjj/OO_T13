@@ -2,12 +2,14 @@ package view;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.JFormattedTextField;
 import javax.swing.text.MaskFormatter;
 import controle.ControleDados;
 
@@ -25,8 +27,8 @@ public class ViewReservar implements ListSelectionListener, ActionListener {
 	private static JRadioButton ap = new JRadioButton("Apartamentos");
 	private static JLabel LIm = new JLabel("Imovel");
 	private static JComboBox<String> im;
-	private static JLabel LDono = new JLabel("Locatario");
-	private static JComboBox<String> dono;
+	private static JLabel lLocatario = new JLabel("Locatario");
+	private static JComboBox<String> locatario;
 	private static JLabel labelDataI = new JLabel("Data Inicial: ");
 	private static JLabel labelDataF = new JLabel("Data Final: ");
 	private static ControleDados dados;
@@ -52,7 +54,7 @@ public class ViewReservar implements ListSelectionListener, ActionListener {
 		
 		
 		im = new JComboBox<String>(dados.listaCasas());
-		dono = new JComboBox<String>(dados.listaUsuarios());
+		locatario = new JComboBox<String>(dados.listaUsuarios());
 		
 		
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
@@ -64,9 +66,9 @@ public class ViewReservar implements ListSelectionListener, ActionListener {
 		casa.setBounds(50, 90, 100, 20);
 		casa.setSelected(true);
 		ap.setBounds(50, 110, 120, 20);
-		LDono.setBounds(200,60,100,20);
-		dono.setBounds(200, 80, 100, 20);
-		dono.setSelectedIndex(-1);
+		lLocatario.setBounds(200,60,100,20);
+		locatario.setBounds(200, 80, 100, 20);
+		locatario.setSelectedIndex(-1);
 		LIm.setBounds(310, 60, 140, 20);
 		im.setBounds(310, 80, 140, 20);
 		im.setSelectedIndex(-1);
@@ -84,8 +86,8 @@ public class ViewReservar implements ListSelectionListener, ActionListener {
 		janela.add(casa);
 		janela.add(ap);
 		janela.add(filtros);
-		janela.add(LDono);
-		janela.add(dono);
+		janela.add(lLocatario);
+		janela.add(locatario);
 		janela.add(LIm);
 		janela.add(im);
 		janela.add(labelDataI);
@@ -141,24 +143,56 @@ public class ViewReservar implements ListSelectionListener, ActionListener {
 			janela.dispose();
 			new ViewMenuListas(dados,1);		
 		}
-		if(src == reservar) {
+		if(src == reservar) { 
+			String[] dataOcupada;
 			
 			if(ap.isSelected()) {
-				if(dados.verificarDisponibilidade(jFormattedTextDataI.getText(),
-						jFormattedTextDataF.getText(), im.getSelectedIndex(), 1) ) {
-					System.out.println("Certo");
-				} else {
-					System.out.println("errado");
+				try {
+					dataOcupada = dados.verificarDisponibilidade(jFormattedTextDataI.getText(),
+							jFormattedTextDataF.getText(), im.getSelectedIndex(), 1);
+					if( dataOcupada [0] == null ) {
+						dados.reservar(jFormattedTextDataI.getText(),
+								jFormattedTextDataF.getText(), im.getSelectedIndex(), locatario.getSelectedIndex() , 1);
+						mensagemSucessoCadastro();
+					} else {
+						mensagemErroCadastro(dataOcupada);
+					}
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "Dados Incompletos ou errados"
+					, null, 
+					JOptionPane.ERROR_MESSAGE);
 				}
+				
 			} else {
-				if(dados.verificarDisponibilidade(jFormattedTextDataI.getText(),
-						jFormattedTextDataF.getText(), im.getSelectedIndex(), 2)) {
-					System.out.println("Certo");
-				} else {
-					System.out.println("errado");
+				try {
+					dataOcupada = dados.verificarDisponibilidade(jFormattedTextDataI.getText(),
+							jFormattedTextDataF.getText(), im.getSelectedIndex(), 2);
+					if(dataOcupada[0] == null) {
+						dados.reservar(jFormattedTextDataI.getText(),
+								jFormattedTextDataF.getText(), im.getSelectedIndex(),locatario.getSelectedIndex(), 2);
+						mensagemSucessoCadastro();
+					} else {
+						mensagemErroCadastro(dataOcupada);
+					}
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "Dados Incompletos ou errados"
+							, null, 
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
 		
+	}
+	
+	public void mensagemErroCadastro(String [] dataOcupada) {
+		JOptionPane.showMessageDialog(null, "As seguintes datas escolhidas estao ocupadas:\n"+String.join("\n", dataOcupada)
+		, null, 
+		JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public void mensagemSucessoCadastro() {
+		JOptionPane.showMessageDialog(null, "Reservado com sucesso!", null, 
+				JOptionPane.INFORMATION_MESSAGE);
+		janela.dispose();
 	}
 }

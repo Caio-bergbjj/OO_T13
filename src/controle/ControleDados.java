@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-
 import modelo.*;
 
 
@@ -176,46 +175,83 @@ public class ControleDados {
 		return lista;
 	}
 	
-	public boolean verificarDisponibilidade(String dataInicial, String dataFinal, int j, int tipo) {
+	public String[] verificarDisponibilidade(String dataInicial, String dataFinal, int indexImovel, int tipo ) {
 		
-		Imovel imovel;
-		int i;
-		Calendar cal = (Calendar) Calendar.getInstance();
-		Calendar cal2 = (Calendar) Calendar.getInstance();
-		Calendar cal3 = (Calendar) Calendar.getInstance();
+		Imovel imovel = null;
+		Calendar calI = (Calendar) Calendar.getInstance();
+		Calendar  calF = (Calendar) Calendar.getInstance();
+		String[] dataOcupada = new String[90];
+		
+		int k = 0;
 		
 		switch(tipo) {
-		case 1 -> imovel = d.getCasas().get(j);
-		case 2 -> imovel = d.getApartamentos().get(j);
-		default -> imovel = d.getCasas().get(j);
+		case 1 -> imovel = d.getCasas().get(indexImovel);
+		case 2 -> imovel = d.getApartamentos().get(indexImovel);
 		}
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Date data_inicial = null;
+		Date data_final = null;
 		
 		try {
 			data_inicial = sdf.parse(dataInicial);
-			cal2.setTime(sdf.parse("01/01/2022"));
-			cal2.setTime(sdf.parse(dataFinal));
+			data_final = sdf.parse(dataFinal);
+			calI.setTime(data_inicial);
+			calF.setTime(data_final);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		cal.setTime(data_inicial);
-		
-		System.out.println(cal == cal2);
-		for(i = 0; cal.compareTo(cal2) == 0  ;i++  ) {
-			cal.add(Calendar.DATE, 1);
-			System.out.println(i);
-		}
-		System.out.println(i);
-		
-		for( int k = i; cal.compareTo(cal3) == 0  ;k++) {
-			if(imovel.getDisponibilidade(k).getOcupacao()) {
-				return false;
+
+		for(int i = (calI.get(Calendar.DAY_OF_YEAR)-1); i<= (calF.get(Calendar.DAY_OF_YEAR)-1);i++) {
+			
+			if(imovel.getDisponibilidade(i).getOcupacao()) {
+				dataOcupada[k] = imovel.getDisponibilidade(i).getData().toString();
+				k++;
+				System.out.println("Ocupado");
 			}
+			
 		}
-		return true;
+		String [] data = new String[k+1];
+		for(int z = 0; z < k; z++) data[z] = dataOcupada[z];
+		return data;
 	}
+	
+	public void reservar(String dataInicial, String dataFinal, int indexImovel, int indexPessoa, int tipo) {
+		
+		Imovel imovel = null;
+		Calendar calI = (Calendar) Calendar.getInstance();
+		Calendar  calF = (Calendar) Calendar.getInstance();
+		Pessoa locatario = d.getPessoas().get(indexPessoa);
+		Periodo periodo = new Periodo(dataInicial, dataFinal);
+		
+		switch(tipo) {
+		case 1 -> imovel = d.getCasas().get(indexImovel);
+		case 2 -> imovel = d.getApartamentos().get(indexImovel);
+		}
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date data_inicial = null;
+		Date data_final = null;
+		
+		try {
+			data_inicial = sdf.parse(dataInicial);
+			data_final = sdf.parse(dataFinal);
+			calI.setTime(data_inicial);
+			calF.setTime(data_final);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		for(int i = (calI.get(Calendar.DAY_OF_YEAR)-1); i<= (calF.get(Calendar.DAY_OF_YEAR)-1);i++) {
+			imovel.getDisponibilidade(i).setOcupacao(true);
+		}
+		
+		Reserva reserva = new Reserva(imovel,locatario, periodo);
+		d.getReservas().add(reserva);
+		
+			
+	}
+		
 	
 }
 
