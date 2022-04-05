@@ -522,7 +522,6 @@ public class ViewDetalhe implements ActionListener{
 			complemento = dados.getPessoas().get(posi).getEndereco().getComplemento();
 			num = dados.getPessoas().get(posi).getEndereco().getNumero();
 			cpf = dados.getPessoas().get(posi).getCpf();
-			System.out.println(cpf);
 			email = dados.getPessoas().get(posi).getEmail();
 			ddd = String.valueOf(dados.getPessoas().get(posi).getTelefone().getDdd());
 			num_telefone = String.valueOf(dados.getPessoas().get(posi).getTelefone().getNumero());

@@ -18,7 +18,7 @@ public class Dados {
 			Endereco end = new Endereco("70"+i+"43-23"+i, listaCidade[i], listaUF[i], "bairro", Integer.toString(i), Integer.toString(i+2), "imovel", String.valueOf(i+1));
 			Telefone telefone = new Telefone((short) (61 + i), 998413564 + (i * 3));
 			Pessoa p = new Pessoa("Pessoa " + i, "154.186.552-99", "pessoa" + i+"@gmail.com", telefone, end);
-			Descricao desc = new Descricao(i + 1, i + 1, i+2, (i > 5) ? i : i + 2, i + 2);
+			Descricao desc = new Descricao(i, i , i, (i > 5) ? i : i , i);
 			Apartamento ap = new Apartamento("Apartamento " + i, 1500 * 2, desc, p, end);
 			Casa casa = new Casa("Casa " + i,2500 * 2, "categoria"+i, desc, true, false, p, end);
 

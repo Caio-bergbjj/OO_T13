@@ -206,20 +206,56 @@ public class ViewMenuListas implements ActionListener, ListSelectionListener{
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
-		
+		String nomeBusca = null;
+		int posicaoBusca;
+		// Casa
 		if(e.getValueIsAdjusting() && casa.isSelected() && src == listaImoveis
 				&& listaImoveis.getSelectedIndex() != -1) {
-			janela.dispose();
-			new ViewDetalhe(1, dados, listaImoveis.getSelectedIndex());
+			
+			
+			if(listaImoveis.getModel().getSize() < dados.listaCasas().length) {
+				nomeBusca = listaImoveis.getSelectedValue();
+				posicaoBusca = dados.getCasaNome(nomeBusca);
+				janela.dispose();
+				new ViewDetalhe(1, dados, posicaoBusca);
+			}else {
+				janela.dispose();
+				new ViewDetalhe(1, dados, listaImoveis.getSelectedIndex());
+					
+			}
+				
+			
 		}
+		// Apartamento
 		if(e.getValueIsAdjusting() && ap.isSelected() && src == listaImoveis
 				&& listaImoveis.getSelectedIndex() != -1) {
-			janela.dispose();
-			new ViewDetalhe(2, dados, listaImoveis.getSelectedIndex());
+			
+			if(listaImoveis.getModel().getSize() < dados.listaAps().length) {
+				nomeBusca = listaImoveis.getSelectedValue();
+				posicaoBusca = dados.getApNome(nomeBusca);
+				janela.dispose();
+				new ViewDetalhe(2, dados, posicaoBusca);
+			}else {
+				janela.dispose();
+				new ViewDetalhe(2, dados, listaImoveis.getSelectedIndex());
+					
+			}
+			
 		}
+		// Pessoa
 		if(e.getValueIsAdjusting() && src == listaUsuarios) {
-			janela.dispose();
-			new ViewDetalhe(3, dados, listaUsuarios.getSelectedIndex());
+			
+			if(listaUsuarios.getModel().getSize() < dados.listaUsuarios().length) {
+				nomeBusca = listaUsuarios.getSelectedValue();
+				posicaoBusca = dados.getPessoaNome(nomeBusca);
+				janela.dispose();
+				new ViewDetalhe(3, dados, posicaoBusca);
+			}else {
+				janela.dispose();
+				new ViewDetalhe(3, dados, listaUsuarios.getSelectedIndex());
+					
+			}
+			
 		}
 	}	
 }

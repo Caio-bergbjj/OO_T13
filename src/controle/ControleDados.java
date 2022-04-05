@@ -252,7 +252,35 @@ public class ControleDados {
 			
 	}
 		
+	public int getCasaNome(String tituloCasa) {
+		int posi = 0;
+		for(Casa casa: d.getCasas()) {
+			if(casa.getTitulo().equals(tituloCasa))
+				return posi;	
+			posi++;
+		}
+		return 0;
+	}
 	
+	public int getApNome(String tituloAp) {
+		int posi = 0;
+		for(Apartamento ap: d.getApartamentos()) {
+			if(ap.getTitulo().equals(tituloAp))
+				return posi;	
+			posi++;
+		}
+		return 0;
+	}
+	
+	public int getPessoaNome(String nome) {
+		int posi = 0;
+		for(Pessoa p: d.getPessoas()) {
+			if(p.getNome().equals(nome))
+				return posi;	
+			posi++;
+		}
+		return 0;
+	}
 }
 
 	
