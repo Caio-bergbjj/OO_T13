@@ -86,12 +86,12 @@ public class ControleDados {
 			Casa casa = new Casa(dadosCasa[0], Double.parseDouble(dadosCasa[1]), dadosCasa[2], 
 					new Descricao( Integer.parseInt(dadosCasa[3]), Integer.parseInt(dadosCasa[4]), Integer.parseInt(dadosCasa[5]),
 							Integer.parseInt(dadosCasa[6]), Integer.parseInt(dadosCasa[7])), info[0], info[1], p, 
-					new Endereco());
+					new Endereco(endereco[0], endereco[1], endereco[2], endereco[3], endereco[4], endereco[5], endereco[6], endereco[7]));
 			
 			// 1 insere nova, 2 edita alguma
 			if(flag == 1) {
 				d.inserirCasa(casa);
-			}else if (flag == 1){
+			}else if (flag == 2){
 				d.getCasas().set(index, casa);
 			}
 
@@ -129,7 +129,7 @@ public class ControleDados {
 				return false; // Pessoa esta com uma reserva pendente ainda
 			}
 		}
-		d.getApartamentos().remove(i);
+		d.getCasas().remove(i);
 		return true;
 	}
 	

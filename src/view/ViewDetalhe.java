@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -106,16 +107,17 @@ public class ViewDetalhe implements ActionListener{
 	private JRadioButton naoCond = new JRadioButton("N");
 	
 	// Form Usuario
-	private static JLabel lNomeUsuario = new JLabel("Nome do Usuario");
-	private static JTextField nomeUsuario = new JTextField();
-	private static JLabel lCpf = new JLabel("CPF");
-	private static JFormattedTextField  cpf = new JFormattedTextField (Validador.Mascara("###.###.###-##"));
-	private static JLabel lEmail = new JLabel("Email");
-	private static JTextField email = new JTextField();
-	private static JFormattedTextField  telefone = new JFormattedTextField (Validador.Mascara("(##) # ####-####"));
-	private static JLabel lTelefone = new JLabel("Telefone");
+	private JLabel lNomeUsuario = new JLabel("Nome do Usuario");
+	private JTextField nomeUsuario = new JTextField();
+	private JLabel lCpf = new JLabel("CPF");
+	private JFormattedTextField  cpf = new JFormattedTextField (Validador.Mascara("###.###.###-##"));
+	private JLabel lEmail = new JLabel("Email");
+	private JTextField email = new JTextField();
+	private JFormattedTextField  telefone = new JFormattedTextField (Validador.Mascara("(##) # ####-####"));
+	private JLabel lTelefone = new JLabel("Telefone");
 	
 	private JButton atualizar = new JButton("Atualizar");
+	private JButton excluir = new JButton("Excluir");
 	private ControleDados dados;
 	private int opcao;
 	private int posi;
@@ -395,14 +397,17 @@ public class ViewDetalhe implements ActionListener{
 			jframeW = 500;
 			jframeH= 350;
 			atualizar.setBounds(380, 275, 100, 30);
+			excluir.setBounds(270, 275, 100, 30);
 		}	
 		else {
 			jframeW = 500;
 			jframeH= 550;
 			atualizar.setBounds(380, 475, 100, 30);
+			excluir.setBounds(270, 475, 100, 30);
 		}
 		
 		janela.add(atualizar);
+		janela.add(excluir);
 		
 		janela.setSize(jframeW, jframeH);
 		
@@ -418,6 +423,7 @@ public class ViewDetalhe implements ActionListener{
 		
 		voltar.addActionListener(this);
 		atualizar.addActionListener(this);
+		excluir.addActionListener(this);
 		
 	}
 	
@@ -456,6 +462,11 @@ public class ViewDetalhe implements ActionListener{
 		
 		// Apenas Pessoa
 		String nome = null;
+		String cpf = null;
+		String email = null;
+		String ddd = null;
+		String num_telefone = null;
+		String telefone = null;
 		
 		// Preencher Casa
 		if(op == 1) {
@@ -468,7 +479,7 @@ public class ViewDetalhe implements ActionListener{
 			lote = dados.getCasas().get(posi).getEndereco().getLote();
 			complemento = dados.getCasas().get(posi).getEndereco().getComplemento();
 			num = dados.getCasas().get(posi).getEndereco().getNumero();
-			valor =  Validador.removeCaracteresEspeciais(Double.toString(dados.getCasas().get(posi).getValor()));
+			valor =  String.format("%.2f", dados.getCasas().get(posi).getValor());
 			qtdQuartos = dados.getCasas().get(posi).getDescricao().getQtdQuartos();
 			qtdCamas = dados.getCasas().get(posi).getDescricao().getQtdQuartos();
 			qtdBanheiros = dados.getCasas().get(posi).getDescricao().getQtdBanheiros();
@@ -489,7 +500,7 @@ public class ViewDetalhe implements ActionListener{
 			lote = dados.getApartamentos().get(posi).getEndereco().getLote();
 			complemento = dados.getApartamentos().get(posi).getEndereco().getComplemento();
 			num = dados.getApartamentos().get(posi).getEndereco().getNumero();
-			valor =  Validador.removeCaracteresEspeciais(Double.toString(dados.getApartamentos().get(posi).getValor()));
+			valor =  String.format("%.2f", dados.getApartamentos().get(posi).getValor());
 			qtdQuartos = dados.getApartamentos().get(posi).getDescricao().getQtdQuartos();
 			qtdCamas = dados.getApartamentos().get(posi).getDescricao().getQtdQuartos();
 			qtdBanheiros = dados.getApartamentos().get(posi).getDescricao().getQtdBanheiros();
@@ -510,10 +521,16 @@ public class ViewDetalhe implements ActionListener{
 			lote = dados.getPessoas().get(posi).getEndereco().getLote();
 			complemento = dados.getPessoas().get(posi).getEndereco().getComplemento();
 			num = dados.getPessoas().get(posi).getEndereco().getNumero();
+			cpf = dados.getPessoas().get(posi).getCpf();
+			System.out.println(cpf);
+			email = dados.getPessoas().get(posi).getEmail();
+			ddd = String.valueOf(dados.getPessoas().get(posi).getTelefone().getDdd());
+			num_telefone = String.valueOf(dados.getPessoas().get(posi).getTelefone().getNumero());
+			telefone = "(" + ddd + ") " + num_telefone.substring(0, 1) + " " + num_telefone.substring(1, 5) + "-" + num_telefone.substring(5, 9);
 		}
 		
 		this.tituloImovel.setText(titulo);
-		this.cep.setText(cep);
+		this.cep.setValue(cep);
 		this.cidade.setText(cidade);
 		this.uf.setSelectedItem(uf);
 		this.bairro.setText(bairro);
@@ -521,7 +538,7 @@ public class ViewDetalhe implements ActionListener{
 		this.lote.setText(lote);
 		this.comp.setText(complemento);
 		this.num.setValue(num);
-		this.valor.setText(valor);
+		this.valor.setValue(valor);
 		this.qtdQuartos.setValue(qtdQuartos);
 		this.qtdCamas.setValue(qtdCamas);
 		this.qtdBanheiros.setValue(qtdBanheiros);
@@ -532,37 +549,84 @@ public class ViewDetalhe implements ActionListener{
 		//Apenas Casa
 		this.categoria.setText(categoria);
 		if(temWifi)
-			simWifi.setSelected(true);
+			this.simWifi.setSelected(true);
 		else
-			naoWifi.setSelected(true);
+			this.naoWifi.setSelected(true);
 		if(temPisc)
-			simPisc.setSelected(true);
+			this.simPisc.setSelected(true);
 		else
-			naoPisc.setSelected(true);
+			this.naoPisc.setSelected(true);
 		
 		// Apenas Ap
 		if(temEl)
-			simElevador.setSelected(true);
+			this.simElevador.setSelected(true);
 		else
-			naoElevador.setSelected(true);
+			this.naoElevador.setSelected(true);
 		if(temSac)
-			simSacada.setSelected(true);
+			this.simSacada.setSelected(true);
 		else
-			naoSacada.setSelected(true);
+			this.naoSacada.setSelected(true);
 		if(temGarag)
-			simGaragem.setSelected(true);
+			this.simGaragem.setSelected(true);
 		else
-			naoGaragem.setSelected(true);
+			this.naoGaragem.setSelected(true);
 		if(temCond)
-			simCond.setSelected(true);
+			this.simCond.setSelected(true);
 		else
-			naoCond.setSelected(true);
+			this.naoCond.setSelected(true);
 		// Apenas usuario
-		nomeUsuario.setText(nome);
+		this.nomeUsuario.setText(nome);
+		this.cpf.setValue(cpf);
+		this.email.setText(email);
+		this.telefone.setValue(telefone);
 		
-
 	}
-
+	
+	private ArrayList<String> verificarCampos() {
+		ArrayList<String> erros = new ArrayList<String>();
+		
+		if(opcao == 3) {
+			if(nomeUsuario.getText().isEmpty())
+				erros.add("+ Nome não foi preenchido!");
+			if(!Validador.validaCpf(cpf.getText()))
+				erros.add("+ CPF inválido");
+			if(telefone.getValue() == null)
+				erros.add("+ Telefone inválido");
+		}else if(opcao == 1 || opcao == 2) {
+			if(tituloImovel.getText().isEmpty())
+				erros.add("+ Titulo do Imovel nao preenchido!");
+			if(valor.getValue() == null)
+				erros.add("+ Valor invalido");
+			if(opcao == 1) {
+				if(categoria.getText().isEmpty())
+					erros.add("+ Categoria nao preenchida");
+				if(buttonGroup2.getSelection() == null || buttonGroup3.getSelection() == null)
+					erros.add("+ Preencha todos os campos de Sim ou Nao");
+			}else if(opcao == 2){
+				if(buttonGroup4.getSelection() == null || buttonGroup5.getSelection() == null
+						|| buttonGroup6.getSelection() == null || buttonGroup7.getSelection() == null)
+					erros.add("+ Preencha todos os campos de Sim ou Nao");
+			}
+		}
+		
+		if(this.cep.getValue() == null)
+			erros.add("+ Cep inválido");
+		if(cidade.getText().isEmpty())
+			erros.add("+ Cidade não preenchida!");
+		if(uf.getSelectedItem() == null)
+			erros.add("+ UF não selecionada!");
+		if(bairro.getText().isEmpty())
+			erros.add("+ Bairro não preenchido!");
+		if(rua.getText().isEmpty())
+			erros.add("+ Rua não preenchida!");
+		if(lote.getText().isEmpty())
+			erros.add("+ Lote não preenchido!");
+		if(comp.getText().isEmpty())
+			erros.add("+ Complemento não preenchido!");
+		
+		return erros;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
@@ -574,54 +638,114 @@ public class ViewDetalhe implements ActionListener{
 			else
 				new ViewMenuListas(dados, 2);
 		}
-		if(src == atualizar) {
-			if(opcao == 2) {
-				String[] dadosApartamento = {tituloImovel.getText(), valor.getText().replace(',', '.'), qtdQuartos.getValue().toString(),
-						qtdCamas.getValue().toString(), qtdBanheiros.getValue().toString(), qtdAndares.getValue().toString(),
-						qtdHospedes.getValue().toString()};
-				String[] endereco = {cep.getText(), cidade.getText(), uf.getSelectedItem().toString(), bairro.getText(),
-						lote.getText(), rua.getText(), comp.getText(), num.getValue().toString()};
-				boolean[] info = getInfoAp();
-				int i = dono.getSelectedIndex();
-				boolean inserir = dados.inserirApartamento(dadosApartamento, endereco, info, i, 2, posi);
-
-				janela.dispose();
-				new ViewMenuListas(dados,1);
-				// Enviando Mensagem de Sucesso
-				if(inserir) {
-					JOptionPane.showMessageDialog(null, "Apartamento cadastrado com Sucesso!!"
-							, null, 
-							JOptionPane.INFORMATION_MESSAGE);
-				}else {
-					JOptionPane.showMessageDialog(null, "Tivemos algum problema inesperado"
-							, null, 
-							JOptionPane.INFORMATION_MESSAGE);
-				}
-				
-			}else if(opcao == 1) {
-				String[] dadosCasa = {tituloImovel.getText(), valor.getText().replace(',', '.'), categoria.getText(), qtdQuartos.getValue().toString(),
-						qtdCamas.getValue().toString(), qtdBanheiros.getValue().toString(), qtdAndares.getValue().toString(),
-						qtdHospedes.getValue().toString()};
-				String[] endereco = {cep.getText(), cidade.getText(), uf.getSelectedItem().toString(), bairro.getText(),
-						lote.getText(), rua.getText(), comp.getText(), num.getValue().toString()};
-				boolean[] info = getInfoCs();
-				int i = dono.getSelectedIndex();
-				boolean inserir = dados.inserirCasa(dadosCasa, endereco, info, i, 2, posi);
-
-				janela.dispose();
-				new ViewMenuListas(dados,1);
-				// Enviando Mensagem de Sucesso
-				if(inserir) {
-					JOptionPane.showMessageDialog(null, "Casa cadastrado com Sucesso!!" + dados.getCasas().get(0).getTitulo()
-							, null, 
-							JOptionPane.INFORMATION_MESSAGE);
-				}else {					
-					JOptionPane.showMessageDialog(null, "Tivemos algum problema inesperado"
-							, null, 
-							JOptionPane.INFORMATION_MESSAGE);
-				}
+		if(src == excluir) {
+			boolean excluir = false;
 			
+			if(opcao == 1) {
+				excluir = dados.removerCasa(posi);
+			}else if(opcao == 2) {
+				excluir = dados.removerApartamento(posi);
+			}else if (opcao == 3) {
+				excluir = dados.removerPessoa(posi);
 			}
+			
+			janela.dispose();
+			if(opcao == 1 || opcao == 2) {
+				new ViewMenuListas(dados,1);
+			}else if (opcao == 3) {
+				new ViewMenuListas(dados, 2);
+			}
+			
+			if(excluir) {
+				JOptionPane.showMessageDialog(null, "Exclusão realizada com sucesso!!"
+						, null, 
+						JOptionPane.INFORMATION_MESSAGE);
+			}else {
+				JOptionPane.showMessageDialog(null, "Tivemos algum problema inesperado"
+						, null, 
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+		if(src == atualizar) {
+			ArrayList<String> erros = verificarCampos();
+			
+			if(erros.size() > 0) {
+				JOptionPane.showMessageDialog(null, String.join("\n", erros)
+						, null, 
+						JOptionPane.ERROR_MESSAGE);
+			}else {
+				if(opcao == 2) {
+					String[] dadosApartamento = {tituloImovel.getText(), valor.getText().replace(',', '.'), qtdQuartos.getValue().toString(),
+							qtdCamas.getValue().toString(), qtdBanheiros.getValue().toString(), qtdAndares.getValue().toString(),
+							qtdHospedes.getValue().toString()};
+					String[] endereco = {cep.getText(), cidade.getText(), uf.getSelectedItem().toString(), bairro.getText(),
+							lote.getText(), rua.getText(), comp.getText(), num.getValue().toString()};
+					boolean[] info = getInfoAp();
+					int i = dono.getSelectedIndex();
+					boolean inserir = dados.inserirApartamento(dadosApartamento, endereco, info, i, 2, posi);
+
+					janela.dispose();
+					new ViewMenuListas(dados,1);
+					// Enviando Mensagem de Sucesso
+					if(inserir) {
+						JOptionPane.showMessageDialog(null, "Apartamento atualizado com Sucesso!!"
+								, null, 
+								JOptionPane.INFORMATION_MESSAGE);
+					}else {
+						JOptionPane.showMessageDialog(null, "Tivemos algum problema inesperado"
+								, null, 
+								JOptionPane.INFORMATION_MESSAGE);
+					}
+					
+				}else if(opcao == 1) {
+					String[] dadosCasa = {tituloImovel.getText(), valor.getText().replace(',', '.'), categoria.getText(), qtdQuartos.getValue().toString(),
+							qtdCamas.getValue().toString(), qtdBanheiros.getValue().toString(), qtdAndares.getValue().toString(),
+							qtdHospedes.getValue().toString()};
+					String[] endereco = {cep.getText(), cidade.getText(), uf.getSelectedItem().toString(), bairro.getText(),
+							lote.getText(), rua.getText(), comp.getText(), num.getValue().toString()};
+					boolean[] info = getInfoCs();
+					int i = dono.getSelectedIndex();
+					boolean inserir = dados.inserirCasa(dadosCasa, endereco, info, i, 2, posi);
+
+					janela.dispose();
+					new ViewMenuListas(dados,1);
+					// Enviando Mensagem de Sucesso
+					if(inserir) {
+						JOptionPane.showMessageDialog(null, "Casa atualizado com Sucesso!!"
+								, null, 
+								JOptionPane.INFORMATION_MESSAGE);
+					}else {					
+						JOptionPane.showMessageDialog(null, "Tivemos algum problema inesperado"
+								, null, 
+								JOptionPane.INFORMATION_MESSAGE);
+					}
+				
+				}else if(opcao == 3) {
+					String ddd = telefone.getText().substring(1, 3);
+					String tele = Validador.removeCaracteresEspeciais(telefone.getText().substring(5, 16));
+					String[] dadosPessoa = {nomeUsuario.getText(), cpf.getText(), email.getText(),
+							ddd, tele};
+					String[] endereco = {cep.getText(), cidade.getText(), uf.getSelectedItem().toString(), bairro.getText(),
+							lote.getText(), rua.getText(), comp.getText(), num.getValue().toString()};
+				    boolean inserir  = dados.inserirPessoa(dadosPessoa, endereco, 2, posi);
+
+					janela.dispose();
+					new ViewMenuListas(dados,2);
+					// Enviando Mensagem de Sucesso
+					if(inserir) {
+						JOptionPane.showMessageDialog(null, "Usuário atualizado com Sucesso!!"
+								, null, 
+								JOptionPane.INFORMATION_MESSAGE);
+					}else {					
+						JOptionPane.showMessageDialog(null, "Tivemos algum problema inesperado"
+								, null, 
+								JOptionPane.INFORMATION_MESSAGE);
+					}
+				}
+			}
+			
+				
+			
 		}
 	}
 		private boolean [] getInfoAp() {

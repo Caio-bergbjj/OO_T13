@@ -194,5 +194,6 @@ public class ViewReservar implements ListSelectionListener, ActionListener {
 		JOptionPane.showMessageDialog(null, "Reservado com sucesso!", null, 
 				JOptionPane.INFORMATION_MESSAGE);
 		janela.dispose();
+		new ViewMenuListas(dados, 1);
 	}
 }

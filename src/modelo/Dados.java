@@ -17,10 +17,10 @@ public class Dados {
 			
 			Endereco end = new Endereco("70"+i+"43-23"+i, listaCidade[i], listaUF[i], "bairro", Integer.toString(i), Integer.toString(i+2), "imovel", String.valueOf(i+1));
 			Telefone telefone = new Telefone((short) (61 + i), 998413564 + (i * 3));
-			Pessoa p = new Pessoa("Pessoa " + i, "130."+i+"23.22"+i+2+"-00", i+"@gmail.com", telefone, end);
+			Pessoa p = new Pessoa("Pessoa " + i, "154.186.552-99", "pessoa" + i+"@gmail.com", telefone, end);
 			Descricao desc = new Descricao(i + 1, i + 1, i+2, (i > 5) ? i : i + 2, i + 2);
-			Apartamento ap = new Apartamento("Apartamento " + i, 100050 * 2, desc, p, end);
-			Casa casa = new Casa("Casa " + i,103450 * 2, "categoria"+i, desc, true, false, p, end);
+			Apartamento ap = new Apartamento("Apartamento " + i, 1500 * 2, desc, p, end);
+			Casa casa = new Casa("Casa " + i,2500 * 2, "categoria"+i, desc, true, false, p, end);
 
 			pessoas.add(p);
 			casas.add(casa);
