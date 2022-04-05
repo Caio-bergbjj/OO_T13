@@ -13,9 +13,9 @@ public class ViewCadastroImovel implements ActionListener{
 					 				   "RS", "SC", "SE", "SP", "TO"};
 		
 	private JFrame janela = new JFrame("CadastroImovel");
-	private JLabel titulo = new JLabel("Cadastrar Im�veis", SwingConstants.CENTER);
+	private JLabel titulo = new JLabel("Cadastrar Imoveis", SwingConstants.CENTER);
 	
-	private JLabel lbutton = new JLabel("Tipo de im�vel");
+	private JLabel lbutton = new JLabel("Tipo de imovel");
 	private ButtonGroup buttonGroup = new ButtonGroup();
 	private JRadioButton casa = new JRadioButton("Casa");
 	private JRadioButton ap = new JRadioButton("Apartamento");
@@ -28,7 +28,7 @@ public class ViewCadastroImovel implements ActionListener{
 	private SpinnerModel model4 = new SpinnerNumberModel(1, 1, 20, 1); 
 	private SpinnerModel model5 = new SpinnerNumberModel(0, 0, 1000, 1); 
 	// Form Geral
-	private JLabel lTituloImovel = new JLabel("T�tulo do Im�vel");
+	private JLabel lTituloImovel = new JLabel("Titulo do Imovel");
 	private JTextField tituloImovel = new JTextField();
 	private JLabel lCep = new JLabel("CEP");
 	private JFormattedTextField  cep = new JFormattedTextField (Validador.Mascara("#####-###"));
@@ -46,7 +46,7 @@ public class ViewCadastroImovel implements ActionListener{
 	private JTextField rua = new JTextField();
 	private JLabel lComp = new JLabel("Complemento");
 	private JTextField comp = new JTextField();
-	private JLabel lNum = new JLabel("N�mero");
+	private JLabel lNum = new JLabel("Numero");
 	private JSpinner num = new JSpinner(model5);
 	private JLabel lValor = new JLabel("Valor");
 	private JFormattedTextField  valor = new JFormattedTextField (Validador.Mascara("####,##"));
@@ -56,7 +56,7 @@ public class ViewCadastroImovel implements ActionListener{
 	private JSpinner qtdCamas = new JSpinner(model1);
 	private JLabel lQtdBanheiros = new JLabel("Quantidade de banheiros");
 	private JSpinner qtdBanheiros = new JSpinner(model2);
-	private JLabel lQtdHospedes = new JLabel("Quantidade de h�spedes");
+	private JLabel lQtdHospedes = new JLabel("Quantidade de hospedes");
 	private JSpinner qtdHospedes = new JSpinner(model3);
 	private JLabel lQtdAndares = new JLabel("Quantidade de andares");
 	private JSpinner qtdAndares = new JSpinner(model4);
@@ -131,11 +131,11 @@ public class ViewCadastroImovel implements ActionListener{
 		uf.setBounds(250, 170, 50, 20);
 		uf.setSelectedIndex(-1);
 		
-		LDono.setBounds(350,110,80,20);
-		dono.setBounds(350, 130, 80, 20);
+		LDono.setBounds(320,110,80,20);
+		dono.setBounds(320, 130, 80, 20);
 		dono.setSelectedIndex(-1);
 		
-		lBairro.setBounds(310	, 150, 80, 20);
+		lBairro.setBounds(310, 150, 80, 20);
 		bairro.setBounds(310, 170, 100, 20);
 		
 		lLote.setBounds(10, 190, 100, 20);
@@ -440,10 +440,11 @@ public class ViewCadastroImovel implements ActionListener{
 					String[] dadosApartamento = {tituloImovel.getText(), valor.getText().replace(',', '.'), qtdQuartos.getValue().toString(),
 							qtdCamas.getValue().toString(), qtdBanheiros.getValue().toString(), qtdAndares.getValue().toString(),
 							qtdHospedes.getValue().toString()};
-					String[] endereco = {};
+					String[] endereco = {cep.getText(), cidade.getText(), uf.getSelectedItem().toString(), bairro.getText(),
+							lote.getText(), rua.getText(), comp.getText(), num.getValue().toString()};
 					boolean[] info = getInfoAp();
 					int i = dono.getSelectedIndex();
-					boolean inserir = dados.inserirApartamento(dadosApartamento, endereco, info, i);
+					boolean inserir = dados.inserirApartamento(dadosApartamento, endereco, info, i, 1, 0);
 	
 					limparCampos();
 					janela.dispose();
@@ -463,10 +464,11 @@ public class ViewCadastroImovel implements ActionListener{
 					String[] dadosCasa = {tituloImovel.getText(), valor.getText().replace(',', '.'), categoria.getText(), qtdQuartos.getValue().toString(),
 							qtdCamas.getValue().toString(), qtdBanheiros.getValue().toString(), qtdAndares.getValue().toString(),
 							qtdHospedes.getValue().toString()};
-					String[] endereco = {};
+					String[] endereco = {cep.getText(), cidade.getText(), uf.getSelectedItem().toString(), bairro.getText(),
+							lote.getText(), rua.getText(), comp.getText(), num.getValue().toString()};
 					boolean[] info = getInfoCs();
 					int i = dono.getSelectedIndex();
-					boolean inserir = dados.inserirCasa(dadosCasa, endereco, info, i);
+					boolean inserir = dados.inserirCasa(dadosCasa, endereco, info, i, 1, 0);
 
 
 					limparCampos();

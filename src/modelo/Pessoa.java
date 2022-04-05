@@ -57,25 +57,13 @@ public class Pessoa {
 	public void setTelefone(Telefone telefone) {
 		this.telefone = telefone;
 	}
-		
-	public Pessoa(String nome, String cpf, String email){
-		this.nome = nome;
-		this.cpf = cpf;
-	    this.email = email;
-	}
 	
-	public Pessoa(String nome, String cpf, String email, Telefone telefone){
+	public Pessoa(String nome, String cpf, String email, Telefone telefone, Endereco endereco){
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
 		this.telefone = telefone;
-	}
-	
-	public Pessoa(String nome, Telefone telefone) {
-		
-		this.nome = nome;
-		this.telefone = telefone;
-		
+		this.endereco = endereco;
 	}
 	
 

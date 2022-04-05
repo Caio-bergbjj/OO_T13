@@ -14,7 +14,7 @@ public class Endereco {
 	
 	
 	public Endereco(String cep, String cidade, String uf, String bairro, String lote, String rua, String complemento,
-			int numero) {
+			String numero) {
 		this.cep = cep;
 		this.cidade = cidade;
 		this.uf = uf;
@@ -22,7 +22,7 @@ public class Endereco {
 		this.lote = lote;
 		this.rua = rua;
 		this.complemento = complemento;
-		this.numero = numero;
+		this.numero = Integer. parseInt(numero);
 	}
 	
 	

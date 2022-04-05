@@ -12,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -48,6 +49,8 @@ public class ViewDetalhe implements ActionListener{
 	private JTextField cidade = new JTextField();
 	private JLabel lUf = new JLabel("UF");
 	private JComboBox<String> uf = new JComboBox<String>(listaUF);
+	private JLabel LDono = new JLabel("Proprietario");
+	private JComboBox<String> dono;
 	private JLabel lBairro = new JLabel("Bairro");
 	private JTextField bairro = new JTextField();
 	private JLabel lLote = new JLabel("Rua");
@@ -135,6 +138,8 @@ public class ViewDetalhe implements ActionListener{
 			titulo  = new JLabel(dados.getPessoas().get(index).getNome(), SwingConstants.CENTER);
 		}
 		
+		dono = new JComboBox<String>(dados.listaUsuarios());
+		
 		// Titulo da janela e voltar
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
 		titulo.setBounds(160, 10, 180, 30);
@@ -154,6 +159,10 @@ public class ViewDetalhe implements ActionListener{
 			lUf.setBounds(250, 100, 50, 20);
 			uf.setBounds(250, 120, 50, 20);
 			uf.setSelectedIndex(-1);
+			
+			LDono.setBounds(320,60,80,20);
+			dono.setBounds(320, 80, 80, 20);
+			dono.setSelectedIndex(-1);
 			
 			lBairro.setBounds(310, 100, 80, 20);
 			bairro.setBounds(310, 120, 100, 20);
@@ -209,6 +218,8 @@ public class ViewDetalhe implements ActionListener{
 			janela.add(cidade);
 			janela.add(lUf);
 			janela.add(uf);
+			janela.add(LDono);
+			janela.add(dono);
 			janela.add(lBairro);
 			janela.add(bairro);
 			janela.add(lLote);
@@ -301,6 +312,8 @@ public class ViewDetalhe implements ActionListener{
 			janela.add(lCond);
 			janela.add(simCond);
 			janela.add(naoCond);
+			
+			this.preencher(2);
 		}
 		
 		if(op == 3) {
@@ -369,6 +382,8 @@ public class ViewDetalhe implements ActionListener{
 			janela.add(num);
 			janela.add(lTelefone);
 			janela.add(telefone);
+			
+			this.preencher(3);
 		}
 		
 		janela.setLayout(null);
@@ -408,25 +423,144 @@ public class ViewDetalhe implements ActionListener{
 	
 	private void preencher(int op) {
 		
+		String titulo = null;
+		String valor = null;
+		// Comum a todos
+		String cep = null;
+		String cidade = null;
+		String uf = null;
+		String bairro = null;
+		String rua = null;
+		String lote = null;
+		String complemento = null;
+		int num = 0;
+		String  dono = null;
+		
+		// Apenas de imoveis
+		int qtdQuartos = 0;
+		int qtdCamas = 0;
+		int qtdBanheiros = 0;
+		int qtdHospedes = 0;
+		int qtdAndares = 0;
+		
+		// Apenas Casa
+		String categoria = null;
+		boolean temWifi = false;
+		boolean temPisc = false;
+		
+		// Apenas Ap
+		boolean temEl = false;
+		boolean temSac = false;
+		boolean temGarag = false;
+		boolean temCond = false;
+		
+		// Apenas Pessoa
+		String nome = null;
+		
 		// Preencher Casa
 		if(op == 1) {
-			String titulo = dados.getCasas().get(posi).getTitulo();
-//			String cep = dados.getCasas().get(posi).getEndereco().getCep();
-//			String cidade = dados.getCasas().get(posi).getEndereco().getCidade();
-//			String uf = dados.getCasas().get(posi).getEndereco().getUf();
-//			String bairro = dados.getCasas().get(posi).getEndereco().getBairro();
-//			String rua = dados.getCasas().get(posi).getEndereco().getRua();
-//			String lote = dados.getCasas().get(posi).getEndereco().getLote();
-//			String complemento = dados.getCasas().get(posi).getEndereco().getComplemento();
-//			int num = dados.getCasas().get(posi).getEndereco().getNumero();
-			String valor =  Validador.removeCaracteresEspeciais(Double.toString(dados.getCasas().get(posi).getValor()));
-			
-			this.tituloImovel.setText(titulo);
-			// Aguardar endereco
-			// this.cep.setText(cep);
-			this.valor.setText(valor);
-			
+			titulo = dados.getCasas().get(posi).getTitulo();
+			cep = dados.getCasas().get(posi).getEndereco().getCep();
+			cidade = dados.getCasas().get(posi).getEndereco().getCidade();
+			uf = dados.getCasas().get(posi).getEndereco().getUf();
+			bairro = dados.getCasas().get(posi).getEndereco().getBairro();
+			rua = dados.getCasas().get(posi).getEndereco().getRua();
+			lote = dados.getCasas().get(posi).getEndereco().getLote();
+			complemento = dados.getCasas().get(posi).getEndereco().getComplemento();
+			num = dados.getCasas().get(posi).getEndereco().getNumero();
+			valor =  Validador.removeCaracteresEspeciais(Double.toString(dados.getCasas().get(posi).getValor()));
+			qtdQuartos = dados.getCasas().get(posi).getDescricao().getQtdQuartos();
+			qtdCamas = dados.getCasas().get(posi).getDescricao().getQtdQuartos();
+			qtdBanheiros = dados.getCasas().get(posi).getDescricao().getQtdBanheiros();
+			qtdHospedes = dados.getCasas().get(posi).getDescricao().getQtdHospedes();
+			qtdAndares = dados.getCasas().get(posi).getDescricao().getQtdAndar();
+			categoria = dados.getCasas().get(posi).getCategoria();
+			temWifi = dados.getCasas().get(posi).getTemWifi();
+			temPisc = dados.getCasas().get(posi).getTemPiscina();
+			dono = dados.getCasas().get(posi).getDono().getNome();
+				
+		}else if (op == 2) {
+			titulo = dados.getApartamentos().get(posi).getTitulo();
+			cep = dados.getApartamentos().get(posi).getEndereco().getCep();
+			cidade = dados.getApartamentos().get(posi).getEndereco().getCidade();
+			uf = dados.getApartamentos().get(posi).getEndereco().getUf();
+			bairro = dados.getApartamentos().get(posi).getEndereco().getBairro();
+			rua = dados.getApartamentos().get(posi).getEndereco().getRua();
+			lote = dados.getApartamentos().get(posi).getEndereco().getLote();
+			complemento = dados.getApartamentos().get(posi).getEndereco().getComplemento();
+			num = dados.getApartamentos().get(posi).getEndereco().getNumero();
+			valor =  Validador.removeCaracteresEspeciais(Double.toString(dados.getApartamentos().get(posi).getValor()));
+			qtdQuartos = dados.getApartamentos().get(posi).getDescricao().getQtdQuartos();
+			qtdCamas = dados.getApartamentos().get(posi).getDescricao().getQtdQuartos();
+			qtdBanheiros = dados.getApartamentos().get(posi).getDescricao().getQtdBanheiros();
+			qtdHospedes = dados.getApartamentos().get(posi).getDescricao().getQtdHospedes();
+			qtdAndares = dados.getApartamentos().get(posi).getDescricao().getQtdAndar();
+			temEl = dados.getApartamentos().get(posi).getTemElevador();
+			temSac = dados.getApartamentos().get(posi).getTemSacada();
+			temGarag = dados.getApartamentos().get(posi).getTemGaragem();
+			temCond = dados.getApartamentos().get(posi).getTemCondominio();
+			dono = dados.getApartamentos().get(posi).getDono().getNome();
+		}else if (op == 3) {
+			nome = dados.getPessoas().get(posi).getNome();
+			cep = dados.getPessoas().get(posi).getEndereco().getCep();
+			cidade = dados.getPessoas().get(posi).getEndereco().getCidade();
+			uf = dados.getPessoas().get(posi).getEndereco().getUf();
+			bairro = dados.getPessoas().get(posi).getEndereco().getBairro();
+			rua = dados.getPessoas().get(posi).getEndereco().getRua();
+			lote = dados.getPessoas().get(posi).getEndereco().getLote();
+			complemento = dados.getPessoas().get(posi).getEndereco().getComplemento();
+			num = dados.getPessoas().get(posi).getEndereco().getNumero();
 		}
+		
+		this.tituloImovel.setText(titulo);
+		this.cep.setText(cep);
+		this.cidade.setText(cidade);
+		this.uf.setSelectedItem(uf);
+		this.bairro.setText(bairro);
+		this.rua.setText(rua);
+		this.lote.setText(lote);
+		this.comp.setText(complemento);
+		this.num.setValue(num);
+		this.valor.setText(valor);
+		this.qtdQuartos.setValue(qtdQuartos);
+		this.qtdCamas.setValue(qtdCamas);
+		this.qtdBanheiros.setValue(qtdBanheiros);
+		this.qtdHospedes.setValue(qtdHospedes);
+		this.qtdAndares.setValue(qtdAndares);
+		this.dono.setSelectedItem(dono);
+		
+		//Apenas Casa
+		this.categoria.setText(categoria);
+		if(temWifi)
+			simWifi.setSelected(true);
+		else
+			naoWifi.setSelected(true);
+		if(temPisc)
+			simPisc.setSelected(true);
+		else
+			naoPisc.setSelected(true);
+		
+		// Apenas Ap
+		if(temEl)
+			simElevador.setSelected(true);
+		else
+			naoElevador.setSelected(true);
+		if(temSac)
+			simSacada.setSelected(true);
+		else
+			naoSacada.setSelected(true);
+		if(temGarag)
+			simGaragem.setSelected(true);
+		else
+			naoGaragem.setSelected(true);
+		if(temCond)
+			simCond.setSelected(true);
+		else
+			naoCond.setSelected(true);
+		// Apenas usuario
+		nomeUsuario.setText(nome);
+		
+
 	}
 
 	@Override
@@ -440,7 +574,104 @@ public class ViewDetalhe implements ActionListener{
 			else
 				new ViewMenuListas(dados, 2);
 		}
-		
+		if(src == atualizar) {
+			if(opcao == 2) {
+				String[] dadosApartamento = {tituloImovel.getText(), valor.getText().replace(',', '.'), qtdQuartos.getValue().toString(),
+						qtdCamas.getValue().toString(), qtdBanheiros.getValue().toString(), qtdAndares.getValue().toString(),
+						qtdHospedes.getValue().toString()};
+				String[] endereco = {cep.getText(), cidade.getText(), uf.getSelectedItem().toString(), bairro.getText(),
+						lote.getText(), rua.getText(), comp.getText(), num.getValue().toString()};
+				boolean[] info = getInfoAp();
+				int i = dono.getSelectedIndex();
+				boolean inserir = dados.inserirApartamento(dadosApartamento, endereco, info, i, 2, posi);
+
+				janela.dispose();
+				new ViewMenuListas(dados,1);
+				// Enviando Mensagem de Sucesso
+				if(inserir) {
+					JOptionPane.showMessageDialog(null, "Apartamento cadastrado com Sucesso!!"
+							, null, 
+							JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "Tivemos algum problema inesperado"
+							, null, 
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+			}else if(opcao == 1) {
+				String[] dadosCasa = {tituloImovel.getText(), valor.getText().replace(',', '.'), categoria.getText(), qtdQuartos.getValue().toString(),
+						qtdCamas.getValue().toString(), qtdBanheiros.getValue().toString(), qtdAndares.getValue().toString(),
+						qtdHospedes.getValue().toString()};
+				String[] endereco = {cep.getText(), cidade.getText(), uf.getSelectedItem().toString(), bairro.getText(),
+						lote.getText(), rua.getText(), comp.getText(), num.getValue().toString()};
+				boolean[] info = getInfoCs();
+				int i = dono.getSelectedIndex();
+				boolean inserir = dados.inserirCasa(dadosCasa, endereco, info, i, 2, posi);
+
+				janela.dispose();
+				new ViewMenuListas(dados,1);
+				// Enviando Mensagem de Sucesso
+				if(inserir) {
+					JOptionPane.showMessageDialog(null, "Casa cadastrado com Sucesso!!" + dados.getCasas().get(0).getTitulo()
+							, null, 
+							JOptionPane.INFORMATION_MESSAGE);
+				}else {					
+					JOptionPane.showMessageDialog(null, "Tivemos algum problema inesperado"
+							, null, 
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+			
+			}
+		}
 	}
-	
+		private boolean [] getInfoAp() {
+			boolean[] info = new boolean[4];
+			
+			//temElevador
+			if(simElevador.isSelected())
+				info[0] = true;
+			else
+				info[0] = false;
+			
+			// temSacada
+			if(simSacada.isSelected())
+				info[1] = true;
+			else
+				info[1] = false;
+			
+			// temGaragem
+			if(simGaragem.isSelected())
+				info[2] = true;
+			else
+				info[2] = false;
+			
+			// temCondominio
+			
+			if(simCond.isSelected())
+				info[3] = true;
+			else
+				info[3] = false;
+			
+				
+				
+			
+			return info;
+		}
+		
+		private boolean [] getInfoCs() {
+			boolean[] info = new boolean[2];
+			
+			if(simWifi.isSelected())
+				info[0] = true;
+			else
+				info[0] = false;
+			
+			if(simPisc.isSelected())
+				info[1] = true;
+			else
+				info[1] = false;
+			
+			return info;
+			
+		}
 }

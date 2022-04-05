@@ -13,12 +13,12 @@ public class Dados {
 		
 		String[] listaCidade = {"Rio Branco", "Maceio" , "Manaus", "Macapa", "Salvador", "Fortaleza", "Brasilia", "Vitoria", "Goiania", "Sao Luis" , "Belo Horizonte"};
 		String[] listaUF = {"AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG"};
-		for (int i = 0; i <= 10; i++) {
+		for (int i = 0; i <= 9; i++) {
 			
-			Endereco end = new Endereco("70"+i+"43-23"+i, listaCidade[i], listaUF[i], "bairro", Integer.toString(i), Integer.toString(i+2), "imovel", i+1);
+			Endereco end = new Endereco("70"+i+"43-23"+i, listaCidade[i], listaUF[i], "bairro", Integer.toString(i), Integer.toString(i+2), "imovel", String.valueOf(i+1));
 			Telefone telefone = new Telefone((short) (61 + i), 998413564 + (i * 3));
-			Pessoa p = new Pessoa("Pessoa " + i, telefone);
-			Descricao desc = new Descricao(i + 1, i + 1, i, (i > 5) ? i : i - 2, i + 2);
+			Pessoa p = new Pessoa("Pessoa " + i, "130."+i+"23.22"+i+2+"-00", i+"@gmail.com", telefone, end);
+			Descricao desc = new Descricao(i + 1, i + 1, i+2, (i > 5) ? i : i + 2, i + 2);
 			Apartamento ap = new Apartamento("Apartamento " + i, 100050 * 2, desc, p, end);
 			Casa casa = new Casa("Casa " + i,103450 * 2, "categoria"+i, desc, true, false, p, end);
 

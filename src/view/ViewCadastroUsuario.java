@@ -200,8 +200,9 @@ public class ViewCadastroUsuario implements ActionListener{
 					String tele = Validador.removeCaracteresEspeciais(telefone.getText().substring(5, 16));
 					String[] dadosPessoa = {nomeUsuario.getText(), cpf.getText(), email.getText(),
 							ddd, tele};
-					String[] endereco = {};
-				    boolean inserir  = dados.inserirPessoa(dadosPessoa, endereco);
+					String[] endereco = {cep.getText(), cidade.getText(), uf.getSelectedItem().toString(), bairro.getText(),
+							lote.getText(), rua.getText(), comp.getText(), num.getValue().toString()};
+				    boolean inserir  = dados.inserirPessoa(dadosPessoa, endereco, 1, 0);
 
 					limparCampos();
 					janela.dispose();

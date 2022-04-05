@@ -38,19 +38,23 @@ public class ControleDados {
 		return this.d.getReservas();
 	}
 	
-	public boolean inserirPessoa(String[] dadosPessoa, String[] endereco) {
+	public boolean inserirPessoa(String[] dadosPessoa, String[] endereco, int flag, int index) {
 		
 		if(!dadosPessoa[1].matches("[0-9.-]+") || !dadosPessoa[3].matches("[0-9]+") || !dadosPessoa[4].matches("[0-9]+")) {
 			return false;
 		} else {
 			Pessoa p = new Pessoa(dadosPessoa[0], dadosPessoa[1], dadosPessoa[2], 
-					new Telefone((short) Integer.parseInt(dadosPessoa[3]), Integer.parseInt(dadosPessoa[4])));
-			d.inserirPessoa(p);
+					new Telefone((short) Integer.parseInt(dadosPessoa[3]), Integer.parseInt(dadosPessoa[4])), 
+					new Endereco(endereco[0], endereco[1], endereco[2], endereco[3], endereco[4], endereco[5], endereco[6], endereco[7]));
+			if(flag == 1)
+				d.inserirPessoa(p);
+			else if (flag == 2)
+				d.getPessoas().set(index, p);
 			return true;
 		}
 	}
 	
-	public boolean inserirApartamento(String[] dadosApartamento, String[] endereco, boolean[] info, int i) {
+	public boolean inserirApartamento(String[] dadosApartamento, String[] endereco, boolean[] info, int i, int flag, int index) {
 		
 		if(!dadosApartamento[1].matches("[0-9.]+") || !dadosApartamento[2].matches("[1-9]+") || !dadosApartamento[3].matches("[1-9]+") 
 				|| !dadosApartamento[4].matches("[1-9]+") || !dadosApartamento[6].matches("[1-9]+")) {
@@ -60,13 +64,16 @@ public class ControleDados {
 			Apartamento ap = new Apartamento(dadosApartamento[0], Double.parseDouble(dadosApartamento[1]), 
 					new Descricao( Integer.parseInt(dadosApartamento[2]), Integer.parseInt(dadosApartamento[3]), Integer.parseInt(dadosApartamento[4]),
 							Integer.parseInt(dadosApartamento[5]), Integer.parseInt(dadosApartamento[6])), info[0], info[1], info[2], info[3], p, 
-					new Endereco());
-			d.inserirApartamento(ap);
+					new Endereco(endereco[0], endereco[1], endereco[2], endereco[3], endereco[4], endereco[5], endereco[6], endereco[7]));
+			if(flag == 1)
+				d.inserirApartamento(ap);
+			else if(flag == 2)
+				d.getApartamentos().set(index, ap);
 			return true;
 		}
 	}
 	
-	public boolean inserirCasa(String[] dadosCasa, String[] endereco, boolean[] info, int i) {
+	public boolean inserirCasa(String[] dadosCasa, String[] endereco, boolean[] info, int i, int flag, int index) {
 	
 		if(!dadosCasa[1].matches("[0-9.]+") || !dadosCasa[3].matches("[1-9]+") || !dadosCasa[4].matches("[1-9]+") 
 				|| !dadosCasa[5].matches("[1-9]+") || !dadosCasa[6].matches("[1-9]+") || !dadosCasa[7].matches("[1-9]+")) {
@@ -77,7 +84,14 @@ public class ControleDados {
 					new Descricao( Integer.parseInt(dadosCasa[3]), Integer.parseInt(dadosCasa[4]), Integer.parseInt(dadosCasa[5]),
 							Integer.parseInt(dadosCasa[6]), Integer.parseInt(dadosCasa[7])), info[0], info[1], p, 
 					new Endereco());
-			d.inserirCasa(casa);
+			
+			// 1 insere nova, 2 edita alguma
+			if(flag == 1) {
+				d.inserirCasa(casa);
+			}else if (flag == 1){
+				d.getCasas().set(index, casa);
+			}
+
 			return true;
 		}
 	}
