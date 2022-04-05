@@ -13,23 +13,23 @@ public class ViewReservar implements ListSelectionListener, ActionListener {
 	
 	String[]listaTotalUsuarios;
 	
-	private static JFrame janela = new JFrame("Reserva");
-	private static JLabel titulo = new JLabel("Reservar Imovel", SwingConstants.CENTER);
-	private static JButton voltar = new JButton("Voltar");
-	private static JButton reservar = new JButton("Reservar");
-	private static JLabel filtros = new JLabel("Filtros", SwingConstants.CENTER);
-	private static ButtonGroup buttonGroup = new ButtonGroup();
-	private static JRadioButton casa = new JRadioButton("Casas");
-	private static JRadioButton ap = new JRadioButton("Apartamentos");
-	private static JLabel LIm = new JLabel("Imovel");
-	private static JComboBox<String> im;
-	private static JLabel lLocatario = new JLabel("Locatario");
-	private static JComboBox<String> locatario;
-	private static JLabel labelDataI = new JLabel("Data Inicial: ");
-	private static JLabel labelDataF = new JLabel("Data Final: ");
-	private static ControleDados dados;
-	private static JFormattedTextField jFormattedTextDataI;
-	private static JFormattedTextField jFormattedTextDataF;
+	private JFrame janela = new JFrame("Reserva");
+	private JLabel titulo = new JLabel("Reservar Imovel", SwingConstants.CENTER);
+	private JButton voltar = new JButton("Voltar");
+	private JButton reservar = new JButton("Reservar");
+	private JLabel filtros = new JLabel("Filtros", SwingConstants.CENTER);
+	private ButtonGroup buttonGroup = new ButtonGroup();
+	private JRadioButton casa = new JRadioButton("Casas");
+	private JRadioButton ap = new JRadioButton("Apartamentos");
+	private JLabel LIm = new JLabel("Imovel");
+	private JComboBox<String> im;
+	private JLabel lLocatario = new JLabel("Locatario");
+	private JComboBox<String> locatario;
+	private JLabel labelDataI = new JLabel("Data Inicial: ");
+	private JLabel labelDataF = new JLabel("Data Final: ");
+	private ControleDados dados;
+	private JFormattedTextField jFormattedTextDataI;
+	private JFormattedTextField jFormattedTextDataF;
 	
 	public ViewReservar(ControleDados d) {
 	
@@ -144,7 +144,7 @@ public class ViewReservar implements ListSelectionListener, ActionListener {
 			String[] dataOcupada;
 			
 			if(ap.isSelected()) {
-				try {
+				//try {
 					//Olhando a disponibilidade do imovel
 					dataOcupada = dados.verificarDisponibilidade(jFormattedTextDataI.getText(),
 							jFormattedTextDataF.getText(), im.getSelectedIndex(), 1); 
@@ -155,14 +155,16 @@ public class ViewReservar implements ListSelectionListener, ActionListener {
 					} else { // se tiver alguma data ocupada parecer erro
 						mensagemErroCadastro(dataOcupada);
 					}
-				} catch (Exception e2) {
+				/*} catch (Exception e2) {
+					System.out.println(e2.getMessage());
 					JOptionPane.showMessageDialog(null, "Dados Incompletos ou errados"
 					, null, 
 					JOptionPane.ERROR_MESSAGE);
-				}
+					
+				}*/
 				
 			} else {
-				try {
+				//try {
 					dataOcupada = dados.verificarDisponibilidade(jFormattedTextDataI.getText(),
 							jFormattedTextDataF.getText(), im.getSelectedIndex(), 2);
 					if(dataOcupada[0] == null) {
@@ -172,11 +174,12 @@ public class ViewReservar implements ListSelectionListener, ActionListener {
 					} else {
 						mensagemErroCadastro(dataOcupada);
 					}
-				} catch (Exception e2) {
+				/*} catch (Exception e2) {
+					System.out.println(e2.getMessage());
 					JOptionPane.showMessageDialog(null, "Dados Incompletos ou errados"
 							, null, 
 							JOptionPane.ERROR_MESSAGE);
-				}
+				}*/
 			}
 		}
 		
