@@ -1,6 +1,10 @@
 package controle;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import modelo.*;
 
@@ -168,10 +172,49 @@ public class ControleDados {
 		for(Pessoa p : d.getPessoas()) {
 			lista[i] = p.getNome();
 			i++;
+		}	
+		return lista;
+	}
+	
+	public boolean verificarDisponibilidade(String dataInicial, String dataFinal, int j, int tipo) {
+		
+		Imovel imovel;
+		int i;
+		Calendar cal = (Calendar) Calendar.getInstance();
+		Calendar cal2 = (Calendar) Calendar.getInstance();
+		Calendar cal3 = (Calendar) Calendar.getInstance();
+		
+		switch(tipo) {
+		case 1 -> imovel = d.getCasas().get(j);
+		case 2 -> imovel = d.getApartamentos().get(j);
+		default -> imovel = d.getCasas().get(j);
 		}
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date data_inicial = null;
 		
-		return lista;
+		try {
+			data_inicial = sdf.parse(dataInicial);
+			cal2.setTime(sdf.parse("01/01/2022"));
+			cal2.setTime(sdf.parse(dataFinal));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		cal.setTime(data_inicial);
+		
+		System.out.println(cal == cal2);
+		for(i = 0; cal.compareTo(cal2) == 0  ;i++  ) {
+			cal.add(Calendar.DATE, 1);
+			System.out.println(i);
+		}
+		System.out.println(i);
+		
+		for( int k = i; cal.compareTo(cal3) == 0  ;k++) {
+			if(imovel.getDisponibilidade(k).getOcupacao()) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 }
