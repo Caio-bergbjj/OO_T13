@@ -215,9 +215,15 @@ public class ViewMenuListas implements ActionListener, ListSelectionListener{
 			
 			if(listaImoveis.getModel().getSize() < dados.listaCasas().length) {
 				nomeBusca = listaImoveis.getSelectedValue();
-				posicaoBusca = dados.getCasaNome(nomeBusca);
-				janela.dispose();
-				new ViewDetalhe(1, dados, posicaoBusca);
+				posicaoBusca = dados.getCasaPos(nomeBusca);
+				if(posicaoBusca >= 0) {
+					janela.dispose();
+					new ViewDetalhe(1, dados, posicaoBusca);
+				}else {
+					JOptionPane.showMessageDialog(null, "Casa não encontrada"
+							, null, 
+							JOptionPane.INFORMATION_MESSAGE);
+				}
 			}else {
 				janela.dispose();
 				new ViewDetalhe(1, dados, listaImoveis.getSelectedIndex());
@@ -232,9 +238,15 @@ public class ViewMenuListas implements ActionListener, ListSelectionListener{
 			
 			if(listaImoveis.getModel().getSize() < dados.listaAps().length) {
 				nomeBusca = listaImoveis.getSelectedValue();
-				posicaoBusca = dados.getApNome(nomeBusca);
-				janela.dispose();
-				new ViewDetalhe(2, dados, posicaoBusca);
+				posicaoBusca = dados.getApPos(nomeBusca);
+				if(posicaoBusca >= 0) {
+					janela.dispose();
+					new ViewDetalhe(2, dados, posicaoBusca);
+				}else {
+					JOptionPane.showMessageDialog(null, "Apartamento não encontrado"
+							, null, 
+							JOptionPane.INFORMATION_MESSAGE);
+				}
 			}else {
 				janela.dispose();
 				new ViewDetalhe(2, dados, listaImoveis.getSelectedIndex());
@@ -247,7 +259,7 @@ public class ViewMenuListas implements ActionListener, ListSelectionListener{
 			
 			if(listaUsuarios.getModel().getSize() < dados.listaUsuarios().length) {
 				nomeBusca = listaUsuarios.getSelectedValue();
-				posicaoBusca = dados.getPessoaNome(nomeBusca);
+				posicaoBusca = dados.getPessoaPos(nomeBusca);
 				janela.dispose();
 				new ViewDetalhe(3, dados, posicaoBusca);
 			}else {

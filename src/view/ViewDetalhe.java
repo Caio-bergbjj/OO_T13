@@ -774,10 +774,7 @@ public class ViewDetalhe implements ActionListener{
 				info[3] = true;
 			else
 				info[3] = false;
-			
-				
-				
-			
+		
 			return info;
 		}
 		

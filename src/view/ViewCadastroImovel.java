@@ -468,7 +468,7 @@ public class ViewCadastroImovel implements ActionListener{
 							lote.getText(), rua.getText(), comp.getText(), num.getValue().toString()};
 					boolean[] info = getInfoCs();
 					int i = dono.getSelectedIndex();
-					boolean inserir = dados.inserirEditarCasa(dadosCasa, endereco, info, i, 1, 0);
+					boolean inserir = dados.inserirEditarCasa(dadosCasa, endereco, info, i, 1, -1);
 
 
 					limparCampos();
@@ -553,9 +553,6 @@ public class ViewCadastroImovel implements ActionListener{
 			info[3] = true;
 		else
 			info[3] = false;
-		
-			
-			
 		
 		return info;
 	}

@@ -15,16 +15,6 @@ public class ControleDados {
 	public ControleDados() {
 		d.fillWithSomeData();
 	}
-	
-	public Dados getDados() {
-	
-		return d;
-	}
-
-	public void setDados(Dados d ) {
-		this.d = d;
-	}
-	
 	public ArrayList<Pessoa> getPessoas(){
 		return this.d.getPessoas();
 	}
@@ -37,13 +27,11 @@ public class ControleDados {
 		return this.d.getCasas();
 	}
 	
-	public ArrayList<Reserva> getReservas(){
-		return this.d.getReservas();
-	}
-	
 	public boolean inserirEditarPessoa(String[] dadosPessoa, String[] endereco, int flag, int index) {
 		
-		if(!dadosPessoa[1].matches("[0-9.-]+") || !dadosPessoa[3].matches("[0-9]+") || !dadosPessoa[4].matches("[0-9]+")) {
+		//   cpf composto somente de numeros       dd composto somente de numeros       somente numeros                          minimo de 9 numeros
+		if(!dadosPessoa[1].matches("[0-9.-]+") || !dadosPessoa[3].matches("[0-9]+") || !dadosPessoa[4].matches("[0-9]+") || !(dadosPessoa[4].length() == 9)
+				|| !dadosPessoa[2].contains("@")) {
 			return false;
 		} else {
 			Pessoa p = new Pessoa(dadosPessoa[0], dadosPessoa[1], dadosPessoa[2], 
@@ -201,7 +189,6 @@ public class ControleDados {
 			if(imovel.getDisponibilidade(i).getOcupacao()) {
 				dataOcupada[k] = imovel.getDisponibilidade(i).getData().toString();
 				k++;
-				System.out.println("Ocupado");
 			}
 			
 		}
@@ -246,64 +233,33 @@ public class ControleDados {
 			
 	}
 		
-	public int getCasaNome(String tituloCasa) {
+	public int getCasaPos(String tituloCasa) {
 		int posi = 0;
 		for(Casa casa: d.getCasas()) {
 			if(casa.getTitulo().equals(tituloCasa))
 				return posi;	
 			posi++;
 		}
-		return 0;
+		return -1;
 	}
 	
-	public int getApNome(String tituloAp) {
+	public int getApPos(String tituloAp) {
 		int posi = 0;
 		for(Apartamento ap: d.getApartamentos()) {
 			if(ap.getTitulo().equals(tituloAp))
 				return posi;	
 			posi++;
 		}
-		return 0;
+		return -1;
 	}
 	
-	public int getPessoaNome(String nome) {
+	public int getPessoaPos(String nome) {
 		int posi = 0;
 		for(Pessoa p: d.getPessoas()) {
 			if(p.getNome().equals(nome))
 				return posi;	
 			posi++;
 		}
-		return 0;
+		return -1;
 	}
 }
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	

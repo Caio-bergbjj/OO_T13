@@ -202,7 +202,7 @@ public class ViewCadastroUsuario implements ActionListener{
 							ddd, tele};
 					String[] endereco = {cep.getText(), cidade.getText(), uf.getSelectedItem().toString(), bairro.getText(),
 							lote.getText(), rua.getText(), comp.getText(), num.getValue().toString()};
-				    boolean inserir  = dados.inserirEditarPessoa(dadosPessoa, endereco, 1, 0);
+				    boolean inserir  = dados.inserirEditarPessoa(dadosPessoa, endereco, 1, -1);
 
 					limparCampos();
 					janela.dispose();
