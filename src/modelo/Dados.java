@@ -62,12 +62,4 @@ public class Dados {
 		reserva.setId(reservas.size()); // colocando o Id como a posicao + 1 no array list 
 	}
 
-	
-	
-	
-
-	
-	
-	
-
 }

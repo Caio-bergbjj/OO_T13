@@ -137,7 +137,7 @@ public class ViewReservar implements ListSelectionListener, ActionListener {
 			im.updateUI();
 		}
 		if(src == voltar) {
-			janela.dispose();
+			this.janela.dispose();
 			new ViewMenuListas(dados,1);		
 		}
 		if(src == reservar) { 
