@@ -2,13 +2,23 @@ package modelo;
 
 public class Apartamento extends Imovel{
 	
-	private boolean temElevador;
-	private boolean temSacada;
-	private boolean temGaragem;
-	private boolean temCondominio;
+	private boolean temElevador;//7
+	private boolean temSacada;//8
+	private boolean temGaragem;//9
+	private boolean temCondominio;//10
 	
-	public Apartamento(String titulo, double valor, Descricao descricao) {
-		super(titulo, valor, descricao);
+	public Apartamento(String titulo, double valor, Descricao descricao, boolean temElevador, boolean temSacada,
+			boolean temGaragem, boolean temCondominio, Pessoa dono, Endereco endereco) {
+		super(titulo, valor, descricao, dono, endereco);
+		this.temElevador = temElevador;
+		this.temSacada = temSacada;
+		this.temGaragem = temGaragem;
+		this.temCondominio = temCondominio;
+	}
+
+
+	public Apartamento(String titulo, double valor, Descricao descricao, Pessoa dono, Endereco endereco) {
+		super(titulo, valor, descricao, dono, endereco);
 		
 	}
 	

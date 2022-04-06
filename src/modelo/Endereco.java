@@ -12,6 +12,25 @@ public class Endereco {
 	private int numero;
 	
 	
+	
+	public Endereco(String cep, String cidade, String uf, String bairro, String lote, String rua, String complemento,
+			String numero) {
+		this.cep = cep;
+		this.cidade = cidade;
+		this.uf = uf;
+		this.bairro = bairro;
+		this.lote = lote;
+		this.rua = rua;
+		this.complemento = complemento;
+		this.numero = Integer. parseInt(numero);
+	}
+	
+	
+	public Endereco() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public String getCep() {
 		return cep;
 	}

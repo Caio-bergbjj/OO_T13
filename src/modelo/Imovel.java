@@ -2,23 +2,24 @@ package modelo;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.text.DateFormat;
 import java.text.ParseException;  
 
 public abstract class Imovel {
 	
 	private int id; 
-	private String titulo; 
+	private String titulo; //0
 	private Endereco endereco; 
-	private double valor; 
+	private double valor; //1
 	private Disponibilidade disponibilidade[]; 
-	private double nota; 
-	private Descricao descricao;
+	private Descricao descricao; // 2,3,4,5,6
+	private Pessoa dono;
 	
-	public Imovel(String titulo, double valor, Descricao descricao) {
+	public Imovel(String titulo, double valor, Descricao descricao, Pessoa dono, Endereco endereco) {
 		this.titulo = titulo;
 		this.valor = valor;
 		this.descricao = descricao;
+		this.endereco = endereco;
+		this.setDono(dono);
 		this.geraDisponibilidade();
 	}
 	
@@ -54,12 +55,6 @@ public abstract class Imovel {
 	public void setDisponibilidade(int posi, Disponibilidade disponibilidade) {
 		this.disponibilidade[posi] = disponibilidade;
 	}
-	public double getNota() {
-		return nota;
-	}
-	public void setNota(double nota) {
-		this.nota = nota;
-	}
 	public Descricao getDescricao() {
 		return descricao;
 	}
@@ -91,8 +86,18 @@ public abstract class Imovel {
 			cal.add(Calendar.DATE, 1);
 		}
 	}
+
+
+	public Pessoa getDono() {
+		return dono;
+	}
+
+
+	public void setDono(Pessoa dono) {
+		this.dono = dono;
+	}
 	
-	public void mostraDisponibilidade() {
+	/*public void mostraDisponibilidade() {
 		String dateToStr;
 		String ocupacao;
 		System.out.println("Data\t\tOcupação");
@@ -105,5 +110,5 @@ public abstract class Imovel {
 			}
 			System.out.println(dateToStr + "\t" + ocupacao);
 		}
-	}
+	}*/
 }

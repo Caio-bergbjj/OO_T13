@@ -1,12 +1,12 @@
 package modelo;
 
 public class Pessoa {
-	private int id_pessoa;
-	private String nome;
-	private String cpf;
-	private String email;
-	private Endereco endereco;
-	private Telefone telefone;
+	private int id_pessoa; 
+	private String nome; //0
+	private String cpf; //1
+	private String email; //2
+	private Endereco endereco; 
+	private Telefone telefone; //3, 4
 	
 	
 	public int getId_pessoa() {
@@ -57,25 +57,13 @@ public class Pessoa {
 	public void setTelefone(Telefone telefone) {
 		this.telefone = telefone;
 	}
-		
-	public Pessoa(String nome, String cpf, String email){
-		this.nome = nome;
-		this.cpf = cpf;
-	    this.email = email;
-	}
 	
-	public Pessoa(String nome, String cpf, Telefone telefone, String email){
+	public Pessoa(String nome, String cpf, String email, Telefone telefone, Endereco endereco){
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
 		this.telefone = telefone;
-	}
-	
-	public Pessoa(String nome, Telefone telefone) {
-		
-		this.nome = nome;
-		this.telefone = telefone;
-		
+		this.endereco = endereco;
 	}
 	
 
