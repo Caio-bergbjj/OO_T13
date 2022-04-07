@@ -1,5 +1,12 @@
 package modelo;
 
+/**
+ * Classe para Apartamento, um tipo de Imóvel
+ * @author Rafael Nobre e Caio Berg
+ * @version 1.0 (Mar 22)
+ *
+ */
+
 public class Apartamento extends Imovel{
 	
 	private boolean temElevador;//7

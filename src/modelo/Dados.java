@@ -2,12 +2,23 @@ package modelo;
 
 import java.util.ArrayList;
 
+/**
+ * Classe de dados, onde será armazenado as listas de objetos, com os métodos de inserção
+ * @author Rafael Nobre e Caio Berg
+ *
+ */
+
 public class Dados {
 	
 	private ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
 	private ArrayList<Casa> casas = new ArrayList<Casa>();
 	private ArrayList<Apartamento> apartamentos = new ArrayList<Apartamento>();
 	private ArrayList<Reserva> reservas = new ArrayList<Reserva>();
+	
+	/**
+	 * Método para cadastro de dados aleatórios na inicialização do sistema
+	 * Adiciona 9 casas, 9 apartamentos e 9 pesosas dentro das listas de objetos
+	 */
 	
 	public void fillWithSomeData() {
 		
@@ -44,19 +55,41 @@ public class Dados {
 		return reservas;
 	}
 	
+	/**
+	 * Método para inserção de uma nova pessoa dentro da lista de pessoas
+	 * @param p, um objeto do tipo Pessoa
+	 */
+	
 	public void inserirPessoa(Pessoa p) {
 		this.pessoas.add(p);
 	}
+	
+	/**
+	 * Método para inserção de uma nova casa dentro da lista de casas
+	 * @param casa, um objeto do tipo Casa
+	 */
 	public void inserirCasa(Casa casa) {
 		this.casas.add(casa);
 		casa.setId(casas.size()); // colocando o Id como a posicao + 1 no array list 
 		
 	}
+	
+	/**
+	 * Método para inserção de um novo apartamento dentro da lista de apartamentos
+	 * @param ap, um objeto do tipo Apartamento
+	 */
+	
 	public void inserirApartamento(Apartamento ap) {
 		this.apartamentos.add(ap);
 		ap.setId(apartamentos.size()); // colocando o Id como a posicao + 1 no array list 
 		
 	}
+	
+	/**
+	 * Método para inserção de uma nova reserva dentro da lista de reservas
+	 * @param reserva, um objeto do tipo Reserva
+	 */
+	
 	public void inserirReserva(Reserva reserva) {
 		this.reservas.add(reserva);
 		reserva.setId(reservas.size()); // colocando o Id como a posicao + 1 no array list 

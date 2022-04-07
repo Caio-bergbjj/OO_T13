@@ -1,4 +1,12 @@
 package modelo;
+
+/**
+ * Classe para Descricao, um conjunto de características de um Imóvel
+ * @author Rafael Nobre e Caio Berg
+ * @version 1.0 (Mar 22)
+ *
+ */
+
 public class Descricao {
 	private int qtdQuartos;
 	private int qtdCamas;

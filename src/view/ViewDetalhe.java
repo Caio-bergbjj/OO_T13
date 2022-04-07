@@ -54,9 +54,9 @@ public class ViewDetalhe implements ActionListener{
 	private JComboBox<String> dono;
 	private JLabel lBairro = new JLabel("Bairro");
 	private JTextField bairro = new JTextField();
-	private JLabel lLote = new JLabel("Rua");
+	private JLabel lLote = new JLabel("Lote");
 	private JTextField lote = new JTextField();
-	private JLabel lRua = new JLabel("Lote");
+	private JLabel lRua = new JLabel("Rua");
 	private JTextField rua = new JTextField();
 	private JLabel lComp = new JLabel("Complemento");
 	private JTextField comp = new JTextField();

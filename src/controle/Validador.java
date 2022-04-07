@@ -4,7 +4,20 @@ import java.util.InputMismatchException;
 
 import javax.swing.text.MaskFormatter;
 
+/**
+ * Classe auxiliar para realizar validação e manipulação de strings e máscaras.
+ * @author Rafael Nobre
+ * @version 1.0 (Apr 22)
+ *
+ */
+
 public class Validador {
+	
+	/**
+	 * Método para validar cpf de acordo com a estrutura real de geração de Códigos de Pessoa Física
+	 * @param CPF
+	 * @return verdadeiro ou falso, caso o cpf seja ou não válido
+	 */
 	
 	public static boolean validaCpf(String CPF) {
 		
@@ -62,6 +75,13 @@ public class Validador {
 		}
 	}
 	
+	/**
+	 * Método para manipulação de strings, removendo caracteres especiais
+	 * Remove caracteres como (".", "-", "/", " ") substituindo por vazio ("")
+	 * @param doc, a strinf de entrada
+	 * @return string após remoção dos caracteres especiais
+	 */
+	
 	public static String removeCaracteresEspeciais(String doc) {
 		if (doc.contains(".")) {
 			doc = doc.replace(".", "");
@@ -77,6 +97,12 @@ public class Validador {
 		}
 		return doc;
 	}
+	
+	/**
+	 * Método para geração de um MaskFormatter a partir de uma string
+	 * @param Mascara, em formato de string
+	 * @return F_Mascara, em formato de MaskFormatter
+	 */
 	
 	public static MaskFormatter Mascara(String Mascara){
         

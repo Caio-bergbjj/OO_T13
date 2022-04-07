@@ -4,6 +4,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.text.ParseException;  
 
+/**
+ * Classe para Imóvel
+ * @author Rafael Nobre e Caio Berg
+ * @version 1.0 (Mar 22)
+ *
+ */
+
 public abstract class Imovel {
 	
 	private int id; 
@@ -61,6 +68,11 @@ public abstract class Imovel {
 	public void setDescricao(Descricao descricao) {
 		this.descricao = descricao;
 	} 
+	
+	/*
+	 * Método para preencher a disponibilidade do Imóvel, no momento da instancicação
+	 * Define todas as datas do período como livres
+	 */
 	
 	public void geraDisponibilidade() {
 		this.disponibilidade = new Disponibilidade[365];

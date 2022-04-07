@@ -3,6 +3,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Classe para período
+ * @author Rafael Nobre e Caio Berg
+ * @version 1.0 (Mar 22)
+ */
+
 public class Periodo {
 	private Date data_inicial;
 	private Date data_final;
@@ -32,6 +38,10 @@ public class Periodo {
 	public void setData_final(Date data_final) {
 		this.data_final = data_final;
 	}
+	
+	/**
+	 * Método para retornar o objeto período em um formato de string, de forma mais intuitiva
+	 */
 
 	@Override
 	public String toString() {

@@ -27,6 +27,17 @@ public class ControleDados {
 		return this.d.getCasas();
 	}
 	
+	/**
+	 * Método para inserir ou editar informações na lista de pessoas
+	 * @param dadosPessoa, dados necessário para criar um objeto tipo Casa
+	 * @param endereco, dados necessário para criar um objeto tipo Endereço
+	 * @param flag, indicador para determinar se a ação será de inserção ou de edição
+	 * flag = 1, inserção de nova pessoa
+	 * flag = 2, alteração de pessoa
+	 * @param index, caso seja para edição, o index passa a posição da pessoa dentro da lista
+	 * @return verdadeiro ou falso, caso a operação seja realizada ou não
+	 */
+	
 	public boolean inserirEditarPessoa(String[] dadosPessoa, String[] endereco, int flag, int index) {
 		
 		//   cpf composto somente de numeros       dd composto somente de numeros       somente numeros                          minimo de 9 numeros
@@ -45,6 +56,18 @@ public class ControleDados {
 			return true;
 		}
 	}
+	
+	/**
+	 * Método para inserir ou editar informações na lista de apartamentos
+	 * @param dadosApartamento, dados necessário para criar um objeto tipo Apartamento
+	 * @param endereco, dados necessário para criar um objeto tipo Endereço
+	 * @param info, dados específicos de objeto tipo Apartamento
+	 * @param flag, indicador para determinar se a ação será de inserção ou de edição
+	 * flag = 1, inserção de novo apartamento
+	 * flag = 2, alteração de apartamento
+	 * @param index, caso seja para edição, o index passa a posição do apartamento dentro da lista
+	 * @return verdadeiro ou falso, caso a operação seja realizada ou não
+	 */
 	
 	public boolean inserirEditarApartamento(String[] dadosApartamento, String[] endereco, boolean[] info, int i, int flag, int index) {
 		
@@ -65,6 +88,18 @@ public class ControleDados {
 			return true;
 		}
 	}
+	
+	/**
+	 * Método para inserir ou editar informações na lista de casas
+	 * @param dadosCasa, dados necessário para criar um objeto tipo Casa
+	 * @param endereco, dados necessário para criar um objeto tipo Endereço
+	 * @param info, dados específicos de objeto tipo Casa
+	 * @param flag, indicador para determinar se a ação será de inserção ou de edição
+	 * flag = 1, inserção de nova casa
+	 * flag = 2, alteração de casa
+	 * @param index, caso seja para edição, o index passa a posição da casa dentro da lista
+	 * @return verdadeiro ou falso, caso a operação seja realizada ou não
+	 */
 	
 	public boolean inserirEditarCasa(String[] dadosCasa, String[] endereco, boolean[] info, int i, int flag, int index) {
 	
@@ -89,6 +124,12 @@ public class ControleDados {
 		}
 	}
 	
+	/**
+	 * Método para remover uma pessoa de dentro da lista de pessoas
+	 * @param i, o index da pessoa que deve ser removida
+	 * @return verdadeiro ou falso, caso a operação seja realizada ou não
+	 */
+	
 	public boolean removerPessoa(int i) {
 		for(Reserva reserva : d.getReservas()) {
 			if(reserva.getPessoa().equals(d.getPessoas().get(i))) {
@@ -99,6 +140,12 @@ public class ControleDados {
 		return true;
 	}
 	
+	/**
+	 * Método para remvoer um Apartamento de dentro da lista de apartamentos
+	 * @param i, o index do apartamento a ser removido
+	 * @return verdadeiro ou falos, caso a operação seja realizada ou não
+	 */
+	
 	public boolean removerApartamento(int i) {
 		for(Reserva reserva : d.getReservas()) {
 			if(reserva.getImovel().equals(d.getApartamentos().get(i))) {
@@ -108,6 +155,13 @@ public class ControleDados {
 		d.getApartamentos().remove(i);
 		return true;
 	}
+	
+	/**
+	 * Método para remover uma Casa de dentro da lista de casas
+	 * @param i, o index da casa a ser removida
+	 * @return verdadeiro ou falso, caso a operação seja realizada ou não
+	 */
+	
 	public boolean removerCasa(int i) {
 		for(Reserva reserva : d.getReservas()) {
 			if(reserva.getImovel().equals(d.getCasas().get(i))) {
@@ -118,10 +172,21 @@ public class ControleDados {
 		return true;
 	}
 	
+	/**
+	 * Método para remover uma Reserva de dentro da lista de reservas
+	 * @param i, o index da reserva a ser removida
+	 * @return verdadeiro
+	 */
+	
 	public boolean removerReserva(int i) {
 		d.getReservas().remove(i);
 		return true;
 	}
+	
+	/**
+	 * Método para retorno da lista de nomes das casas cadastradas no sistema
+	 * @return lista com os títulos das casas cadastradas
+	 */
 	
 	public String[] listaCasas() {
 		String[] lista = new String[d.getCasas().size()];
@@ -136,6 +201,11 @@ public class ControleDados {
 		return lista;
 	}
 	
+	/**
+	 * Método para retorno da lista de nomes dos apartamentos cadastrados no sistema
+	 * @return lista com os títulos dos apartamentos cadastrados
+	 */
+	
 	public String[] listaAps() {
 		String[] lista = new String[d.getApartamentos().size()];
 		int i = 0;
@@ -148,6 +218,11 @@ public class ControleDados {
 		
 		return lista;
 	}
+	
+	/**
+	 * Método para retorno da lista de nomes dos usuário cadastrados no sistema
+	 * @return lista com os nomes das pesosas cadastradas
+	 */
 	
 	public String[] listaUsuarios() {
 		String[] lista = new String[d.getPessoas().size()];
@@ -197,6 +272,15 @@ public class ControleDados {
 		return data; // retornando as datas que nao estavam disponiveis, se estiver disponivel retorna null
 	}
 	
+	/**
+	 * Método para inserção de uma nova reserva dentro da lista de reservas
+	 * @param dataInicial, data inicial do período de reserva
+	 * @param dataFinal, data final do período de resera
+	 * @param indexImovel, índice do imóvel a ser reservado, dentro da lista específica do tipo de imóvel
+	 * @param indexPessoa, índice do locatário da reserva
+	 * @param tipo, tipo do imóvel. 1 para Casa, 2 para Apartamento
+	 */
+	
 	public void inserirReserva(String dataInicial, String dataFinal, int indexImovel, int indexPessoa, int tipo) {
 		
 		Imovel imovel = null;
@@ -233,6 +317,12 @@ public class ControleDados {
 			
 	}
 		
+	/**
+	 * Método para obter a posição da casa dentro da lista de casas cadastradas a partir do nome de entrada
+	 * @param titulo da casa
+	 * @return a posição da casa dentro da lista
+	 */
+	
 	public int getCasaPos(String tituloCasa) {
 		int posi = 0;
 		for(Casa casa: d.getCasas()) {
@@ -242,6 +332,12 @@ public class ControleDados {
 		}
 		return -1;
 	}
+	
+	/**
+	 * Método para obter a posição do apartamento dentro da lista de apartamentos cadastrados a partir do nome de entrada
+	 * @param titulo do apartamento
+	 * @return a posição do apartamento dentro da lista
+	 */
 	
 	public int getApPos(String tituloAp) {
 		int posi = 0;
@@ -253,6 +349,11 @@ public class ControleDados {
 		return -1;
 	}
 	
+	/**
+	 * Método para obter a posição da pessoa dentro da lista de pessoas cadastradas a partir do nome de entrada
+	 * @param nome da pessoa
+	 * @return a posição da pessoa dentro da lista
+	 */
 	public int getPessoaPos(String nome) {
 		int posi = 0;
 		for(Pessoa p: d.getPessoas()) {
