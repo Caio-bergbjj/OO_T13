@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import controle.*;
 
+
 public class ViewCadastroImovel implements ActionListener{
 	
 	private static String[] listaUF = {"AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG",

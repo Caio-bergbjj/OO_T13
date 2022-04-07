@@ -57,7 +57,8 @@ public class Dados {
 	
 	/**
 	 * Método para inserção de uma nova pessoa dentro da lista de pessoas
-	 * @param p, um objeto do tipo Pessoa
+	 * @param p
+	 * Um objeto do tipo Pessoa
 	 */
 	
 	public void inserirPessoa(Pessoa p) {
@@ -66,7 +67,8 @@ public class Dados {
 	
 	/**
 	 * Método para inserção de uma nova casa dentro da lista de casas
-	 * @param casa, um objeto do tipo Casa
+	 * @param casa
+	 * Um objeto do tipo Casa
 	 */
 	public void inserirCasa(Casa casa) {
 		this.casas.add(casa);
@@ -76,7 +78,8 @@ public class Dados {
 	
 	/**
 	 * Método para inserção de um novo apartamento dentro da lista de apartamentos
-	 * @param ap, um objeto do tipo Apartamento
+	 * @param ap
+	 * Um objeto do tipo Apartamento
 	 */
 	
 	public void inserirApartamento(Apartamento ap) {
@@ -87,7 +90,8 @@ public class Dados {
 	
 	/**
 	 * Método para inserção de uma nova reserva dentro da lista de reservas
-	 * @param reserva, um objeto do tipo Reserva
+	 * @param reserva
+	 * Um objeto do tipo Reserva
 	 */
 	
 	public void inserirReserva(Reserva reserva) {

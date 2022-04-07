@@ -1,5 +1,11 @@
 package modelo;
 
+/**
+ * Classe para Telefone
+ * @author Rafael Nobre e Caio Berg
+ *
+ */
+
 public class Telefone {
 
 	private short ddd;

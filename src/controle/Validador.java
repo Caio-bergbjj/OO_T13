@@ -16,6 +16,7 @@ public class Validador {
 	/**
 	 * Método para validar cpf de acordo com a estrutura real de geração de Códigos de Pessoa Física
 	 * @param CPF
+	 * CPF de entrada, no formato 000.000.000-00
 	 * @return verdadeiro ou falso, caso o cpf seja ou não válido
 	 */
 	

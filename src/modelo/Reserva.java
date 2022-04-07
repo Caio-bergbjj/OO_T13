@@ -1,4 +1,10 @@
 package modelo;
+/**
+ * Classe para Reserva
+ * @author Rafael Nobre e Caio Berg
+ *
+ */
+
 public class Reserva {
 	
 	private int id_reserva;

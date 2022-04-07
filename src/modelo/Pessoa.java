@@ -1,5 +1,11 @@
 package modelo;
 
+/**
+ * Classe para Pessoa
+ * @author Rafael Nobre e Caio Berg
+ *
+ */
+
 public class Pessoa {
 	private int id_pessoa; 
 	private String nome; //0

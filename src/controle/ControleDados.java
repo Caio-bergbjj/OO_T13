@@ -7,10 +7,21 @@ import java.util.Calendar;
 import java.util.Date;
 import modelo.*;
 
+/**
+ * Controle de Dados, tem como objetivo fazer a interface entre o pacote de Views, e o pacote de Modelos. 
+ * Controla toda a comunicação com os dados do sistema
+ * @author Rafael Nobre e Caio Berg
+ * @version 1.0 (Apr 22)
+ *
+ */
 
 public class ControleDados {
 	
 	private Dados d = new Dados();
+	
+	/**
+	 * Construtor do Controle de Dados
+	 */
 	
 	public ControleDados() {
 		d.fillWithSomeData();
@@ -29,12 +40,16 @@ public class ControleDados {
 	
 	/**
 	 * Método para inserir ou editar informações na lista de pessoas
-	 * @param dadosPessoa, dados necessário para criar um objeto tipo Casa
-	 * @param endereco, dados necessário para criar um objeto tipo Endereço
-	 * @param flag, indicador para determinar se a ação será de inserção ou de edição
+	 * @param dadosPessoa
+	 * Dados necessário para criar um objeto tipo Casa
+	 * @param endereco
+	 * Dados necessário para criar um objeto tipo Endereço
+	 * @param flag
+	 * Indicador para determinar se a ação será de inserção ou de edição
 	 * flag = 1, inserção de nova pessoa
 	 * flag = 2, alteração de pessoa
-	 * @param index, caso seja para edição, o index passa a posição da pessoa dentro da lista
+	 * @param index
+	 * Caso seja para edição, o index passa a posição da pessoa dentro da lista
 	 * @return verdadeiro ou falso, caso a operação seja realizada ou não
 	 */
 	
@@ -59,13 +74,19 @@ public class ControleDados {
 	
 	/**
 	 * Método para inserir ou editar informações na lista de apartamentos
-	 * @param dadosApartamento, dados necessário para criar um objeto tipo Apartamento
-	 * @param endereco, dados necessário para criar um objeto tipo Endereço
-	 * @param info, dados específicos de objeto tipo Apartamento
-	 * @param flag, indicador para determinar se a ação será de inserção ou de edição
+	 * @param dadosApartamento
+	 * lista de Strings com os dados do Apartamento
+	 * @param endereco
+	 * lista de String com as informações de Endereço
+	 * @param info
+	 * lista de booleans, identificando as opções booleanas do apartamento
+	 * @param i
+	 * Índice do proprietário do imóvel
+	 * @param flag
 	 * flag = 1, inserção de novo apartamento
 	 * flag = 2, alteração de apartamento
-	 * @param index, caso seja para edição, o index passa a posição do apartamento dentro da lista
+	 * @param index
+	 * índice do apartamento a ser alterado, caso a flag for 2
 	 * @return verdadeiro ou falso, caso a operação seja realizada ou não
 	 */
 	
@@ -91,13 +112,22 @@ public class ControleDados {
 	
 	/**
 	 * Método para inserir ou editar informações na lista de casas
-	 * @param dadosCasa, dados necessário para criar um objeto tipo Casa
-	 * @param endereco, dados necessário para criar um objeto tipo Endereço
-	 * @param info, dados específicos de objeto tipo Casa
-	 * @param flag, indicador para determinar se a ação será de inserção ou de edição
-	 * flag = 1, inserção de nova casa
-	 * flag = 2, alteração de casa
-	 * @param index, caso seja para edição, o index passa a posição da casa dentro da lista
+	 * @param dadosCasa
+	 * Dados necessário para criar um objeto tipo Casa
+	 * @param endereco
+	 * Dados necessário para criar um objeto tipo Endereço
+	 * @param info
+	 * Dados específicos de objeto tipo Casa
+	 * @param i
+	 * Índice do proprietário do imóvel
+	 * @param flag
+	 * Indicador para determinar se a ação será de inserção ou de edição
+	 * flag = 1
+	 * Inserção de nova casa
+	 * flag = 2
+	 * Alteração de casa
+	 * @param index
+	 * Caso seja para edição, o index passa a posição da casa dentro da lista
 	 * @return verdadeiro ou falso, caso a operação seja realizada ou não
 	 */
 	
@@ -126,7 +156,8 @@ public class ControleDados {
 	
 	/**
 	 * Método para remover uma pessoa de dentro da lista de pessoas
-	 * @param i, o index da pessoa que deve ser removida
+	 * @param i
+	 * O index da pessoa que deve ser removida
 	 * @return verdadeiro ou falso, caso a operação seja realizada ou não
 	 */
 	
@@ -142,7 +173,8 @@ public class ControleDados {
 	
 	/**
 	 * Método para remvoer um Apartamento de dentro da lista de apartamentos
-	 * @param i, o index do apartamento a ser removido
+	 * @param i
+	 * O index do apartamento a ser removido
 	 * @return verdadeiro ou falos, caso a operação seja realizada ou não
 	 */
 	
@@ -158,7 +190,8 @@ public class ControleDados {
 	
 	/**
 	 * Método para remover uma Casa de dentro da lista de casas
-	 * @param i, o index da casa a ser removida
+	 * @param i
+	 * O index da casa a ser removida
 	 * @return verdadeiro ou falso, caso a operação seja realizada ou não
 	 */
 	
@@ -174,7 +207,8 @@ public class ControleDados {
 	
 	/**
 	 * Método para remover uma Reserva de dentro da lista de reservas
-	 * @param i, o index da reserva a ser removida
+	 * @param i
+	 * O index da reserva a ser removida
 	 * @return verdadeiro
 	 */
 	
@@ -235,6 +269,21 @@ public class ControleDados {
 		return lista;
 	}
 	
+	/**
+	 * Método para verificar a disponibilidad de certo imóvel dentro de um período definido
+	 * @param dataInicial
+	 * Data de início do período que será verificado
+	 * @param dataFinal
+	 * Data de fim do período que será verificado
+	 * @param indexImovel
+	 * Indíce do imóvel cuja disponibilidade será analisada
+	 * @param tipo
+	 * Tipo de imóvel
+	 * 1 -> Casa
+	 * 2 -> Apartamento
+	 * @return Retorna as datas do período inserido que estão ocupadas, caso estejam livres, retorna null
+	 */
+	
 	public String[] verificarDisponibilidade(String dataInicial, String dataFinal, int indexImovel, int tipo ) {
 		
 		Imovel imovel = null;
@@ -274,11 +323,16 @@ public class ControleDados {
 	
 	/**
 	 * Método para inserção de uma nova reserva dentro da lista de reservas
-	 * @param dataInicial, data inicial do período de reserva
-	 * @param dataFinal, data final do período de resera
-	 * @param indexImovel, índice do imóvel a ser reservado, dentro da lista específica do tipo de imóvel
-	 * @param indexPessoa, índice do locatário da reserva
-	 * @param tipo, tipo do imóvel. 1 para Casa, 2 para Apartamento
+	 * @param dataInicial
+	 * Data inicial do período de reserva
+	 * @param dataFinal
+	 * Data final do período de resera
+	 * @param indexImovel
+	 * Índice do imóvel a ser reservado, dentro da lista específica do tipo de imóvel
+	 * @param indexPessoa
+	 * Índice do locatário da reserva
+	 * @param tipo
+	 * Tipo do imóvel. 1 para Casa, 2 para Apartamento
 	 */
 	
 	public void inserirReserva(String dataInicial, String dataFinal, int indexImovel, int indexPessoa, int tipo) {
@@ -319,7 +373,8 @@ public class ControleDados {
 		
 	/**
 	 * Método para obter a posição da casa dentro da lista de casas cadastradas a partir do nome de entrada
-	 * @param titulo da casa
+	 * @param tituloCasa
+	 * Título da Casa
 	 * @return a posição da casa dentro da lista
 	 */
 	
@@ -335,7 +390,8 @@ public class ControleDados {
 	
 	/**
 	 * Método para obter a posição do apartamento dentro da lista de apartamentos cadastrados a partir do nome de entrada
-	 * @param titulo do apartamento
+	 * @param tituloAp
+	 * Título do Apartamento
 	 * @return a posição do apartamento dentro da lista
 	 */
 	
@@ -351,7 +407,8 @@ public class ControleDados {
 	
 	/**
 	 * Método para obter a posição da pessoa dentro da lista de pessoas cadastradas a partir do nome de entrada
-	 * @param nome da pessoa
+	 * @param nome
+	 * Nome da pessoa
 	 * @return a posição da pessoa dentro da lista
 	 */
 	public int getPessoaPos(String nome) {
