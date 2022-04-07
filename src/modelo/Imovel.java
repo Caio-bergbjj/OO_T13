@@ -108,19 +108,4 @@ public abstract class Imovel {
 	public void setDono(Pessoa dono) {
 		this.dono = dono;
 	}
-	
-	/*public void mostraDisponibilidade() {
-		String dateToStr;
-		String ocupacao;
-		System.out.println("Data\t\tOcupação");
-		for(int i = 0;i<365;i++) {
-			dateToStr = DateFormat.getDateInstance(DateFormat.SHORT).format(this.disponibilidade[i].getData());
-			if(this.disponibilidade[i].getOcupacao()) {
-				ocupacao = "Ocupado";
-			}else {
-				ocupacao = "Livre";
-			}
-			System.out.println(dateToStr + "\t" + ocupacao);
-		}
-	}*/
 }

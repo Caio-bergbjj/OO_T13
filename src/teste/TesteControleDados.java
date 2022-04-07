@@ -6,17 +6,33 @@ import org.junit.jupiter.api.Test;
 
 import controle.ControleDados;
 
+/**
+ * Classe para testes unitários dos metodos do ControleDados
+ * @author Rafael Nobre e Caio Berg
+ * @version 1.0 (Abr 07)
+ * @
+ * */
+
 class TesteControleDados {
 	
 	private ControleDados dados;
 	String[] endereco;
+	
+	/**
+	 * Inicialização de Dados para o uso nos testes
+	 * 
+	 * */
 	
 	@BeforeEach
 	public void inicializar() {
 		this.dados = new ControleDados();
 		this.endereco = new String[]{"70650-236", "Brasilia", "DF", "Cruzeiro", "0", "12" , "Apartamento", "403"};
 	}
-
+	/**
+	 * Teste de inserir uma nova pessoa na base de dados 
+	 * 
+	 * */
+	
 	@Test
 	void testInserirPessoa() {
 		String[] dadosPessoa = {"Caio Berg", "831.066.245-66", "caioteste24@gmail.com", "61", "997843518"};
@@ -32,7 +48,12 @@ class TesteControleDados {
 		
 		
 	}
-
+	
+	/**
+	 * Teste de inserir um novo apartamento na base de dados 
+	 * 
+	 * */
+	
 	@Test
 	void testInserirApartamento() {
 		String[] dadosApartamento = {"Ap do Rio", "1000.00","2","3", "2", "2", "4"};
@@ -46,6 +67,11 @@ class TesteControleDados {
 		
 	}
 
+	/**
+	 * Teste de inserir uma nova casa na base de dados 
+	 * 
+	 * */
+	
 	@Test
 	void testInserirCasa() {
 		String[] dadosCasa = {"Casa do Rio", "1000.00","Praia","2","3", "2", "2", "4"};
@@ -56,6 +82,12 @@ class TesteControleDados {
 		dadosCasa[3] = dadosCasa[3].concat("s");
 		assertFalse(dados.inserirEditarCasa(dadosCasa, endereco, info, 0, 1, -1));
 	}
+	
+	/**
+	 * 
+	 * Teste para retorno da posicao da posicao do dado(Casa) se ja estiver cadastrado 
+	 * 
+	 * */
 
 	@Test
 	void testGetCasaPos() {
@@ -71,6 +103,12 @@ class TesteControleDados {
 		assertEquals(-1,i);
 
 	}
+	
+	/**
+	 * 
+	 * Teste para retorno da posicao da posicao do dado(Apartamento) se ja estiver cadastrado 
+	 * 
+	 * */
 
 	@Test
 	void testGetApPos() {
@@ -84,6 +122,12 @@ class TesteControleDados {
 		
 		assertEquals(-1,i);
 	}
+	
+	/**
+	 * 
+	 * Teste para retorno da posicao da posicao do dado(Pessoa) se ja estiver cadastrado 
+	 * 
+	 * */
 
 	@Test
 	void testGetPessoaPos() {
@@ -98,6 +142,11 @@ class TesteControleDados {
 		assertEquals(-1,i);
 	}
 	
+	
+	/**
+	 * Teste para editar uma pessoa já existente na base de dados 
+	 * 
+	 * */
 	@Test
 	void testEditarPessoa() {
 		String[] dadosNovaPessoa = {"Caio Berg", "831.066.245-66", "caioteste24@gmail.com", "61", "997843518"};
@@ -115,6 +164,11 @@ class TesteControleDados {
 		
 	}
 	
+	/**
+	 * Teste para editar um apartamento já existente na base de dados 
+	 * 
+	 * */
+	
 	@Test
 	void testEditarApartamento() {
 		String[] dadosNovoApartamento = {"Ap do Rio", "1000.00","2","3", "2", "2", "4"};
@@ -130,6 +184,11 @@ class TesteControleDados {
 		
 		
 	}
+	
+	/**
+	 * Teste para editar uma casa já existente na base de dados 
+	 * 
+	 * */
 	
 	@Test
 	void testEditarCasa() {

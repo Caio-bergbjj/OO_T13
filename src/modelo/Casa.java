@@ -14,7 +14,6 @@ public class Casa extends Imovel{
 	private boolean temWifi;
 	
 	
-	
 	public Casa(String titulo, double valor, String categoria, Descricao descricao, boolean temPiscina,
 			boolean temWifi, Pessoa dono, Endereco endereco) {
 		super(titulo, valor, descricao, dono, endereco);
