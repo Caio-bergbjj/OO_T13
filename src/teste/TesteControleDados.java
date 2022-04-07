@@ -10,10 +10,10 @@ import controle.ControleDados;
  * Classe para testes unitários dos metodos do ControleDados
  * @author Rafael Nobre e Caio Berg
  * @version 1.0 (Abr 07)
- * @
+ * 
  * */
 
-class TesteControleDados {
+public class TesteControleDados {
 	
 	private ControleDados dados;
 	String[] endereco;
@@ -34,7 +34,7 @@ class TesteControleDados {
 	 * */
 	
 	@Test
-	void testInserirPessoa() {
+	public void testInserirPessoa() {
 		String[] dadosPessoa = {"Caio Berg", "831.066.245-66", "caioteste24@gmail.com", "61", "997843518"};
 		
 		assertTrue(dados.inserirEditarPessoa(dadosPessoa, endereco, 1, -1));
@@ -55,7 +55,7 @@ class TesteControleDados {
 	 * */
 	
 	@Test
-	void testInserirApartamento() {
+	public void testInserirApartamento() {
 		String[] dadosApartamento = {"Ap do Rio", "1000.00","2","3", "2", "2", "4"};
 		boolean[] info = {true, false, true, true};
 
@@ -73,7 +73,7 @@ class TesteControleDados {
 	 * */
 	
 	@Test
-	void testInserirCasa() {
+	public void testInserirCasa() {
 		String[] dadosCasa = {"Casa do Rio", "1000.00","Praia","2","3", "2", "2", "4"};
 		boolean[] info = {true, false};
 		
@@ -90,7 +90,7 @@ class TesteControleDados {
 	 * */
 
 	@Test
-	void testGetCasaPos() {
+	public void testGetCasaPos() {
 		
 		String nome = "Casa 5";
 		int i = dados.getCasaPos(nome);
@@ -111,7 +111,7 @@ class TesteControleDados {
 	 * */
 
 	@Test
-	void testGetApPos() {
+	public void testGetApPos() {
 		String nome = "Apartamento 6";
 		int i = dados.getApPos(nome);
 		
@@ -130,7 +130,7 @@ class TesteControleDados {
 	 * */
 
 	@Test
-	void testGetPessoaPos() {
+	public void testGetPessoaPos() {
 		String nome = "Pessoa 9";
 		int i = dados.getPessoaPos(nome);
 		
@@ -148,7 +148,7 @@ class TesteControleDados {
 	 * 
 	 * */
 	@Test
-	void testEditarPessoa() {
+	public void testEditarPessoa() {
 		String[] dadosNovaPessoa = {"Caio Berg", "831.066.245-66", "caioteste24@gmail.com", "61", "997843518"};
 		
 		String nomePessoaAntiga = dados.getPessoas().get(5).getNome();
@@ -170,7 +170,7 @@ class TesteControleDados {
 	 * */
 	
 	@Test
-	void testEditarApartamento() {
+	public void testEditarApartamento() {
 		String[] dadosNovoApartamento = {"Ap do Rio", "1000.00","2","3", "2", "2", "4"};
 		boolean[] info = {true, false, true, true};
 		
@@ -191,7 +191,7 @@ class TesteControleDados {
 	 * */
 	
 	@Test
-	void testEditarCasa() {
+	public void testEditarCasa() {
 		String[] dadosNovaCasa = {"Ap do Rio", "1000.00","Praia","2","3", "2", "2", "4"};
 		boolean[] info = {true, false};
 		
