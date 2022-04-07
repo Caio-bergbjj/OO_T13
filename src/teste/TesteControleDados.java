@@ -18,7 +18,7 @@ class TesteControleDados {
 	}
 
 	@Test
-	void testInserirEditarPessoa() {
+	void testInserirPessoa() {
 		String[] dadosPessoa = {"Caio Berg", "831.066.245-66", "caioteste24@gmail.com", "61", "997843518"};
 		
 		assertTrue(dados.inserirEditarPessoa(dadosPessoa, endereco, 1, -1));
@@ -34,7 +34,7 @@ class TesteControleDados {
 	}
 
 	@Test
-	void testInserirEditarApartamento() {
+	void testInserirApartamento() {
 		String[] dadosApartamento = {"Ap do Rio", "1000.00","2","3", "2", "2", "4"};
 		boolean[] info = {true, false, true, true};
 
@@ -47,8 +47,8 @@ class TesteControleDados {
 	}
 
 	@Test
-	void testInserirEditarCasa() {
-		String[] dadosCasa = {"Ap do Rio", "1000.00","Praia","2","3", "2", "2", "4"};
+	void testInserirCasa() {
+		String[] dadosCasa = {"Casa do Rio", "1000.00","Praia","2","3", "2", "2", "4"};
 		boolean[] info = {true, false};
 		
 		assertTrue(dados.inserirEditarCasa(dadosCasa, endereco, info, 0, 1, -1));
@@ -96,6 +96,53 @@ class TesteControleDados {
 		i = dados.getPessoaPos(nome);
 		
 		assertEquals(-1,i);
+	}
+	
+	@Test
+	void testEditarPessoa() {
+		String[] dadosNovaPessoa = {"Caio Berg", "831.066.245-66", "caioteste24@gmail.com", "61", "997843518"};
+		
+		String nomePessoaAntiga = dados.getPessoas().get(5).getNome();
+		
+		assertFalse(nomePessoaAntiga.equals(dadosNovaPessoa[0])); // dados diferentes
+		
+		dados.inserirEditarPessoa(dadosNovaPessoa, endereco, 2, 5);// alterando dados
+		
+		String nomePessoaAtualizada = dados.getPessoas().get(5).getNome();
+		assertTrue(nomePessoaAtualizada.equals(dadosNovaPessoa[0])); //dados deveriam ser iguai
+		
+		
+		
+	}
+	
+	@Test
+	void testEditarApartamento() {
+		String[] dadosNovoApartamento = {"Ap do Rio", "1000.00","2","3", "2", "2", "4"};
+		boolean[] info = {true, false, true, true};
+		
+		String nomeApAntigo = dados.getApartamentos().get(6).getTitulo();
+		assertFalse(nomeApAntigo.equals(dadosNovoApartamento[0]));
+		
+		dados.inserirEditarApartamento(dadosNovoApartamento, endereco, info, 0, 2, 6);
+		
+		String nomeApAtualizado = dados.getApartamentos().get(6).getTitulo();
+		assertTrue(nomeApAtualizado.equals(dadosNovoApartamento[0]));
+		
+		
+	}
+	
+	@Test
+	void testEditarCasa() {
+		String[] dadosNovaCasa = {"Ap do Rio", "1000.00","Praia","2","3", "2", "2", "4"};
+		boolean[] info = {true, false};
+		
+		String nomeCasaAntiga = dados.getCasas().get(4).getTitulo();
+		assertFalse(nomeCasaAntiga.equals(dadosNovaCasa[0]));
+		
+		dados.inserirEditarCasa(dadosNovaCasa, endereco, info, 3, 2, 4);
+		
+		String nomeCasaAtualizada = dados.getCasas().get(4).getTitulo();
+		assertTrue(nomeCasaAtualizada.equals(dadosNovaCasa[0]));
 	}
 
 }
