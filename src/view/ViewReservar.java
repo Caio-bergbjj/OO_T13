@@ -9,6 +9,10 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.text.MaskFormatter;
 import controle.ControleDados;
 
+/*
+ * Classe da Tela de Reserva, onde é possível reservar um Imóvel em certo Período para um locatário
+ */
+
 public class ViewReservar implements ListSelectionListener, ActionListener {
 	
 	String[]listaTotalUsuarios;
@@ -30,6 +34,12 @@ public class ViewReservar implements ListSelectionListener, ActionListener {
 	private ControleDados dados;
 	private JFormattedTextField jFormattedTextDataI;
 	private JFormattedTextField jFormattedTextDataF;
+	
+	/**
+	 * Construtor da tela de Reserva
+	 * @param d
+	 * Controle de dados
+	 */
 	
 	public ViewReservar(ControleDados d) {
 	
@@ -117,7 +127,10 @@ public class ViewReservar implements ListSelectionListener, ActionListener {
 		
 	}
 
-
+	/**
+	 * Método para controle de Eventos
+	 */
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
@@ -185,11 +198,22 @@ public class ViewReservar implements ListSelectionListener, ActionListener {
 		
 	}
 	
+	/**
+	 * Método para mostar pop-up ao ocorrer erro na reserva
+	 * @param dataOcupada
+	 * String com as datas que estão ocupadas
+	 */
+	
 	public void mensagemErroCadastro(String [] dataOcupada) {
 		JOptionPane.showMessageDialog(null, "As seguintes datas escolhidas estao ocupadas:\n"+String.join("\n", dataOcupada)
 		, null, 
 		JOptionPane.ERROR_MESSAGE);
 	}
+	
+	/**
+	 * Método para mostar pop-up com uma mensagem de sucesso
+	 */
+	
 	
 	public void mensagemSucessoCadastro() {
 		JOptionPane.showMessageDialog(null, "Reservado com sucesso!", null, 

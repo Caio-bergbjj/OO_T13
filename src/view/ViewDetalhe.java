@@ -24,6 +24,13 @@ import javax.swing.SwingConstants;
 import controle.ControleDados;
 import controle.Validador;
 
+/**
+ * View de detalhe do objeto, abre uma tela com as informações preenchidas de Pessoa, Casa ou Apartamento.
+ * Tela onde é possível fazer a exclusão ou update de certo objeto
+ * @author VAIO
+ *
+ */
+
 public class ViewDetalhe implements ActionListener{
 	
 	private static String[] listaUF = {"AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG",
@@ -121,6 +128,17 @@ public class ViewDetalhe implements ActionListener{
 	private ControleDados dados;
 	private int opcao;
 	private int posi;
+	
+	/**
+	 * Construtor da view de detalhamento
+	 * @param op
+	 * Define o tipo de objeto
+	 * 1 para Casa, 2 para Apartamento e 3 para Pessoa
+	 * @param d
+	 * Controle de dados 
+	 * @param index
+	 * O índice do objeto dentro da lista de objetos cadastrados que será detalhado
+	 */
 	
 	public ViewDetalhe(int op, ControleDados d, int index) {
 		dados = d;
@@ -426,6 +444,14 @@ public class ViewDetalhe implements ActionListener{
 		excluir.addActionListener(this);
 		
 	}
+	
+	/**
+	 * Método para preencher os campos.
+	 * Busca os dados cadastrados no sistema, e preenche em seus respectivos campos
+	 * @param op
+	 * Define o tipo de objeto
+	 * 1 para Casa, 2 para Apartamento e 3 para Pessoa
+	 */
 	
 	private void preencher(int op) {
 		

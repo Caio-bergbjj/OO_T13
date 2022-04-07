@@ -5,6 +5,12 @@ import java.awt.event.*;
 import javax.swing.*;
 import controle.*;
 
+/**
+ * Classe do menu introdutório, permite o redirecionamento para os principais meios, o de Imóveis e os de Usuários
+ * @author Rafael Nobre e Caio Berg
+ *
+ */
+
 public class ViewMenu implements ActionListener{
 
 	private static JFrame janela = new JFrame("Menu");
@@ -13,6 +19,9 @@ public class ViewMenu implements ActionListener{
 	private static JButton btnUsuarios = new JButton("Gerenciar Usuários");
 	public static ControleDados dados = new ControleDados();
 	
+	/**
+	 * Construtor do Menu
+	 */
 	
 	public ViewMenu() {
 		
@@ -45,6 +54,11 @@ public class ViewMenu implements ActionListener{
 		
 	}
 	
+	/**
+	 * Método main, onde dá início ao sistema
+	 * @param args
+	 */
+	
 	public static void main(String[] args) {
 		ViewMenu menu = new ViewMenu();
 		
@@ -52,6 +66,10 @@ public class ViewMenu implements ActionListener{
 		btnUsuarios.addActionListener(menu);
 			
 	}
+	
+	/**
+	 * Método para controle dos eventos na janela
+	 */
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {

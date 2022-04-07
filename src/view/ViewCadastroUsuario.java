@@ -20,6 +20,11 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import controle.ControleDados;
 
+/**
+ * Tela para cadastro de Usuário, possui campos de inserção e seleção
+ * @author Rafael Nobre e Caio Berg
+ */
+
 public class ViewCadastroUsuario implements ActionListener{
 	
 	private String[] listaUF = {"AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG",
@@ -59,6 +64,13 @@ public class ViewCadastroUsuario implements ActionListener{
 	private JLabel lTelefone = new JLabel("Telefone");
 	private JButton cadastrar = new JButton("Cadastrar");
 	private ControleDados dados;
+	
+	
+	/**
+	 * Construtor da classe, cria toda a view
+	 * @param d
+	 * Controle de dados
+	 */
 	
 	public ViewCadastroUsuario(ControleDados d) {
 		dados = d;
@@ -163,6 +175,10 @@ public class ViewCadastroUsuario implements ActionListener{
 		cadastrar.addActionListener(this);
 	}
 	
+	/**
+	 * Método para limpar todos os campos dos formulários, a fim de manter controle das informações
+	 */
+	
 	private void limparCampos() {
 		this.nomeUsuario.setText("");
 		this.cep.setValue(null);
@@ -177,6 +193,9 @@ public class ViewCadastroUsuario implements ActionListener{
 		this.num.setValue(0);
 	}
 	 
+	/**
+	 * Método para controle dos enventos disparados dentro da janela
+	 */
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -221,6 +240,12 @@ public class ViewCadastroUsuario implements ActionListener{
 		}
 			
 	}
+	
+	/**
+	 * Método para controlar os campos, fazendo validações em cada campo, garantindo que ele não esteja em branco, ou não selecionado
+	 * @return
+	 * retorna uma lista de mensagens de erros, dos campos inválidos
+	 */
 	
 	private ArrayList<String> verificarCampos() {
 		ArrayList<String> erros = new ArrayList<String>();

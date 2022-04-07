@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import javax.swing.*;
 import controle.*;
 
+/**
+ * Tela para cadastro de imóvel, possui campos de inserção e seleção para criação dos objetos Casa e Apartamento
+ * @author Rafael Nobre e Caio Berg
+ */
 
 public class ViewCadastroImovel implements ActionListener{
 	
@@ -95,6 +99,12 @@ public class ViewCadastroImovel implements ActionListener{
 	
 	private JButton cadastrar = new JButton("Cadastrar");
 	private ControleDados dados;
+	
+	/**
+	 * Construtor da classe, cria toda a view
+	 * @param d
+	 * Controle de dados
+	 */
 	
 	public ViewCadastroImovel(ControleDados d) {
 		dados = d;
@@ -325,6 +335,12 @@ public class ViewCadastroImovel implements ActionListener{
 		
 	}
 	
+	/**
+	 * Controle da visibilidade dos campos específicos de Casa
+	 * @param opcao
+	 * true para tornar o form visível, e false para tornar o form invisível
+	 */
+	
 	private void setVisibleFormCasa(boolean opcao) {
 		if(opcao) {
 			// Setando o Form Casas visible
@@ -348,6 +364,12 @@ public class ViewCadastroImovel implements ActionListener{
 			this.naoPisc.setVisible(false);
 		}
 	}
+	
+	/**
+	 * Controle da visibilidade dos campos específicos de Apartamento
+	 * @param opcao
+	 * true para tornar o form visível, e false para tornar o form invisível
+	 */
 	
 	private  void setVisibleFormAp(boolean opcao) {
 		if(opcao) {
@@ -381,6 +403,10 @@ public class ViewCadastroImovel implements ActionListener{
 		}
 	}
 	
+	/**
+	 * Método para limpar todos os campos dos formulários, a fim de manter controle das informações
+	 */
+	
 	private  void limparCampos() {
 		this.buttonGroup.clearSelection();
 		this.buttonGroup2.clearSelection();
@@ -405,6 +431,10 @@ public class ViewCadastroImovel implements ActionListener{
 		this.num.setValue(0);
 		this.categoria.setText("");
 	}
+	
+	/**
+	 * Método para controle dos enventos disparados dentro da janela
+	 */
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -490,7 +520,13 @@ public class ViewCadastroImovel implements ActionListener{
 		}
 		
 	}
-
+	
+	/**
+	 * Método para controlar os campos, fazendo validações em cada campo, garantindo que ele não esteja em branco, ou não selecionado
+	 * @return
+	 * retorna uma lista de mensagens de erros, dos campos inválidos
+	 */
+	
 	private ArrayList<String> verificarCampos() {
 		ArrayList<String> erros = new ArrayList<String>();
 		
@@ -527,6 +563,12 @@ public class ViewCadastroImovel implements ActionListener{
 		return erros;
 	}
 	
+	/**
+	 * Método para obter os textos dentro dos campos que são específicos do tipo Apartamento
+	 * @return
+	 * retorna uma lista de valores booleanos
+	 */
+	
 	private boolean [] getInfoAp() {
 		boolean[] info = new boolean[4];
 		
@@ -557,6 +599,12 @@ public class ViewCadastroImovel implements ActionListener{
 		
 		return info;
 	}
+	
+	/**
+	 * Método para obter os textos dentro dos campos que são específicos do tipo Casa
+	 * @return
+	 * retorna uma lista de valores booleanos
+	 */
 	
 	private boolean [] getInfoCs() {
 		boolean[] info = new boolean[2];

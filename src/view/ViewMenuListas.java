@@ -9,6 +9,12 @@ import javax.swing.event.ListSelectionListener;
 
 import controle.*;
 
+/**
+ * Classe para Tela principal de cada objeto, Usuários e Imóveis
+ * @author Rafael Nobre e Caio Berg
+ *
+ */
+
 public class ViewMenuListas implements ActionListener, ListSelectionListener{
 	
 	String[] listaTotalCasas;
@@ -33,6 +39,17 @@ public class ViewMenuListas implements ActionListener, ListSelectionListener{
 	private static ControleDados dados;
 	private String s;
 	private int opcao;
+	
+	/**
+	 * Construtor da Tela
+	 * @param d
+	 * Controle de dados
+	 * @param op
+	 * opção do tipo de objeto
+	 * 1 - Casa
+	 * 2 - Apartamento
+	 * 3 - Pessoa
+	 */
 	
 	public ViewMenuListas(ControleDados d, int op) {
 		
@@ -125,6 +142,10 @@ public class ViewMenuListas implements ActionListener, ListSelectionListener{
 		reservar.addActionListener(this);
 	}
 	
+	/**
+	 * Método para controle de eventos dentro da janela
+	 */
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
@@ -202,7 +223,11 @@ public class ViewMenuListas implements ActionListener, ListSelectionListener{
 		}
 		
 	}
-
+	
+	/**
+	 * Método para controle de selação do JList dentro da Janela
+	 */
+	
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
