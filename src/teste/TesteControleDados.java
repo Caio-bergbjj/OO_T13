@@ -6,19 +6,35 @@ import org.junit.jupiter.api.Test;
 
 import controle.ControleDados;
 
-class TesteControleDados {
+/**
+ * Classe para testes unitários dos metodos do ControleDados
+ * @author Rafael Nobre e Caio Berg
+ * @version 1.0 (Abr 07)
+ * 
+ * */
+
+public class TesteControleDados {
 	
 	private ControleDados dados;
 	String[] endereco;
+	
+	/**
+	 * Inicialização de Dados para o uso nos testes
+	 * 
+	 * */
 	
 	@BeforeEach
 	public void inicializar() {
 		this.dados = new ControleDados();
 		this.endereco = new String[]{"70650-236", "Brasilia", "DF", "Cruzeiro", "0", "12" , "Apartamento", "403"};
 	}
-
+	/**
+	 * Teste de inserir uma nova pessoa na base de dados 
+	 * 
+	 * */
+	
 	@Test
-	void testInserirPessoa() {
+	public void testInserirPessoa() {
 		String[] dadosPessoa = {"Caio Berg", "831.066.245-66", "caioteste24@gmail.com", "61", "997843518"};
 		
 		assertTrue(dados.inserirEditarPessoa(dadosPessoa, endereco, 1, -1));
@@ -32,9 +48,14 @@ class TesteControleDados {
 		
 		
 	}
-
+	
+	/**
+	 * Teste de inserir um novo apartamento na base de dados 
+	 * 
+	 * */
+	
 	@Test
-	void testInserirApartamento() {
+	public void testInserirApartamento() {
 		String[] dadosApartamento = {"Ap do Rio", "1000.00","2","3", "2", "2", "4"};
 		boolean[] info = {true, false, true, true};
 
@@ -46,8 +67,13 @@ class TesteControleDados {
 		
 	}
 
+	/**
+	 * Teste de inserir uma nova casa na base de dados 
+	 * 
+	 * */
+	
 	@Test
-	void testInserirCasa() {
+	public void testInserirCasa() {
 		String[] dadosCasa = {"Casa do Rio", "1000.00","Praia","2","3", "2", "2", "4"};
 		boolean[] info = {true, false};
 		
@@ -56,9 +82,15 @@ class TesteControleDados {
 		dadosCasa[3] = dadosCasa[3].concat("s");
 		assertFalse(dados.inserirEditarCasa(dadosCasa, endereco, info, 0, 1, -1));
 	}
+	
+	/**
+	 * 
+	 * Teste para retorno da posicao da posicao do dado(Casa) se ja estiver cadastrado 
+	 * 
+	 * */
 
 	@Test
-	void testGetCasaPos() {
+	public void testGetCasaPos() {
 		
 		String nome = "Casa 5";
 		int i = dados.getCasaPos(nome);
@@ -71,9 +103,15 @@ class TesteControleDados {
 		assertEquals(-1,i);
 
 	}
+	
+	/**
+	 * 
+	 * Teste para retorno da posicao da posicao do dado(Apartamento) se ja estiver cadastrado 
+	 * 
+	 * */
 
 	@Test
-	void testGetApPos() {
+	public void testGetApPos() {
 		String nome = "Apartamento 6";
 		int i = dados.getApPos(nome);
 		
@@ -84,9 +122,15 @@ class TesteControleDados {
 		
 		assertEquals(-1,i);
 	}
+	
+	/**
+	 * 
+	 * Teste para retorno da posicao da posicao do dado(Pessoa) se ja estiver cadastrado 
+	 * 
+	 * */
 
 	@Test
-	void testGetPessoaPos() {
+	public void testGetPessoaPos() {
 		String nome = "Pessoa 9";
 		int i = dados.getPessoaPos(nome);
 		
@@ -98,8 +142,13 @@ class TesteControleDados {
 		assertEquals(-1,i);
 	}
 	
+	
+	/**
+	 * Teste para editar uma pessoa já existente na base de dados 
+	 * 
+	 * */
 	@Test
-	void testEditarPessoa() {
+	public void testEditarPessoa() {
 		String[] dadosNovaPessoa = {"Caio Berg", "831.066.245-66", "caioteste24@gmail.com", "61", "997843518"};
 		
 		String nomePessoaAntiga = dados.getPessoas().get(5).getNome();
@@ -115,8 +164,13 @@ class TesteControleDados {
 		
 	}
 	
+	/**
+	 * Teste para editar um apartamento já existente na base de dados 
+	 * 
+	 * */
+	
 	@Test
-	void testEditarApartamento() {
+	public void testEditarApartamento() {
 		String[] dadosNovoApartamento = {"Ap do Rio", "1000.00","2","3", "2", "2", "4"};
 		boolean[] info = {true, false, true, true};
 		
@@ -131,8 +185,13 @@ class TesteControleDados {
 		
 	}
 	
+	/**
+	 * Teste para editar uma casa já existente na base de dados 
+	 * 
+	 * */
+	
 	@Test
-	void testEditarCasa() {
+	public void testEditarCasa() {
 		String[] dadosNovaCasa = {"Ap do Rio", "1000.00","Praia","2","3", "2", "2", "4"};
 		boolean[] info = {true, false};
 		
