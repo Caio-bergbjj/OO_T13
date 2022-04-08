@@ -92,7 +92,7 @@ public class ViewCadastroImovel implements ActionListener{
 	private ButtonGroup buttonGroup6 = new ButtonGroup();
 	private JRadioButton simGaragem = new JRadioButton("S");
 	private JRadioButton naoGaragem = new JRadioButton("N");
-	private JLabel lCond = new JLabel("O Apartamento possui Condom�nio?");
+	private JLabel lCond = new JLabel("O Apartamento possui Condominio?");
 	private ButtonGroup buttonGroup7 = new ButtonGroup();
 	private JRadioButton simCond = new JRadioButton("S");
 	private JRadioButton naoCond = new JRadioButton("N");
